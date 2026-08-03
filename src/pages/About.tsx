@@ -39,23 +39,13 @@ const clientLogos = [
 const linkCards = [
   {
     label: 'Download CV',
-    href: 'https://drive.google.com/file/d/1t3HcBD6mH3hZTyIvRLsQUCeXI0_o_f7i/view?usp=sharing',
+    href: 'https://drive.google.com/file/d/1N8rCR2mkIg3ZTmECEOM_YudapFBsFXPh/view?usp=sharing',
     text: 'Discover my resume to delve deeper into my design background, skills, and professional experience.',
   },
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/mohammed-rauf-5b45a186/',
     text: 'Connect me and stay informed about my recent professional accomplishments and career advancements.',
-  },
-  {
-    label: 'Behance',
-    href: 'https://www.behance.net/raufn',
-    text: 'Discover my creative playground, where I present my design explorations.',
-  },
-  {
-    label: 'Dribbble',
-    href: 'https://dribbble.com/mohd_rauf',
-    text: 'Discover my creative realm, where I exhibit my design explorations and experiments.',
   },
 ]
 
