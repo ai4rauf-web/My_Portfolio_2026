@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
 import rauf from '../assets/about/rauf.png'
@@ -36,6 +37,51 @@ const clientLogos = [
   { src: logoAnywhere, color: logoAnywhereColor, alt: 'Anywhere Auctions', h: 'h-[48px]' },
 ]
 
+type ApproachCard = { title: string; text: string }
+
+const approaches: { key: string; label: string; cards: ApproachCard[] }[] = [
+  {
+    key: 'new',
+    label: 'AI Approach',
+    cards: [
+      {
+        title: 'Explore with AI',
+        text: 'Research, ideation, and exploration happen in conversation with AI — fast, divergent, and cheap to iterate on.',
+      },
+      {
+        title: 'Design in code',
+        text: 'I generate and refine the design directly, working in tools like Claude Code rather than static mockups alone.',
+      },
+      {
+        title: 'Ship, not just hand off',
+        text: 'Work is pushed to Git and deployed as part of the same flow — design and delivery happen together.',
+      },
+    ],
+  },
+  {
+    key: 'old',
+    label: 'Conventional Approach',
+    cards: [
+      {
+        title: 'Research & interviews',
+        text: 'Understand real users through interviews and field research before any solutioning begins.',
+      },
+      {
+        title: 'Ideation',
+        text: 'Turn findings into problem statements, personas, and early concepts.',
+      },
+      {
+        title: 'Wireframes & UI in Figma',
+        text: 'Structure the flow in wireframes, then design high-fidelity interfaces.',
+      },
+      {
+        title: 'Developer handoff',
+        text: 'Deliver specs, assets, and prototypes for engineering to build.',
+      },
+    ],
+  },
+]
+
 const linkCards = [
   {
     label: 'Download CV',
@@ -49,7 +95,11 @@ const linkCards = [
   },
 ]
 
-const About = () => (
+const About = () => {
+  const [activeApproach, setActiveApproach] = useState(approaches[0].key)
+  const current = approaches.find((a) => a.key === activeApproach)!
+
+  return (
   <main className="mx-auto w-full max-w-[1243px] px-5 sm:px-8 lg:px-10">
     <div className="mt-12 flex flex-col gap-10 lg:mt-[100px] lg:flex-row lg:gap-[42px]">
       {/* Profile photo */}
@@ -115,6 +165,44 @@ const About = () => (
           ))}
         </div>
 
+        {/* How I work — old vs. new approach toggle */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-medium uppercase tracking-wide text-muted">Approach</p>
+            <h2 className="text-[26px] font-semibold text-charcoal lg:text-[32px]">How I work</h2>
+            <p className="text-base text-muted lg:text-lg">
+              In practice, I use a hybrid of both — leaning into whichever fits the use case and the
+              problem at hand.
+            </p>
+          </div>
+
+          <div className="flex gap-2">
+            {approaches.map((a) => (
+              <button
+                key={a.key}
+                type="button"
+                onClick={() => setActiveApproach(a.key)}
+                className={`rounded-full border px-4 py-2 text-base transition-colors duration-200 ${
+                  activeApproach === a.key
+                    ? 'border-ink bg-ink text-white'
+                    : 'border-[#949494]/60 bg-white text-muted hover:border-ink hover:text-ink'
+                }`}
+              >
+                {a.label}
+              </button>
+            ))}
+          </div>
+
+          <div key={activeApproach} className="approach-fade grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {current.cards.map((card) => (
+              <div key={card.title} className="flex flex-col gap-2 rounded-2xl bg-surface p-6">
+                <p className="text-lg font-semibold text-ink">{card.title}</p>
+                <p className="text-base leading-6 text-muted">{card.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {linkCards.map((card) => (
             <a
@@ -146,6 +234,7 @@ const About = () => (
 
     <Footer />
   </main>
-)
+  )
+}
 
 export default About

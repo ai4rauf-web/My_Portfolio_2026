@@ -40,3 +40,17 @@
     animation: none;
   }
 }
+
+/* Approach toggle — soft fade/rise when switching cards */
+.approach-fade {
+  animation: approach-fade-k 320ms ease-out;
+}
+@keyframes approach-fade-k {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .approach-fade {
+    animation: none;
+  }
+}
