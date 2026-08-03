@@ -12,6 +12,10 @@
  * Hosting a video: upload to Cloudinary (or drop it in /public/lab), then set
  *   media: { kind: 'video', src: 'https://res.cloudinary.com/.../file.mp4', poster: '...jpg' }
  * `poster` is an optional thumbnail image shown before the video plays.
+ *
+ * Placeholder/template entries (no `media`, sample `detail` copy) are kept card-only —
+ * their `detail` is intentionally omitted so they don't navigate anywhere. Once real
+ * content replaces the sample copy, add a `detail` object back to make them clickable.
  */
 
 export type LabMedia =
@@ -85,14 +89,7 @@ export const labItems: LabItem[] = [
     blurb: 'A 40s concept film generated end-to-end with AI, from script to color grade.',
     aspect: 'aspect-[16/11]',
     visual: { gradient: 'linear-gradient(135deg, #1a2980 0%, #26d0ce 100%)', emoji: '🎬' },
-    detail: {
-      year: '2026',
-      tools: ['Runway', 'Midjourney', 'After Effects'],
-      body: [
-        'An experiment to see how far AI tooling can carry a product film before a human needs to touch it. The script, storyboard frames, and motion passes were all machine-generated, then assembled and graded by hand.',
-        'The biggest lesson: AI nails establishing shots and abstract transitions, but product close-ups still need manual compositing for believable materials.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'aurora-gradients',
@@ -109,14 +106,7 @@ export const labItems: LabItem[] = [
     blurb: 'A tiny isometric world built from my actual desk setup.',
     aspect: 'aspect-square',
     visual: { gradient: 'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)', emoji: '🖥️' },
-    detail: {
-      year: '2025',
-      tools: ['Figma', 'Illustrator'],
-      body: [
-        'Recreated my home studio as an isometric illustration — every object modeled from reference photos, down to the coffee mug.',
-        'Started as a warm-up exercise and ended as a full style exploration: consistent 30° angles, a limited 6-color palette, and soft double shadows.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'glass-dashboard',
@@ -125,14 +115,7 @@ export const labItems: LabItem[] = [
     blurb: 'How far can frosted glass go before usability breaks?',
     aspect: 'aspect-[4/5]',
     visual: { gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', emoji: '📊' },
-    detail: {
-      year: '2025',
-      tools: ['Figma', 'Principle'],
-      body: [
-        'A telecom analytics dashboard rebuilt entirely with translucent layers — testing contrast ratios at every blur level.',
-        'Verdict: glass works for chrome and surfaces, but data visualisations need solid backgrounds. Accessibility checks failed below 60% surface opacity, which became the rule for the whole exploration.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'particle-logo',
@@ -149,14 +132,7 @@ export const labItems: LabItem[] = [
     blurb: 'Seamless looping cityscapes dreamed up by a diffusion model.',
     aspect: 'aspect-[3/4]',
     visual: { gradient: 'linear-gradient(150deg, #41295a 0%, #f64f59 100%)', emoji: '🌆' },
-    detail: {
-      year: '2026',
-      tools: ['Stable Diffusion', 'Deforum', 'Premiere'],
-      body: [
-        'A series of infinitely-looping neon city flythroughs. Each loop is a 300-frame diffusion sequence stitched so that the last frame feeds the first.',
-        'The hard part was temporal consistency — keeping buildings from melting between frames took a custom depth-map pipeline.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'farm-characters',
@@ -173,14 +149,7 @@ export const labItems: LabItem[] = [
     blurb: 'Tiny moments of delight for payments, transfers, and success states.',
     aspect: 'aspect-square',
     visual: { gradient: 'linear-gradient(135deg, #13547a 0%, #80d0c7 100%)', emoji: '💳' },
-    detail: {
-      year: '2024',
-      tools: ['Figma', 'Lottie', 'After Effects'],
-      body: [
-        'A library of 14 micro-interactions for a concept banking app — card swipes, biometric confirmation, and a confetti-free success state that still feels rewarding.',
-        'Every animation ships as a Lottie file under 30kb, tested at 60fps on mid-range Android devices.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'type-in-motion',
@@ -189,14 +158,7 @@ export const labItems: LabItem[] = [
     blurb: 'Kinetic typography studies set to spoken-word audio.',
     aspect: 'aspect-[4/5]',
     visual: { gradient: 'linear-gradient(135deg, #232526 0%, #414345 100%)', emoji: '🔤' },
-    detail: {
-      year: '2025',
-      tools: ['After Effects', 'IBM Plex Sans'],
-      body: [
-        'Ten short kinetic-type pieces, each animating a single sentence of spoken word. The constraint: one typeface (IBM Plex Sans), two weights, no color.',
-        'Rhythm did all the work — timing curves were matched to the audio waveform by hand, frame by frame.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
   {
     id: 'dreamscape',
@@ -221,13 +183,6 @@ export const labItems: LabItem[] = [
     blurb: 'Rethinking a telecom dashboard for headset-first spatial computing.',
     aspect: 'aspect-[16/10]',
     visual: { gradient: 'linear-gradient(135deg, #3a1c71 0%, #d76d77 55%, #ffaf7b 100%)', emoji: '🥽' },
-    detail: {
-      year: '2026',
-      tools: ['Figma', 'Spline', 'Reality Composer'],
-      body: [
-        'What does an enterprise dashboard look like when it floats in your room? This concept re-arranges KPI cards into depth layers — glanceable data near, drill-downs far.',
-        'Prototyped with eye-tracking heatmaps in mind: primary metrics sit in the natural resting gaze zone, alerts break in from the periphery.',
-      ],
-    },
+    // Sample copy — navigation frozen until real content replaces this.
   },
 ]
