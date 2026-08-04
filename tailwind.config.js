@@ -44,6 +44,10 @@ export default {
           '10%, 30%, 50%': { transform: 'rotate(14deg)' },
           '20%, 40%': { transform: 'rotate(-8deg)' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'online-halo': 'online-halo 1.6s ease-in-out infinite',
@@ -51,6 +55,7 @@ export default {
         'blob-drift': 'blob-drift 20s ease-in-out infinite',
         'blob-spin': 'blob-spin 21s ease-in-out infinite',
         wave: 'wave 2.2s ease-in-out infinite',
+        marquee: 'marquee 32s linear infinite',
       },
     },
   },
