@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
+import { ClaudeLogo, ClickUpLogo, FigmaLogo, GitLogo, KimiLogo, TerminalLogo, VercelLogo } from '../components/Icons'
+import higgsfieldLogo from '../assets/tools/higgsfield.png'
+import wisprFlowLogo from '../assets/tools/wisprflow.png'
 import rauf from '../assets/about/rauf.png'
 import arrowCircleRight from '../assets/about/arrow-circle-right.svg'
 import logoEand from '../assets/about/logo-eand.png'
@@ -110,6 +112,18 @@ const approaches: { key: string; label: string; cards: ApproachCard[] }[] = [
   },
 ]
 
+const tools = [
+  { name: 'Claude', text: "The best design partner that doesn't have opinions about fonts.", icon: ClaudeLogo },
+  { name: 'Kimi', text: 'A second opinion when Claude and I disagree.', icon: KimiLogo },
+  { name: 'Figma/Figjam', text: 'Where the thinking — and the mess — happens before the code does.', icon: FigmaLogo },
+  { name: 'Terminal', text: 'Where design turns into something real.', icon: TerminalLogo },
+  { name: 'Git', text: 'Version control for decisions, not just code.', icon: GitLogo },
+  { name: 'Vercel', text: 'From `git push` to live in about a minute.', icon: VercelLogo },
+  { name: 'Wispr Flow', text: "I don't type much anymore — I just talk.", image: wisprFlowLogo },
+  { name: 'Higgsfield', text: 'AI video, without the render farm.', image: higgsfieldLogo },
+  { name: 'ClickUp', text: 'Where the roadmap lives, when it needs to live somewhere.', icon: ClickUpLogo },
+]
+
 const linkCards = [
   {
     label: 'Download CV',
@@ -214,6 +228,28 @@ const About = () => {
         </div>
       </div>
 
+      {/* Full width — Tools */}
+      <div className="mt-16 flex flex-col gap-6 lg:mt-24">
+        <div className="flex flex-col gap-2">
+          <p className="text-sm font-medium uppercase tracking-wide text-muted">Tools</p>
+          <h2 className="text-[26px] font-semibold text-charcoal lg:text-[32px]">Things I love</h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <div key={tool.name} className="flex gap-4">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-surface">
+                {tool.icon ? <tool.icon className="h-5 w-5 text-ink" /> : <img src={tool.image} alt="" className="h-full w-full object-cover" />}
+              </span>
+              <div className="flex flex-col gap-1">
+                <p className="text-lg font-semibold text-ink">{tool.name}</p>
+                <p className="text-base leading-6 text-muted">{tool.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Full width — links */}
       <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-24">
         {linkCards.map((card) => (
@@ -236,10 +272,6 @@ const About = () => {
             <span className="text-base text-muted">{card.text}</span>
           </a>
         ))}
-      </div>
-
-      <div className="mt-16 lg:mt-24">
-        <CTASection />
       </div>
 
       <Footer />
