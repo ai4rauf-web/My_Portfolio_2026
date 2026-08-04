@@ -3,7 +3,7 @@ import { ArrowRight, LoadingHourglass } from './Icons'
 import type { Project } from '../data/projects'
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  const { tag, title, description, descriptionLink, image, imageAlt, updating } = project
+  const { tag, title, description, descriptionLink, image, imageAlt, updating, metrics } = project
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl bg-surface transition-shadow duration-300 hover:shadow-lg lg:flex-row lg:items-stretch lg:gap-5">
@@ -32,6 +32,22 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   </a>
                 )}
                 {description}
+              </p>
+            )}
+            {metrics && metrics.length > 0 && (
+              <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-charcoal">
+                {metrics.map((metric, i) => (
+                  <span key={metric.label} className="flex items-center gap-3">
+                    {i > 0 && (
+                      <span className="text-muted" aria-hidden="true">
+                        |
+                      </span>
+                    )}
+                    <span>
+                      <strong className="font-semibold text-ink">{metric.value}</strong> {metric.label}
+                    </span>
+                  </span>
+                ))}
               </p>
             )}
             {updating && (
