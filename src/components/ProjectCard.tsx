@@ -35,20 +35,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
               </p>
             )}
             {metrics && metrics.length > 0 && (
-              <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-charcoal">
-                {metrics.map((metric, i) => (
-                  <span key={metric.label} className="flex items-center gap-3">
-                    {i > 0 && (
-                      <span className="text-muted" aria-hidden="true">
-                        |
-                      </span>
-                    )}
-                    <span>
-                      <strong className="font-semibold text-ink">{metric.value}</strong> {metric.label}
-                    </span>
-                  </span>
+              <div className="flex flex-col gap-1">
+                {metrics.map((metric) => (
+                  <p key={metric.label} className="text-base text-charcoal">
+                    <strong className="font-semibold text-ink">{metric.value}</strong> {metric.label}
+                  </p>
                 ))}
-              </p>
+              </div>
             )}
             {updating && (
               <div className="flex w-full items-center gap-4 rounded-lg bg-warn-bg p-2">
