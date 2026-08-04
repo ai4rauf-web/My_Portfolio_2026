@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
@@ -35,6 +36,7 @@ function App() {
           <Route path="/projects/:id" element={<ComingSoon title="Case Study" />} />
         </Routes>
       </div>
+      <Analytics />
     </Router>
   )
 }
