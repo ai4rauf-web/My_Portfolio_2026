@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import Footer from '../components/Footer'
-import { ArrowRight } from '../components/Icons'
+import { ArrowRight, LoadingHourglass } from '../components/Icons'
 import { labItems, type LabItem } from '../data/labItems'
 
 const PlayIcon = ({ className }: { className?: string }) => (
@@ -22,6 +22,12 @@ const LabCard = ({ item, onOpen }: { item: LabItem; onOpen: (item: LabItem) => v
         className={`${item.aspect} relative flex items-center justify-center overflow-hidden`}
         style={{ backgroundImage: item.visual.gradient }}
       >
+        {!clickable && (
+          <div className="absolute inset-x-0 top-0 z-10 flex items-center gap-1.5 bg-warn-bg/95 px-3 py-1.5 backdrop-blur-sm">
+            <LoadingHourglass className="h-4 w-4 shrink-0 text-warn-text" />
+            <span className="text-xs font-medium text-warn-text">Updating — visit later</span>
+          </div>
+        )}
         {item.media?.kind === 'video' ? (
           <>
             {item.media.poster && (
