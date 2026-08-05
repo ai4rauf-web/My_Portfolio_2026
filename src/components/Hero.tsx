@@ -17,30 +17,22 @@ const Hero = () => (
       <h1 className="mt-4 text-[32px] leading-[1.377] text-ink sm:text-[44px] lg:text-[60px]">
         Hi, I'm <span className="font-semibold">Rauf</span>{' '}
         <span className="inline-block origin-[70%_80%] motion-safe:animate-wave">👋</span>
-        <br />a <em>Product designer</em>, transforming ideas into intuitive and engaging digital
-        experiences.
-      </h1>
-      <p className="mt-12 text-lg text-charcoal sm:text-xl lg:mt-16 lg:text-2xl">
-        With 10+ years of experience on solving problems with curiosity. I currently lead the design
-        process at{' '}
+        <br />
+        <em>Product designer</em> with 10+ years turning complex enterprise problems into products
+        people love — currently leading design at{' '}
         <a
           href="https://www.eand.com/en/index.html"
           target="_blank"
           rel="noreferrer"
-          className="underline decoration-charcoal/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
+          className="underline decoration-ink/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
         >
           e&amp; UAE
         </a>
-        , crafting next-gen enterprise solutions. Formerly worked for{' '}
-        <a
-          href="https://www.qburst.com/en-us/"
-          target="_blank"
-          rel="noreferrer"
-          className="underline decoration-charcoal/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
-        >
-          QBurst
-        </a>
-        ,{' '}
+        .
+      </h1>
+      <p className="mt-12 text-lg text-charcoal sm:text-xl lg:mt-16 lg:text-2xl">
+        I approach every problem with curiosity, turning complexity into interfaces people actually
+        enjoy using. Previously at{' '}
         <a
           href="https://www.emerson.com/en/corporate"
           target="_blank"
@@ -51,14 +43,23 @@ const Hero = () => (
         </a>
         ,{' '}
         <a
+          href="https://www.qburst.com/en-us/"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-charcoal/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
+        >
+          QBurst
+        </a>
+        , and{' '}
+        <a
           href="https://www.morganmckinley.com/"
           target="_blank"
           rel="noreferrer"
           className="underline decoration-charcoal/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
         >
-          Morgan Mckinley
-        </a>{' '}
-        and a few startups.
+          Morgan McKinley
+        </a>
+        , across enterprise, consulting, and a few startups along the way.
       </p>
     </div>
   </section>
