@@ -14,7 +14,7 @@ const Hero = () => (
         <OnlineDot className="h-5 w-5" />
         <p className="text-base text-online">Available for new missions</p>
       </div>
-      <h1 className="mt-4 text-[32px] leading-[1.377] text-ink sm:text-[40px] lg:text-[56px]">
+      <h1 className="mt-4 text-[32px] leading-[1.377] text-ink sm:text-[40px] lg:text-[52px]">
         Hi, I'm <span className="font-semibold">Rauf</span>{' '}
         <span className="inline-block origin-[70%_80%] motion-safe:animate-wave">👋</span>
         <br />
