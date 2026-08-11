@@ -49,6 +49,20 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'lashic',
+    tag: 'Product Design',
+    title: 'Lashic',
+    description:
+      'The Lashic Care platform is a nursing care product owned by Infic Inc. It’s a service that installs IoT sensors nearby to the elderly person and notify the abnormalities at an early stage based on their daily activities and history.',
+    image: lashic,
+    imageAlt: 'Lashic dashboard on tablet and phone',
+    updating: false,
+    metrics: [
+      { value: '50%', label: 'reduction in user errors' },
+      { value: '40%', label: 'increase in user satisfaction' },
+    ],
+  },
+  {
     id: 'dtx-telco-cdp',
     tag: 'Product Design',
     title: 'DTX R&D Telco CDP',
@@ -65,19 +79,5 @@ export const projects: Project[] = [
     image: eandCard,
     imageAlt: 'e& project preview',
     updating: true,
-  },
-  {
-    id: 'lashic',
-    tag: 'Product Design',
-    title: 'Lashic',
-    description:
-      'The Lashic Care platform is a nursing care product owned by Infic Inc. It’s a service that installs IoT sensors nearby to the elderly person and notify the abnormalities at an early stage based on their daily activities and history.',
-    image: lashic,
-    imageAlt: 'Lashic dashboard on tablet and phone',
-    updating: false,
-    metrics: [
-      { value: '50%', label: 'reduction in user errors' },
-      { value: '40%', label: 'increase in user satisfaction' },
-    ],
   },
 ]

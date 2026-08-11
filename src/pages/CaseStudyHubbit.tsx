@@ -601,11 +601,11 @@ const CaseStudyHubbit = () => {
       {/* Prev / next navigation */}
       <div className="mt-16 flex items-center justify-between lg:mt-24">
         <Link
-          to="/"
+          to="/projects/emerson-deltav-psm"
           className="group/btn flex items-center gap-1 rounded-full border border-[#019fb9] bg-white py-2 pl-3 pr-4 transition-shadow duration-300 hover:shadow-md"
         >
           <ArrowRight className="h-6 w-6 rotate-180 text-ink transition-transform duration-300 group-hover/btn:-translate-x-1" />
-          <span className="text-base text-ink">Home</span>
+          <span className="text-base text-ink">Previous Project</span>
         </Link>
         <Link
           to="/projects/lashic"
