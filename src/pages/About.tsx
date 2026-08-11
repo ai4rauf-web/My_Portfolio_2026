@@ -127,7 +127,7 @@ const tools = [
 const linkCards = [
   {
     label: 'Download CV',
-    href: 'https://drive.google.com/file/d/1N8rCR2mkIg3ZTmECEOM_YudapFBsFXPh/view?usp=sharing',
+    href: 'https://drive.google.com/file/d/1aY41eRi9nb4R2bv1-C5SNpq9nDQk5eFE/view?usp=sharing',
     text: 'Discover my resume to delve deeper into my design background, skills, and professional experience.',
   },
   {
