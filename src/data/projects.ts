@@ -91,6 +91,7 @@ export const projects: Project[] = [
     image: emersonPreview,
     imageAlt: 'Emerson DeltaV PSM variant comparison workspace',
     updating: false,
+    privateAccess: true,
     metrics: [
       { value: '30+', label: 'site variants comparable at a glance' },
       { value: '~40%', label: 'faster variant reviews' },
@@ -105,6 +106,7 @@ export const projects: Project[] = [
     image: hubbit,
     imageAlt: 'Hubbit mobile app in hand',
     updating: false,
+    privateAccess: true,
     metrics: [
       { value: '40%', label: 'increase in conversion rate' },
       { value: '30%', label: 'increase in user adoption' },
@@ -119,6 +121,7 @@ export const projects: Project[] = [
     image: lashic,
     imageAlt: 'Lashic dashboard on tablet and phone',
     updating: false,
+    privateAccess: true,
     metrics: [
       { value: '50%', label: 'reduction in user errors' },
       { value: '40%', label: 'increase in user satisfaction' },
