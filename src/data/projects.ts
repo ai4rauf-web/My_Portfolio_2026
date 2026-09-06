@@ -3,6 +3,7 @@ import lashic from '../assets/figma/lashic.png'
 import emersonPreview from '../assets/emerson/hero-mockup.jpg'
 import dtxAicdp from '../assets/figma/dtx-aicdp.jpg'
 import eandCard from '../assets/figma/eand-card.jpg'
+import mvivaCvmaasCover from '../assets/figma/mviva-cvmaas-cover.jpg'
 
 export type Project = {
   id: string
@@ -42,8 +43,8 @@ export const projects: Project[] = [
     title: 'mViva + CVMaaS — self-serve campaigns',
     description:
       'From a multi-team, procedural process to business users running real-time and ad-hoc campaigns themselves. CVMaaS provisions and governs; mViva builds and ships.',
-    image: eandCard,
-    imageAlt: 'mViva + CVMaaS campaign workspace',
+    image: mvivaCvmaasCover,
+    imageAlt: 'CVM as a service + Implementing mViva — cover art',
     updating: false,
     privateAccess: true,
     metrics: [
