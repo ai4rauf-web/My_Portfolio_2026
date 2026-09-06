@@ -17,7 +17,9 @@ const Navbar = () => (
           end={item.to === '/'}
           className={({ isActive }) =>
             `whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors sm:px-4 sm:text-base ${
-              isActive ? 'bg-ink text-white' : 'text-muted hover:text-ink'
+              isActive
+                ? 'bg-ink text-white'
+                : 'text-muted hover:bg-ink/5 hover:text-ink'
             }`
           }
         >

@@ -8,6 +8,11 @@ import ComingSoon from './pages/ComingSoon'
 import CaseStudyHubbit from './pages/CaseStudyHubbit'
 import CaseStudyLashic from './pages/CaseStudyLashic'
 import CaseStudyEmerson from './pages/CaseStudyEmerson'
+import CaseStudyDaiticsCdp from './pages/CaseStudyDaiticsCdp'
+import CaseStudyMvivaCvmaas from './pages/CaseStudyMvivaCvmaas'
+import CaseStudyRmnDolphin from './pages/CaseStudyRmnDolphin'
+import CaseStudyShopManage from './pages/CaseStudyShopManage'
+import PasswordGate from './components/PasswordGate'
 import About from './pages/About'
 import Contacts from './pages/Contacts'
 import Lab from './pages/Lab'
@@ -34,6 +39,54 @@ function App() {
           <Route path="/projects/hubbit" element={<CaseStudyHubbit />} />
           <Route path="/projects/lashic" element={<CaseStudyLashic />} />
           <Route path="/projects/emerson-deltav-psm" element={<CaseStudyEmerson />} />
+          <Route
+            path="/projects/daitics-cdp"
+            element={
+              <PasswordGate
+                slug="daitics-cdp"
+                title="Daitics AI CDP"
+                subtitle="This case study describes an R&D platform. Enter the password Rauf shared to view it."
+              >
+                <CaseStudyDaiticsCdp />
+              </PasswordGate>
+            }
+          />
+          <Route
+            path="/projects/mviva-cvmaas"
+            element={
+              <PasswordGate
+                slug="mviva-cvmaas"
+                title="mViva + CVMaaS"
+                subtitle="Enterprise campaign execution. Enter the password Rauf shared to view it."
+              >
+                <CaseStudyMvivaCvmaas />
+              </PasswordGate>
+            }
+          />
+          <Route
+            path="/projects/rmn-dolphin"
+            element={
+              <PasswordGate
+                slug="rmn-dolphin"
+                title="RMN Dolphin"
+                subtitle="Retail media network on first-party telco data. Enter the password Rauf shared to view it."
+              >
+                <CaseStudyRmnDolphin />
+              </PasswordGate>
+            }
+          />
+          <Route
+            path="/projects/shop-manage"
+            element={
+              <PasswordGate
+                slug="shop-manage"
+                title="Shop & Manage — SIM & plan revamp"
+                subtitle="Consumer-facing plan management. Enter the password Rauf shared to view it."
+              >
+                <CaseStudyShopManage />
+              </PasswordGate>
+            }
+          />
           <Route path="/projects/:id" element={<ComingSoon title="Case Study" />} />
         </Routes>
       </div>

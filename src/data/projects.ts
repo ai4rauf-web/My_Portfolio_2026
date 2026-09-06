@@ -17,9 +17,70 @@ export type Project = {
   imageAlt: string
   updating: boolean
   metrics?: { value: string; label: string }[]
+  privateAccess?: boolean
 }
 
 export const projects: Project[] = [
+  {
+    id: 'daitics-cdp',
+    tag: 'Product Design · AI',
+    title: 'Daitics AI CDP',
+    description:
+      'A sovereign, on-prem, telco-native Customer Data Platform where marketing ops, developers, data scientists and DPOs share one workspace. I shaped the authoring paradigm — three peer modes over one canonical spec, AI as co-author, every action auditable by default.',
+    image: dtxAicdp,
+    imageAlt: 'Daitics AI CDP authoring workspace',
+    updating: false,
+    privateAccess: true,
+    metrics: [
+      { value: '12+', label: 'personas served through one Portal' },
+      { value: '3 modes', label: 'Builder / Code / Authoring Agent over one canonical IR' },
+    ],
+  },
+  {
+    id: 'mviva-cvmaas',
+    tag: 'Product Design',
+    title: 'mViva + CVMaaS — self-serve campaigns',
+    description:
+      'From a multi-team, procedural process to business users running real-time and ad-hoc campaigns themselves. CVMaaS provisions and governs; mViva builds and ships.',
+    image: eandCard,
+    imageAlt: 'mViva + CVMaaS campaign workspace',
+    updating: false,
+    privateAccess: true,
+    metrics: [
+      { value: 'Multi-team', label: 'hand-off chain compressed to one product pair' },
+      { value: 'Self-serve', label: 'business teams now run their own campaigns' },
+    ],
+  },
+  {
+    id: 'rmn-dolphin',
+    tag: 'Product Design · AI-assisted build',
+    title: 'RMN Dolphin — Retail Media Network',
+    description:
+      'A retail media network on first-party telco data. Three portals (SSP, DSP, Retail) sharing one audience and governance layer. I led design across all three, then rebuilt a walkable demo using Claude Code + Git.',
+    image: eandCard,
+    imageAlt: 'RMN retail media network preview',
+    updating: false,
+    privateAccess: true,
+    metrics: [
+      { value: '3 portals', label: 'SSP · DSP · Retail — one shared platform' },
+      { value: 'Claude Code', label: 'used to rebuild a walkable demo in days' },
+    ],
+  },
+  {
+    id: 'shop-manage',
+    tag: 'UX/UI Design · Craft',
+    title: 'Shop & Manage — SIM & plan revamp',
+    description:
+      'Consumer-facing plan management. Two drops across the release + a customer-flag flow that decides which offers surface for which customer.',
+    image: eandCard,
+    imageAlt: 'Shop & Manage revamp preview',
+    updating: false,
+    privateAccess: true,
+    metrics: [
+      { value: '2 drops', label: 'v1 shipped, then refined against real usage' },
+      { value: 'Flag-driven', label: 'offers surface only when eligibility says so' },
+    ],
+  },
   {
     id: 'emerson-deltav-psm',
     tag: 'UX/UI Design',
@@ -61,23 +122,5 @@ export const projects: Project[] = [
       { value: '50%', label: 'reduction in user errors' },
       { value: '40%', label: 'increase in user satisfaction' },
     ],
-  },
-  {
-    id: 'dtx-telco-cdp',
-    tag: 'Product Design',
-    title: 'DTX R&D Telco CDP',
-    description: '',
-    image: dtxAicdp,
-    imageAlt: 'DTX R&D Telco CDP project preview',
-    updating: true,
-  },
-  {
-    id: 'eand',
-    tag: 'UX/UI Design',
-    title: 'e&',
-    description: '',
-    image: eandCard,
-    imageAlt: 'e& project preview',
-    updating: true,
   },
 ]
