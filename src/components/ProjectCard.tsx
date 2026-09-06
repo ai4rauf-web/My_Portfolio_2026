@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, LoadingHourglass } from './Icons'
+import { ArrowRight, LoadingHourglass, Lock } from './Icons'
 import type { Project } from '../data/projects'
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  const { tag, title, description, descriptionLink, image, imageAlt, updating, metrics } = project
+  const { tag, title, description, descriptionLink, image, imageAlt, updating, metrics, privateAccess } = project
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl bg-surface transition-shadow duration-300 hover:shadow-lg lg:flex-row lg:items-stretch lg:gap-5">
@@ -60,7 +60,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <Link
             to={`/projects/${project.id}`}
             className="group/btn flex items-center gap-1 self-start rounded-full bg-white py-2 pl-4 pr-3 transition-shadow duration-300 hover:shadow-md"
+            aria-label={privateAccess ? `${title} — password protected` : `${title} — view details`}
           >
+            {privateAccess && (
+              <Lock className="h-5 w-5 text-muted" />
+            )}
             <span className="text-base text-ink">View Details</span>
             <ArrowRight className="h-6 w-6 text-ink transition-transform duration-300 group-hover/btn:translate-x-1" />
           </Link>

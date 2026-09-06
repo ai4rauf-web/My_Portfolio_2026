@@ -45,7 +45,7 @@ function App() {
               <PasswordGate
                 slug="daitics-cdp"
                 title="Daitics AI CDP"
-                subtitle="This case study describes an R&D platform. Enter the password Rauf shared to view it."
+                subtitle="This case study describes an R&D platform."
               >
                 <CaseStudyDaiticsCdp />
               </PasswordGate>
@@ -57,7 +57,7 @@ function App() {
               <PasswordGate
                 slug="mviva-cvmaas"
                 title="mViva + CVMaaS"
-                subtitle="Enterprise campaign execution. Enter the password Rauf shared to view it."
+                subtitle="Enterprise campaign execution."
               >
                 <CaseStudyMvivaCvmaas />
               </PasswordGate>
@@ -69,7 +69,7 @@ function App() {
               <PasswordGate
                 slug="rmn-dolphin"
                 title="RMN Dolphin"
-                subtitle="Retail media network on first-party telco data. Enter the password Rauf shared to view it."
+                subtitle="Retail media network on first-party telco data."
               >
                 <CaseStudyRmnDolphin />
               </PasswordGate>
@@ -81,7 +81,7 @@ function App() {
               <PasswordGate
                 slug="shop-manage"
                 title="Shop & Manage — SIM & plan revamp"
-                subtitle="Consumer-facing plan management. Enter the password Rauf shared to view it."
+                subtitle="Consumer-facing plan management."
               >
                 <CaseStudyShopManage />
               </PasswordGate>
