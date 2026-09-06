@@ -5,6 +5,7 @@ import dtxAicdp from '../assets/figma/dtx-aicdp1.jpeg'
 import eandCard from '../assets/figma/eand-card.jpg'
 import mvivaCvmaasCover from '../assets/figma/mviva-cvmaas-cover.jpg'
 import rmnCover from '../assets/figma/rmn-cover.jpeg'
+import shopManageCover from '../assets/figma/shop-manage-cover.jpg'
 
 export type Project = {
   id: string
@@ -74,8 +75,8 @@ export const projects: Project[] = [
     title: 'Shop & Manage — SIM & plan revamp',
     description:
       'Consumer-facing plan management. Two drops across the release + a customer-flag flow that decides which offers surface for which customer.',
-    image: eandCard,
-    imageAlt: 'Shop & Manage revamp preview',
+    image: shopManageCover,
+    imageAlt: 'Shop & Manage Revamp — cover art',
     updating: false,
     privateAccess: true,
     metrics: [
