@@ -5,9 +5,6 @@ const ALLOWED_SLUGS = new Set([
   'mviva-cvmaas',
   'rmn-dolphin',
   'shop-manage',
-  'emerson-deltav-psm',
-  'hubbit',
-  'lashic',
 ])
 
 const json = (body: unknown, status = 200) =>

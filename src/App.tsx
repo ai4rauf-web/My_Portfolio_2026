@@ -36,42 +36,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/lab" element={<Lab />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route
-            path="/projects/hubbit"
-            element={
-              <PasswordGate
-                slug="hubbit"
-                title="Hubbit"
-                subtitle="B2B e-commerce for material bidding and procurement."
-              >
-                <CaseStudyHubbit />
-              </PasswordGate>
-            }
-          />
-          <Route
-            path="/projects/lashic"
-            element={
-              <PasswordGate
-                slug="lashic"
-                title="Lashic"
-                subtitle="IoT nursing-care platform for elderly monitoring."
-              >
-                <CaseStudyLashic />
-              </PasswordGate>
-            }
-          />
-          <Route
-            path="/projects/emerson-deltav-psm"
-            element={
-              <PasswordGate
-                slug="emerson-deltav-psm"
-                title="Emerson DeltaV™ PSM"
-                subtitle="Recipe management for regulated pharma manufacturing."
-              >
-                <CaseStudyEmerson />
-              </PasswordGate>
-            }
-          />
+          <Route path="/projects/hubbit" element={<CaseStudyHubbit />} />
+          <Route path="/projects/lashic" element={<CaseStudyLashic />} />
+          <Route path="/projects/emerson-deltav-psm" element={<CaseStudyEmerson />} />
           <Route
             path="/projects/daitics-cdp"
             element={
@@ -101,7 +68,7 @@ function App() {
             element={
               <PasswordGate
                 slug="rmn-dolphin"
-                title="RMN Dolphin"
+                title="RMN — Retail Media Network"
                 subtitle="Retail media network on first-party telco data."
               >
                 <CaseStudyRmnDolphin />

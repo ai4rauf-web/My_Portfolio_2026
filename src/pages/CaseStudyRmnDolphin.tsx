@@ -46,7 +46,7 @@ const CaseStudyRmnDolphin = () => (
 
     <CaseStudyHeader
       tag="Product Design Case Study"
-      title="RMN Dolphin — a retail media network on first-party telco data"
+      title="RMN — a retail media network on first-party telco data"
       overview={
         <p>
           A single operating layer for screen-led retail commerce: three portals — supply, demand,
@@ -81,7 +81,7 @@ const CaseStudyRmnDolphin = () => (
           <Body>
             Retail Media Networks are the fastest-growing corner of advertising — brands paying to
             reach shoppers at the moment of decision, on screens inside retail environments. What
-            makes RMN Dolphin distinctive isn’t the screens; it’s the audience underneath. First-party
+            makes RMN distinctive isn’t the screens; it’s the audience underneath. First-party
             data from a national telco lets an advertiser target by real behavioural and location
             signals, not by store-loyalty guesswork.
           </Body>
