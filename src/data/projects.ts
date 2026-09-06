@@ -28,7 +28,7 @@ export const projects: Project[] = [
     tag: 'Product Design · AI',
     title: 'Daitics AI CDP',
     description:
-      'A sovereign, on-prem, telco-native Customer Data Platform where marketing ops, developers, data scientists and DPOs share one workspace. I shaped the authoring paradigm — three peer modes over one canonical spec, AI as co-author, every action auditable by default.',
+      'A sovereign, on-prem, telco-native Customer Data Platform where marketing ops, developers, data scientists and DPOs share one workspace. Shaped the authoring paradigm — three peer modes over one canonical spec, AI as co-author, every action auditable by default — and delivered MVP v1.',
     image: dtxAicdp,
     imageAlt: 'Daitics AI CDP authoring workspace',
     updating: false,
