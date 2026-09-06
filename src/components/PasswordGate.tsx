@@ -1,6 +1,6 @@
 import { FormEvent, ReactNode, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Lock } from './Icons'
+import { Eye, EyeOff, Lock } from './Icons'
 
 type Props = {
   slug: string
@@ -14,6 +14,7 @@ const storageKey = (slug: string) => `cs-unlock:${slug}`
 const PasswordGate = ({ slug, title, subtitle, children }: Props) => {
   const [unlocked, setUnlocked] = useState(false)
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
 
@@ -71,15 +72,26 @@ const PasswordGate = ({ slug, title, subtitle, children }: Props) => {
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
           <span className="text-sm font-medium text-charcoal">Access password</span>
-          <input
-            type="password"
-            value={password}
-            autoFocus
-            autoComplete="off"
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-[#e0e0e0] bg-white px-4 py-3 text-base leading-6 text-ink outline-none transition focus:border-tag-blue"
-            placeholder="Enter password"
-          />
+          <div className="group relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              autoFocus
+              autoComplete="off"
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full rounded-xl border border-[#e0e0e0] bg-white px-4 py-3 pr-12 text-base leading-6 text-ink outline-none transition focus:border-tag-blue focus:ring-4 focus:ring-tag-blue/15"
+              placeholder="Enter password"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              aria-pressed={showPassword}
+              className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-muted transition-colors hover:bg-ink/5 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+            >
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
         </label>
 
         {error && (
