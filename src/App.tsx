@@ -44,7 +44,7 @@ function App() {
             element={
               <PasswordGate
                 slug="daitics-cdp"
-                title="Daitics AI CDP"
+                title="Telco AI CDP"
                 subtitle="This case study describes an R&D platform."
               >
                 <CaseStudyDaiticsCdp />

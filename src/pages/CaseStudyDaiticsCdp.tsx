@@ -51,7 +51,7 @@ const CaseStudyDaiticsCdp = () => (
 
     <CaseStudyHeader
       tag="AI Product Design Case Study"
-      title="Daitics AI CDP — designing the authoring surface where people and AI share the work"
+      title="Telco AI CDP — designing the authoring surface where people and AI share the work"
       overview={
         <p>
           An AI-native, sovereign, telco Customer Data Platform. I shaped a three-mode authoring

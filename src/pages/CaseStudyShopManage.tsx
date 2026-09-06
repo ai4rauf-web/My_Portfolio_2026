@@ -279,7 +279,7 @@ const CaseStudyShopManage = () => (
           </ul>
         </section>
 
-        <NextProject href="/projects/daitics-cdp" label="Back to the hero" title="Daitics AI CDP" />
+        <NextProject href="/projects/daitics-cdp" label="Back to the hero" title="Telco AI CDP" />
       </div>
     </div>
 

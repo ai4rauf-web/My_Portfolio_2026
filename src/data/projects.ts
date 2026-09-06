@@ -26,11 +26,11 @@ export const projects: Project[] = [
   {
     id: 'daitics-cdp',
     tag: 'Product Design · AI',
-    title: 'Daitics AI CDP',
+    title: 'Telco AI CDP',
     description:
       'A sovereign, on-prem, telco-native Customer Data Platform where marketing ops, developers, data scientists and DPOs share one workspace. Shaped the authoring paradigm — three peer modes over one canonical spec, AI as co-author, every action auditable by default — and delivered MVP v1.',
     image: dtxAicdp,
-    imageAlt: 'Daitics AI CDP authoring workspace',
+    imageAlt: 'Telco AI CDP authoring workspace',
     updating: false,
     privateAccess: true,
     metrics: [
@@ -55,22 +55,22 @@ export const projects: Project[] = [
   },
   {
     id: 'rmn-dolphin',
-    tag: 'Product Design · AI-assisted build',
+    tag: 'Product Design',
     title: 'RMN — Retail Media Network',
     description:
-      'A retail media network on first-party telco data. Three portals (SSP, DSP, Retail) sharing one audience and governance layer. I led design across all three, then rebuilt a walkable demo using Claude Code + Git.',
+      'A retail media network on first-party telco data. Three portals (SSP, DSP, Retail) sharing one audience and governance layer. Owned design across all three — spanning the plan → campaign → prove lifecycle from inventory discovery to billing-ready proof of performance.',
     image: rmnCover,
     imageAlt: 'RMN — Retail Media Network cover art',
     updating: false,
     privateAccess: true,
     metrics: [
       { value: '3 portals', label: 'SSP · DSP · Retail — one shared platform' },
-      { value: 'Claude Code', label: 'used to rebuild a walkable demo in days' },
+      { value: 'New revenue', label: 'monetises first-party telco data as enterprise ad inventory' },
     ],
   },
   {
     id: 'shop-manage',
-    tag: 'UX/UI Design · Craft',
+    tag: 'UX/UI Design',
     title: 'Shop & Manage — SIM & plan revamp',
     description:
       'Consumer-facing plan management. Two drops across the release + a customer-flag flow that decides which offers surface for which customer.',
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     privateAccess: true,
     metrics: [
       { value: '2 drops', label: 'v1 shipped, then refined against real usage' },
-      { value: 'Flag-driven', label: 'offers surface only when eligibility says so' },
+      { value: 'Plan-first', label: 'the plan and the primary action, at the top' },
     ],
   },
   {

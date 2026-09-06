@@ -50,9 +50,9 @@ const CaseStudyMvivaCvmaas = () => (
       overview={
         <p>
           Two products, one outcome: replace a multi-team, procedural campaign-setup pipeline with a
-          self-serve pair — <strong>CVMaaS</strong> for the e&amp;-side provisioning and governance,
-          <strong> mViva</strong> for the actual campaign builder — so business teams run their
-          own campaigns end-to-end.
+          self-serve pair — <strong>CVMaaS</strong> (Customer Value Management as a Service) for the
+          e&amp;-side provisioning and governance, <strong>mViva</strong> for the actual campaign
+          builder — so business teams run their own campaigns end-to-end.
         </p>
       }
       snapshot={snapshot}
