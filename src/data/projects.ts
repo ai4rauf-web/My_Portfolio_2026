@@ -4,6 +4,7 @@ import emersonPreview from '../assets/emerson/hero-mockup.jpg'
 import dtxAicdp from '../assets/figma/dtx-aicdp.jpg'
 import eandCard from '../assets/figma/eand-card.jpg'
 import mvivaCvmaasCover from '../assets/figma/mviva-cvmaas-cover.jpg'
+import rmnCover from '../assets/figma/rmn-cover.jpeg'
 
 export type Project = {
   id: string
@@ -58,8 +59,8 @@ export const projects: Project[] = [
     title: 'RMN — Retail Media Network',
     description:
       'A retail media network on first-party telco data. Three portals (SSP, DSP, Retail) sharing one audience and governance layer. I led design across all three, then rebuilt a walkable demo using Claude Code + Git.',
-    image: eandCard,
-    imageAlt: 'RMN retail media network preview',
+    image: rmnCover,
+    imageAlt: 'RMN — Retail Media Network cover art',
     updating: false,
     privateAccess: true,
     metrics: [
