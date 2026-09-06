@@ -1,5 +1,6 @@
 import { FormEvent, ReactNode, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Lock } from './Icons'
 
 type Props = {
   slug: string
@@ -59,7 +60,10 @@ const PasswordGate = ({ slug, title, subtitle, children }: Props) => {
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-lg flex-col justify-center gap-8 px-6 py-16">
       <div className="flex flex-col gap-3">
-        <p className="text-sm font-medium uppercase tracking-wide text-muted">Private case study</p>
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+          <Lock className="h-3.5 w-3.5 text-white" />
+          Confidential
+        </span>
         <h1 className="text-3xl font-medium leading-tight text-ink lg:text-4xl">{title}</h1>
         {subtitle && <p className="text-base leading-7 text-muted lg:text-lg">{subtitle}</p>}
       </div>
