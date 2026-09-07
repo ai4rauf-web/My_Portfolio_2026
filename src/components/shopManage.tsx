@@ -1,5 +1,5 @@
 /* Diagrams for the Shop & Manage revamp case study. */
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
 export const TwoDrops = () => (
   <svg viewBox="0 0 900 340" role="img" aria-label="Drop 1 shipped, Drop 2 refined after real usage" className="w-full">
@@ -360,6 +360,110 @@ const flowMockupChip: Record<string, { fill: string; text: string }> = {
   'SIM replacement': { fill: 'rgba(220,252,231,0.16)', text: '#A7EFC0' },
 }
 
+/* Single-phone carousel — one screen at a time with prev/next, counter, dots.
+   Same dark aesthetic as FlowMockup so the case-study rhythm holds. */
+export const FlowCarousel = ({
+  flow,
+  title,
+  description,
+  screens,
+  note,
+}: {
+  flow: 'Shopping' | 'Managing' | 'SIM switching' | 'SIM replacement'
+  title: string
+  description?: string
+  screens: { src: string; alt: string; caption?: string }[]
+  note?: string
+}) => {
+  const chip = flowMockupChip[flow]
+  const [idx, setIdx] = useState(0)
+  const total = screens.length
+  const s = screens[idx]
+  const go = (delta: number) => setIdx((prev) => (prev + delta + total) % total)
+
+  return (
+    <div className="overflow-hidden rounded-3xl bg-[#0B0B0E] p-6 sm:p-8 lg:p-10">
+      {/* Header */}
+      <div className="flex flex-col gap-1 pb-8">
+        <span
+          className="w-fit rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] backdrop-blur"
+          style={{ background: chip.fill, color: chip.text }}
+        >
+          {flow}
+        </span>
+        <h4 className="text-base font-medium text-white sm:text-lg">{title}</h4>
+        {description && (
+          <p className="max-w-[68ch] text-sm leading-6 text-white/60">{description}</p>
+        )}
+      </div>
+
+      {/* Body: phone on left, meta on right */}
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
+        {/* Phone */}
+        <div className="flex justify-center lg:justify-start">
+          <PhoneFrame src={s.src} alt={s.alt} widthClass="w-[240px] sm:w-[280px] lg:w-[300px]" />
+        </div>
+
+        {/* Meta */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              Screen {String(idx + 1).padStart(2, '0')} of {String(total).padStart(2, '0')}
+            </span>
+            <h5 className="text-lg font-medium text-white sm:text-xl">
+              {s.caption ?? 'Screen'}
+            </h5>
+            {s.alt && s.alt !== (s.caption ?? '') && (
+              <p className="max-w-[52ch] text-sm leading-6 text-white/55">{s.alt}</p>
+            )}
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="Previous screen"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/0 text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                <path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="Next screen"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/0 text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                <path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Progress dots */}
+          <div className="flex flex-wrap gap-2">
+            {screens.map((_, k) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => setIdx(k)}
+                aria-label={`Show screen ${k + 1}`}
+                className={`h-1.5 rounded-full transition-all ${
+                  k === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/25 hover:bg-white/45'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {note && <p className="mt-8 text-xs text-white/40">{note}</p>}
+    </div>
+  )
+}
+
 export const FlowMockup = ({
   flow,
   title,
@@ -484,7 +588,12 @@ const Sticky = ({
       }}
     >
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
-      <span className="relative">{children}</span>
+      <span
+        className="relative block"
+        style={{ filter: 'blur(1.4px)', opacity: 0.55 }}
+      >
+        {children}
+      </span>
     </div>
   )
 }
@@ -563,84 +672,6 @@ export const ResearchSnapshot = () => (
   <div
     className="relative overflow-hidden rounded-2xl border border-[#E4E4E7] bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25),0_8px_20px_-14px_rgba(0,0,0,0.15)]"
   >
-    {/* Toolbar chrome */}
-    <div className="flex items-center justify-between border-b border-[#2A2C33] bg-[#1E1F24] px-3 py-2 text-white">
-      <div className="flex min-w-0 items-center gap-2">
-        <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-to-br from-[#F24E1E] via-[#A259FF] to-[#0ACF83]">
-          <span style={{ fontFamily: 'system-ui', fontSize: 10, fontWeight: 700 }}>F</span>
-        </div>
-        <div className="min-w-0 truncate" style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 12 }}>
-          <span className="text-white/50">Design / Research /</span>{' '}
-          <span className="text-white">shop-manage · card sort · nov 24</span>
-        </div>
-      </div>
-
-      {/* Tools cluster */}
-      <div className="hidden items-center gap-1 sm:flex">
-        {[
-          { key: 'select', title: 'Select' },
-          { key: 'sticky', title: 'Sticky' },
-          { key: 'shape', title: 'Shape' },
-          { key: 'text', title: 'Text' },
-          { key: 'draw', title: 'Draw' },
-          { key: 'connect', title: 'Connector' },
-        ].map((t, i) => (
-          <div
-            key={t.key}
-            className="flex h-6 w-6 items-center justify-center rounded text-white/60"
-            style={{ background: i === 1 ? '#3B3E46' : 'transparent' }}
-          >
-            {t.key === 'sticky' && (
-              <div className="h-3 w-3 rounded-[2px] bg-[#FDF3B0] shadow-inner" />
-            )}
-            {t.key === 'shape' && <div className="h-3 w-3 rounded-full border border-white/60" />}
-            {t.key === 'text' && (
-              <span style={{ fontFamily: 'serif', fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>T</span>
-            )}
-            {t.key === 'draw' && (
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"><path d="M2 10 L10 2 M8 2 L10 2 L10 4" /></svg>
-            )}
-            {t.key === 'connect' && (
-              <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"><path d="M0 4 L12 4 M9 1 L12 4 L9 7" /></svg>
-            )}
-            {t.key === 'select' && (
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="rgba(255,255,255,0.6)"><path d="M1 1 L1 9 L4 6 L6 11 L8 10 L6 5 L11 5 Z" /></svg>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Participants + share */}
-      <div className="flex items-center gap-2">
-        <div className="flex -space-x-1.5">
-          {[
-            { c: '#EC4899', l: 'R' },
-            { c: '#8B5CF6', l: 'S' },
-            { c: '#10B981', l: 'A' },
-            { c: '#F59E0B', l: 'M' },
-          ].map((p, i) => (
-            <div
-              key={i}
-              className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#1E1F24] text-white"
-              style={{
-                background: p.c,
-                fontFamily: 'system-ui',
-                fontSize: 9,
-                fontWeight: 600,
-              }}
-            >
-              {p.l}
-            </div>
-          ))}
-        </div>
-        <div
-          className="rounded bg-[#3B82F6] px-2 py-0.5 text-white"
-          style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 11, fontWeight: 500 }}
-        >
-          Share
-        </div>
-      </div>
-    </div>
 
     {/* Canvas viewport (scrolls if needed on narrow screens) */}
     <div className="relative overflow-auto bg-[#FAFAF7]" style={{ maxHeight: 640 }}>
@@ -783,62 +814,9 @@ export const ResearchSnapshot = () => (
           Where does this task live? <span style={{ color: '#8a6a2a', fontSize: 14, fontWeight: 400 }}>· 42 tasks · 9 participants · open→closed</span>
         </div>
 
-        {/* Timestamp / meta pinned to canvas */}
-        <div
-          className="absolute"
-          style={{
-            right: 60,
-            top: 60,
-            fontFamily: '"Kalam", cursive',
-            fontSize: 12,
-            color: '#6a5a2a',
-            textAlign: 'right',
-            lineHeight: 1.4,
-          }}
-        >
-          Session 3 of 3 · Nov 12<br />
-          <span style={{ color: '#8a6a2a' }}>Rauf, Sarah, Ahmed, Maya</span>
-        </div>
       </div>
 
-      {/* Zoom control (fixed to viewport bottom-left) */}
-      <div
-        className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1 rounded bg-white/95 px-2 py-1 shadow"
-        style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 11, color: '#3f3f46' }}
-      >
-        <span className="text-[#71717a]">−</span>
-        <span className="font-medium">60%</span>
-        <span className="text-[#71717a]">+</span>
-        <span className="ml-2 text-[#a1a1aa]">Fit to page</span>
-      </div>
 
-      {/* Minimap (fixed to viewport bottom-right) */}
-      <div
-        className="pointer-events-none absolute bottom-3 right-3 overflow-hidden rounded bg-white/95 shadow"
-        style={{ width: 132, height: 78, border: '1px solid #E4E4E7' }}
-      >
-        <div className="relative h-full w-full" style={{ background: '#FAFAF7' }}>
-          {/* mini clusters */}
-          <div className="absolute" style={{ left: 8, top: 12, width: 22, height: 20, background: '#FDF3B0', borderRadius: 2 }} />
-          <div className="absolute" style={{ left: 40, top: 14, width: 20, height: 18, background: '#FBCFE4', borderRadius: 2 }} />
-          <div className="absolute" style={{ left: 66, top: 10, width: 24, height: 20, background: '#FED7AA', borderRadius: 2 }} />
-          <div className="absolute" style={{ left: 96, top: 14, width: 20, height: 18, background: '#D6F1D0', borderRadius: 2 }} />
-          <div className="absolute" style={{ left: 10, top: 42, width: 108, height: 20, background: 'linear-gradient(90deg,#C7DFF7,#FDF3B0,#FBCFE4,#FED7AA,#D6F1D0)', borderRadius: 2, opacity: 0.7 }} />
-          {/* viewport indicator */}
-          <div
-            className="absolute"
-            style={{
-              left: 4,
-              top: 4,
-              width: 124,
-              height: 70,
-              border: '1.5px solid #3B82F6',
-              borderRadius: 2,
-              boxShadow: '0 0 0 1px rgba(59,130,246,0.15)',
-            }}
-          />
-        </div>
-      </div>
     </div>
   </div>
 )
