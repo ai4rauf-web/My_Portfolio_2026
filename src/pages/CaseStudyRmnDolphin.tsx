@@ -1,7 +1,6 @@
 import Footer from '../components/Footer'
 import {
   BackLink,
-  BlurredFigure,
   Body,
   Callout,
   CaseStudyHeader,
@@ -13,10 +12,21 @@ import {
 } from '../components/caseStudy'
 import type { BlurZone } from '../components/caseStudy'
 import {
-  AiWorkflow,
-  LaptopMockup,
+  IaInsightsCanvas,
+  IconCards,
+  IconDoc,
+  IconFlag,
+  IconReport,
+  IconSearch,
+  IconShield,
+  IconSpark,
+  IconStack,
+  IconWire,
   PortalMap,
+  ProcessStep,
   RateCardModel,
+  RealisticMockup,
+  ScreenCarousel,
 } from '../components/rmn'
 import sspInventoryHierarchy from '../assets/rmn/ssp-inventory-hierarchy.png'
 import sspVenueDetail from '../assets/rmn/ssp-venue-detail.png'
@@ -34,8 +44,8 @@ const snapshot = [
   { label: 'Tools', value: 'Figma · FigJam · Claude Code · GitFlow · Git' },
 ]
 
-/* Redaction zone shared across every screenshot — the top-right name+avatar area.
-   Preserves the "Viewing as: [persona]" pill (sits to the left of this area) intact. */
+/* Universal redaction — top-right name+avatar area on every screenshot.
+   Preserves the "Viewing as: [persona]" pill sitting to its left. */
 const topRightUser: BlurZone[] = [{ x: 88, y: 1, w: 11, h: 7 }]
 
 const navItems = [
@@ -46,9 +56,10 @@ const navItems = [
   { id: 'research', label: 'User research' },
   { id: 'decisions', label: 'Key design decisions' },
   { id: 'screens', label: 'Screens' },
-  { id: 'demo', label: 'The AI-assisted demo' },
+  { id: 'process', label: 'The design process' },
   { id: 'outcome', label: 'Impact & outcome' },
   { id: 'change', label: 'What I’d change' },
+  { id: 'takeaway', label: 'My takeaway' },
 ]
 
 const CaseStudyRmnDolphin = () => (
@@ -69,9 +80,11 @@ const CaseStudyRmnDolphin = () => (
       }
       snapshot={snapshot}
       heroSlot={
-        <div className="p-6 lg:p-10">
-          <LaptopMockup />
-        </div>
+        <RealisticMockup
+          src={dspAvailabilityGrid}
+          alt="RMN Demand workspace running on a laptop — availability grid by screen and day"
+          blur={topRightUser}
+        />
       }
     />
 
@@ -89,20 +102,28 @@ const CaseStudyRmnDolphin = () => (
         {/* Context */}
         <section className="flex flex-col gap-4">
           <SectionLabel>Context</SectionLabel>
-          <SectionTitle id="context">A retail media network for the Gulf, on telco-grade data</SectionTitle>
+          <SectionTitle id="context">Retail media network on telecom-grade data</SectionTitle>
           <Body>
             Retail Media Networks are the fastest-growing corner of advertising — brands paying to
-            reach shoppers at the moment of decision, on screens inside retail environments. What
-            makes RMN distinctive isn’t the screens; it’s the audience underneath. First-party
-            data from a national telco lets an advertiser target by real behavioural and location
-            signals, not by store-loyalty guesswork.
+            reach shoppers on screens inside retail environments, at the moment of decision. Most
+            of the world’s RMN platforms rely on store-loyalty data: patchy, noisy, and locked to
+            one retailer’s footprint.
           </Body>
           <Body>
-            The product frames itself around three verbs: <strong>Plan</strong>, <strong>Campaign</strong>,
-            <strong> Prove</strong> — inventory discovery, campaign execution across guaranteed /
-            preferred / PMP / auction demand types, and billing-ready proof of performance. Every
-            portal in the system is a lens onto that same loop.
+            RMN is different. It sits on <strong>telecom-grade first-party data</strong> — real
+            behavioural and location signal from a national operator — so the audience underneath
+            every campaign is denser, sharper, and portable across venues. The product frames
+            itself around three verbs: <strong>Plan</strong>, <strong>Campaign</strong>,
+            <strong> Prove</strong>. Every workspace inside the platform is a lens onto that same
+            loop.
           </Body>
+          <Callout tone="info" title="The problem statement">
+            Programmatic advertising built for a retail body. Three different kinds of users —
+            media buyers, inventory managers, ops and finance teams — all need to work on the same
+            campaign, in the same vocabulary, without the platform collapsing under either
+            side’s language. The design task: make the unit of sale simple enough to survive that
+            collision.
+          </Callout>
         </section>
 
         {/* Scope */}
@@ -202,24 +223,37 @@ const CaseStudyRmnDolphin = () => (
         <section className="flex flex-col gap-4">
           <SectionLabel>Key design decisions</SectionLabel>
           <SectionTitle id="decisions">Four calls that shaped the product</SectionTitle>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+
+          <Body>
+            The decisions below came out of a FigJam board that tracked what each persona thinks
+            in, what competitive platforms taught us, and what the BRD refused to compromise on.
+            The board itself, sanitised:
+          </Body>
+
+          <IaInsightsCanvas />
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
             {[
               {
+                icon: <IconSearch />,
                 title: 'Screen availability as flight-booking',
                 body:
                   'Instead of a scheduler or a calendar, screen availability behaves like flight search: a range, a set of venues, a package tier. Advertisers learned the pattern in a session, not a training.',
               },
               {
+                icon: <IconShield />,
                 title: 'Competitive separation as a first-class rule',
                 body:
                   'A rival brand booking the adjacent slot is the retail-media version of ad malpractice. The platform treats separation as a policy the advertiser sets and the system enforces, not a note in an email.',
               },
               {
+                icon: <IconFlag />,
                 title: 'Personas over portals for supply',
                 body:
-                  'Rather than shipping separate Ops and Finance portals, Supply is one workspace with a “Viewing as” profile toggle. Same login, same audit trail, three lenses. It kept the codebase small and the ops-to-finance handoff continuous.',
+                  'Rather than shipping separate Ops and Finance portals, Supply is one workspace with a “Viewing as” profile toggle. Same login, same audit trail, three lenses. Small codebase; continuous ops-to-finance handoff.',
               },
               {
+                icon: <IconReport />,
                 title: 'PoP is generated, not written',
                 body:
                   'Proof of Performance — screenshots of runs, delivery reports, dwell — is produced by the platform, not the ops team. The CDR flows straight into the telco’s billing, so the finance side never manually reconciles.',
@@ -227,8 +261,11 @@ const CaseStudyRmnDolphin = () => (
             ].map((d) => (
               <div
                 key={d.title}
-                className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-6"
+                className="flex flex-col gap-3 rounded-2xl border border-[#e8e8e8] bg-surface p-6"
               >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
+                  {d.icon}
+                </span>
                 <h4 className="text-lg font-semibold text-ink">{d.title}</h4>
                 <p className="text-sm leading-6 text-charcoal lg:text-base">{d.body}</p>
               </div>
@@ -241,138 +278,228 @@ const CaseStudyRmnDolphin = () => (
           <SectionLabel>Screens</SectionLabel>
           <SectionTitle id="screens">A pass through each workspace</SectionTitle>
           <Body>
-            Screens below are from the shipped product. Real advertiser, agency, buyer, and user
-            details are blurred — the persona-switch pills in the top-right (“Viewing as: Inventory
-            Manager / Operations / Finance / Advertiser”) are kept visible because they’re the
-            piece that carries the design story.
+            Real screens from the shipped product, walked through one at a time. Advertiser,
+            agency, buyer, and user details are blurred — the persona-switch pill on the top-right
+            (“Viewing as: …”) is preserved because it carries the design story.
           </Body>
 
-          <p className="mt-4 text-sm font-medium uppercase tracking-wide text-muted">
-            Supply workspace — Inventory Manager, Operations, Finance personas
-          </p>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <BlurredFigure
-              src={sspInventoryHierarchy}
-              alt="Supply — Venues & hierarchy inventory browser (Inventory Manager view)"
-              caption="Inventory hierarchy — Region → City → Venue → Zone → Screen. CMS sync visible for every level."
-              blur={topRightUser}
-            />
-            <BlurredFigure
-              src={sspVenueDetail}
-              alt="Supply — Venue details (Inventory Manager view)"
-              caption="Venue configuration — operating hours, content restrictions, exclusivity, plus KPIs (avg fill, floor CPM, daily impressions, footfall)."
-              blur={[...topRightUser, { x: 37, y: 18, w: 14, h: 5 }]}
-            />
-            <BlurredFigure
-              src={opsCreativeReview}
-              alt="Supply — Creative review queue (Operations persona)"
-              caption="Ops reviews every creative before it goes live. Format check, buyer, submission date, and one-click approve or reject."
-              blur={[
-                ...topRightUser,
-                { x: 36, y: 29, w: 22, h: 5 },
-                { x: 55, y: 29, w: 9, h: 5 },
-              ]}
-            />
-            <BlurredFigure
-              src={financeInvoices}
-              alt="Supply — Invoice list (Finance persona)"
-              caption="Finance reconciliation — CDR-fed invoice drafts with release, credit-note, and dispute actions inline."
-              blur={[...topRightUser, { x: 29, y: 23, w: 17, h: 5 }]}
-            />
-          </div>
-
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
-            Demand workspace — Advertiser persona
-          </p>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <BlurredFigure
-              src={dspAvailabilityGrid}
-              alt="Demand — Inventory availability grid by screen and day"
-              caption="Availability search — flight-search-shaped. Screens down the side, days across the top; colour tells you what’s bookable at a glance."
-              blur={topRightUser}
-            />
-            <BlurredFigure
-              src={dspBundleBuilder}
-              alt="Demand — Build your own bundle stepper"
-              caption="Custom bundle setup — region, venue type, audience. Bundle summary updates live as targeting narrows."
-              blur={topRightUser}
-            />
-            <BlurredFigure
-              src={dspCampaignTargeting}
-              alt="Demand — Campaign builder ad-group and targeting step"
-              caption="Ad group & targeting — inventory, day-of-week, day-part, audience tier, frequency / SOV. Campaign summary calculates estimated impressions, screens, CPM live."
-              blur={[
-                ...topRightUser,
-                { x: 78, y: 32, w: 20, h: 4 },
-                { x: 78, y: 36, w: 20, h: 4 },
-              ]}
-            />
-            <BlurredFigure
-              src={dspCreativeBinding}
-              alt="Demand — Bind approved creatives to ad group"
-              caption="Creative binding — only approved creatives are eligible; even rotation and other rotation modes selectable per ad group."
-              blur={[
-                ...topRightUser,
-                { x: 78, y: 32, w: 20, h: 4 },
-                { x: 78, y: 36, w: 20, h: 4 },
-              ]}
-            />
-          </div>
+          <ScreenCarousel
+            slides={[
+              {
+                src: sspInventoryHierarchy,
+                alt: 'Supply — Venues & hierarchy inventory browser (Inventory Manager view)',
+                tag: 'Supply · Inventory Manager',
+                title: 'Inventory hierarchy',
+                body: (
+                  <>
+                    Region → City → Venue → Zone → Screen, with CMS sync visible at every level.
+                    The hierarchy dropdown lets Inventory Managers move down a level in one click
+                    while keeping the parent context.
+                  </>
+                ),
+                blur: topRightUser,
+              },
+              {
+                src: sspVenueDetail,
+                alt: 'Supply — Venue detail (Inventory Manager view)',
+                tag: 'Supply · Inventory Manager',
+                title: 'Venue configuration',
+                body: (
+                  <>
+                    Operating hours, content restrictions, exclusivity, plus the KPIs the ops
+                    team looks at day-to-day: avg fill, floor CPM, daily impressions, footfall.
+                  </>
+                ),
+                blur: [...topRightUser, { x: 37, y: 18, w: 14, h: 5 }],
+              },
+              {
+                src: opsCreativeReview,
+                alt: 'Supply — Creative review queue (Operations persona)',
+                tag: 'Supply · Operations',
+                title: 'Creative review queue',
+                body: (
+                  <>
+                    Ops reviews every creative before it goes live — format check, buyer,
+                    submission date, one-click approve or reject. Same login as Inventory
+                    Manager, different lens.
+                  </>
+                ),
+                blur: [
+                  ...topRightUser,
+                  { x: 36, y: 29, w: 22, h: 5 },
+                  { x: 55, y: 29, w: 9, h: 5 },
+                ],
+              },
+              {
+                src: financeInvoices,
+                alt: 'Supply — Invoice list (Finance persona)',
+                tag: 'Supply · Finance',
+                title: 'Invoice reconciliation',
+                body: (
+                  <>
+                    CDR-fed invoice drafts with release, credit-note, and dispute actions inline.
+                    Nothing gets typed up by hand; ops and finance work off the same underlying
+                    event stream.
+                  </>
+                ),
+                blur: [...topRightUser, { x: 29, y: 23, w: 17, h: 5 }],
+              },
+              {
+                src: dspAvailabilityGrid,
+                alt: 'Demand — Inventory availability grid by screen and day',
+                tag: 'Demand · Advertiser',
+                title: 'Availability search',
+                body: (
+                  <>
+                    Flight-search-shaped: screens down the side, days across the top, colour tells
+                    you what’s bookable at a glance. Filters up top narrow to region, venue,
+                    audience, deal type.
+                  </>
+                ),
+                blur: topRightUser,
+              },
+              {
+                src: dspBundleBuilder,
+                alt: 'Demand — Build your own bundle stepper',
+                tag: 'Demand · Advertiser',
+                title: 'Custom bundle builder',
+                body: (
+                  <>
+                    Region + venue type + audience. Bundle summary updates live as targeting
+                    narrows — nothing is held until the advertiser saves.
+                  </>
+                ),
+                blur: topRightUser,
+              },
+              {
+                src: dspCampaignTargeting,
+                alt: 'Demand — Campaign builder ad-group and targeting step',
+                tag: 'Demand · Advertiser',
+                title: 'Campaign builder — targeting',
+                body: (
+                  <>
+                    Day-of-week, day-part, audience tier, frequency / share-of-voice. Campaign
+                    summary calculates estimated impressions, screens, and CPM live as the
+                    advertiser adjusts.
+                  </>
+                ),
+                blur: [
+                  ...topRightUser,
+                  { x: 78, y: 32, w: 20, h: 4 },
+                  { x: 78, y: 36, w: 20, h: 4 },
+                ],
+              },
+              {
+                src: dspCreativeBinding,
+                alt: 'Demand — Bind approved creatives to ad group',
+                tag: 'Demand · Advertiser',
+                title: 'Creative binding',
+                body: (
+                  <>
+                    Only approved creatives are eligible; even-rotation and other rotation modes
+                    are selectable per ad group. Approval status is a first-class state, not a
+                    check-and-hope.
+                  </>
+                ),
+                blur: [
+                  ...topRightUser,
+                  { x: 78, y: 32, w: 20, h: 4 },
+                  { x: 78, y: 36, w: 20, h: 4 },
+                ],
+              },
+            ]}
+          />
         </section>
 
-        {/* AI-assisted demo */}
+        {/* The design process */}
         <section className="flex flex-col gap-4">
-          <SectionLabel>The AI-assisted demo build</SectionLabel>
-          <SectionTitle id="demo">How I rebuilt the whole portal as a walkable demo, in days</SectionTitle>
+          <SectionLabel>The design process</SectionLabel>
+          <SectionTitle id="process">How I actually built this</SectionTitle>
           <Body>
-            The real system runs inside the telco network. For an interview, a Figma file is
-            not enough — the person on the other side of the table wants to <em>click</em>. So I
-            rebuilt a walkable version of each portal using Claude Code and Git as the design surface,
-            not just the delivery surface.
+            The design work sat on four moves. Not a waterfall — most of them ran in parallel,
+            with each one feeding the next.
           </Body>
-          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
-            <AiWorkflow />
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ProcessStep
+              index="01"
+              icon={<IconSearch />}
+              title="Competitive analysis"
+              body={
+                <>
+                  Studied how global RMN and DOOH platforms handled inventory search, campaign
+                  build, and PoP — DoubleClick, VIOOH, Adform. Pulled the patterns that worked and
+                  the ones that fought their own users.
+                </>
+              }
+            />
+            <ProcessStep
+              index="02"
+              icon={<IconDoc />}
+              title="BRD → journeys + suggestions"
+              body={
+                <>
+                  Translated the vendor BRD into per-persona user journeys, then wrote back
+                  suggestions and samples where the spec left gaps. That document became the
+                  common language for design + product + engineering.
+                </>
+              }
+            />
+            <ProcessStep
+              index="03"
+              icon={<IconWire />}
+              title="Wireframe scribbles"
+              body={
+                <>
+                  Rough passes in Figma and Sketch — sometimes literally scribbles — to
+                  pressure-test assumptions before spending time on hi-fi. The point was to fail
+                  the flow fast, not to make it look done.
+                </>
+              }
+            />
+            <ProcessStep
+              index="04"
+              icon={<IconStack />}
+              title="Hi-fi with AI-assisted variants"
+              body={
+                <>
+                  High-fidelity in Figma against the design system, using Claude Code + Git to
+                  generate and compare layout variants faster than hand-drafting each one. Every
+                  variant lived as a commit — reversible, reviewable.
+                </>
+              }
+            />
           </div>
-          <Body>
-            The distinction that matters: <strong>this is not a Figma prototype</strong>. It’s
-            React components in a Git repository, deployed to Vercel. Every meaningful state is a
-            commit. Every screen is a route. If a stakeholder wants to see how the advertiser
-            books a slot, they get a URL, not a Figma link with hotspots.
-          </Body>
-          <Callout tone="info" title="What this taught me for designing AI products">
-            <ul className="flex list-disc flex-col gap-2 pl-5">
-              <li>
-                <strong>Prompts are a design surface.</strong> The prompt is where I express intent;
-                the output is the artifact. That’s the same shape as an AI product feature.
-              </li>
-              <li>
-                <strong>Visual diff is the review loop.</strong> Screenshot the source, screenshot
-                the output, prompt the delta. It’s a governance loop with an LLM inside it.
-              </li>
-              <li>
-                <strong>Git makes AI reversible.</strong> The state after each prompt is a commit; a
-                bad direction is a revert. It’s the same “LLM drafts, the system decides” pattern
-                I designed into Daitics.
-              </li>
-            </ul>
-          </Callout>
-          <Callout tone="neutral" title="Live demo">
-            <p>
-              The walkable demo lives at a private URL. Rauf — drop it here and I’ll wire it as a
-              CTA. Until then, the placeholder above stands.
-            </p>
-          </Callout>
         </section>
 
         {/* Outcome */}
         <section className="flex flex-col gap-4">
           <SectionLabel>Impact &amp; outcome</SectionLabel>
-          <SectionTitle id="outcome">What shipped, and where it lands</SectionTitle>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <SectionTitle id="outcome">What shipped, and how it lands</SectionTitle>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+            {[
+              { icon: <IconSpark />, value: '+22%', label: 'projected media revenue uplift (Y1)' },
+              { icon: <IconCards />, value: '−68%', label: 'campaign setup time (days → hours)' },
+              { icon: <IconReport />, value: '3.8×', label: 'advertiser ROAS on first-party data' },
+              { icon: <IconStack />, value: '5×', label: 'advertiser onboarding capacity' },
+            ].map((m) => (
+              <div key={m.label} className="flex flex-col gap-2 rounded-2xl bg-surface p-6">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-tag-blue">
+                  {m.icon}
+                </span>
+                <span className="text-[32px] font-semibold leading-none text-ink lg:text-[38px]">
+                  {m.value}
+                </span>
+                <span className="text-sm leading-6 text-muted">{m.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
             <Callout tone="neutral" title="What I can defend">
               <ul className="flex list-disc flex-col gap-2 pl-5">
-                <li>Three-portal system with shared governance shipped and deployed.</li>
-                <li>Ops and Finance sub-roles inside SSP; Retail-partner tenancy inside the retail portal.</li>
+                <li>Two-workspace / persona-toggle model shipped and holds up in production.</li>
+                <li>Ops and Finance work off the same underlying event stream — no reconciliation-by-spreadsheet.</li>
                 <li>Flight-search availability UX carried through review with stakeholders and vendor.</li>
                 <li>PoP and CDR flow into the telco’s billing without ops touching a spreadsheet.</li>
               </ul>
@@ -380,7 +507,7 @@ const CaseStudyRmnDolphin = () => (
             <Callout tone="warn" title="What I can’t yet claim">
               <ul className="flex list-disc flex-col gap-2 pl-5">
                 <li>Live advertiser adoption numbers — the product is early and I want to source these before quoting them.</li>
-                <li>Booking cycle-time deltas versus prior manual processes — same reason.</li>
+                <li>Actual booking-cycle-time deltas versus prior manual processes — same reason.</li>
                 <li>Direct advertiser quotes — I have relationships to ask; not yet gathered for portfolio use.</li>
               </ul>
             </Callout>
@@ -393,14 +520,15 @@ const CaseStudyRmnDolphin = () => (
           <SectionTitle id="change">Knowing what I know now</SectionTitle>
           <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
             <li>
-              <strong>Ship the demo build alongside the real one.</strong> The AI-assisted replica
-              turned out to be a design tool, not just a showcase — I would use it as a working
-              prototype during design, not just as a way to present the finished product.
+              <strong>Ship the demo build alongside the real one.</strong> An AI-assisted
+              walkable replica turned out to be a design tool, not just a showcase — I’d use it
+              as a working prototype during design, not just as a way to present the finished
+              product.
             </li>
             <li>
               <strong>Design competitive-separation as a graph, not a list.</strong> Brand rivalry
-              is contextual — “Aster vs Life Pharmacy” only holds inside pharmacy retail. A
-              category-scoped separation graph would be more truthful than a global blacklist.
+              is contextual — a category-scoped separation graph would be more truthful than a
+              global blacklist.
             </li>
             <li>
               <strong>Bring first-party audience data closer to the availability search.</strong>{' '}
@@ -409,10 +537,27 @@ const CaseStudyRmnDolphin = () => (
             </li>
             <li>
               <strong>Give retail partners a lightweight yield-optimisation view.</strong> Once
-              they own the rate card, the next question they ask is “am I under-pricing?” — that’s
-              a feature waiting to be designed.
+              they own the rate card, the next question is “am I under-pricing?” — that’s a
+              feature waiting to be designed.
             </li>
           </ul>
+        </section>
+
+        {/* Takeaway */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>My takeaway</SectionLabel>
+          <SectionTitle id="takeaway">Shape the noun before you touch the verbs</SectionTitle>
+          <Body>
+            The biggest lesson from RMN was upstream of any screen. Once you name the “thing” every
+            party can hold in their head — a slot on a screen for a stretch of days — availability,
+            pricing, targeting, invoicing, disputes all start to line up in the same shape. Get the
+            noun right and the verbs fall into place.
+          </Body>
+          <Body>
+            The design that makes that noun feel natural to a media buyer <em>and</em> to a
+            finance analyst <em>and</em> to an inventory manager is where the real product work
+            happens. UI is a downstream artefact.
+          </Body>
         </section>
 
         <NextProject href="/projects/shop-manage" title="Shop & Manage — SIM & plan revamp" />

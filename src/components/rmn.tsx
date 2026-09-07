@@ -1,5 +1,260 @@
-/* Abstracted diagrams for the RMN Dolphin case study.
-   No real screens — real screenshots (branding-abstracted) drop into src/assets/rmn/ separately. */
+/* Diagrams and interactive components for the RMN Dolphin case study. */
+import { useState, type ReactNode } from 'react'
+import type { BlurZone } from './caseStudy'
+
+/* Realistic laptop-in-office mockup — puts a real screenshot inside a laptop
+   frame, laid over a warm office-desk gradient with soft bokeh. */
+export const RealisticMockup = ({
+  src,
+  alt,
+  blur,
+}: {
+  src: string
+  alt: string
+  blur?: BlurZone[]
+}) => (
+  <div className="relative overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#f6ecdc_0%,#e8dbc4_45%,#cfbfa1_100%)] px-6 py-10 lg:px-12 lg:py-16">
+    {/* ambient bokeh — plants and warm lamps */}
+    <div className="pointer-events-none absolute -left-16 -top-10 h-56 w-56 rounded-full bg-emerald-300/30 blur-3xl" aria-hidden />
+    <div className="pointer-events-none absolute right-4 top-6 h-48 w-48 rounded-full bg-amber-200/50 blur-3xl" aria-hidden />
+    <div className="pointer-events-none absolute -bottom-20 left-1/3 h-56 w-72 rounded-full bg-rose-200/40 blur-3xl" aria-hidden />
+    <div className="pointer-events-none absolute -right-10 bottom-2 h-40 w-40 rounded-full bg-emerald-200/40 blur-3xl" aria-hidden />
+
+    {/* laptop */}
+    <div className="relative z-10 mx-auto max-w-[820px]">
+      {/* lid */}
+      <div className="rounded-t-2xl bg-[#141414] p-3 shadow-[0_50px_60px_-24px_rgba(20,10,0,0.45),0_10px_30px_-12px_rgba(20,10,0,0.35)]">
+        <div className="relative overflow-hidden rounded-md">
+          <img src={src} alt={alt} className="block w-full" loading="lazy" />
+          {blur?.map((z, i) => (
+            <div
+              key={i}
+              aria-hidden
+              className="absolute rounded-[3px]"
+              style={{
+                left: `${z.x}%`,
+                top: `${z.y}%`,
+                width: `${z.w}%`,
+                height: `${z.h}%`,
+                backdropFilter: 'blur(9px)',
+                WebkitBackdropFilter: 'blur(9px)',
+                background: 'rgba(255,255,255,0.35)',
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      {/* base / hinge */}
+      <div className="relative mx-auto h-3 w-[104%] -translate-x-[2%] rounded-b-[16px] bg-[linear-gradient(180deg,#dcdcdc_0%,#a5a5a5_100%)]" />
+      <div className="mx-auto -mt-[6px] h-[6px] w-24 rounded-b-[6px] bg-[#8a8a8a]" />
+    </div>
+
+    {/* desk shadow */}
+    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-[linear-gradient(to_top,rgba(80,50,20,0.16),transparent)]" aria-hidden />
+  </div>
+)
+
+/* FigJam-style canvas — a sticky-note "IA insights" board with drawn arrows.
+   Intentionally rough — captures the feel of research, not a polished diagram. */
+export const IaInsightsCanvas = () => (
+  <div className="relative overflow-hidden rounded-2xl bg-[#f2ede3] p-6 lg:p-10" style={{
+    backgroundImage:
+      'radial-gradient(#d9d3c6 1px, transparent 1.6px)',
+    backgroundSize: '18px 18px',
+  }}>
+    <div className="relative mx-auto aspect-[16/9] max-w-[880px]">
+      {/* stickies + connectors as absolute-positioned atoms */}
+      {[
+        { top: '6%', left: '4%', tone: '#fde68a', rot: -2, title: 'Media buyers', body: 'Think in impressions, ROAS, flight windows.' },
+        { top: '10%', left: '38%', tone: '#bbf7d0', rot: 1, title: 'Inventory managers', body: 'Think in slots × screens × venues.' },
+        { top: '7%', left: '72%', tone: '#fecdd3', rot: -3, title: 'Ops + Finance', body: 'Think in approvals, invoices, disputes.' },
+
+        { top: '38%', left: '12%', tone: '#c7d2fe', rot: 2, title: 'Comp analysis', body: 'DoubleClick, Adform, VIOOH — hand-off patterns studied.' },
+        { top: '42%', left: '42%', tone: '#fef3c7', rot: -1, title: 'BRD → journeys', body: 'Wrote user journeys per persona from the BRD.' },
+        { top: '40%', left: '70%', tone: '#e9d5ff', rot: 3, title: 'Wireframe pass', body: 'Scribbled in Figma to pressure-test the flows.' },
+
+        { top: '70%', left: '20%', tone: '#bae6fd', rot: -2, title: 'INSIGHT', body: 'One noun the whole system speaks in — the slot.' },
+        { top: '72%', left: '55%', tone: '#bae6fd', rot: 2, title: 'DECISION', body: 'Flight-search shape for availability.' },
+      ].map((s, i) => (
+        <div
+          key={i}
+          className="absolute w-[22%] rounded-sm p-2 text-[10px] leading-tight text-[#3f3320] shadow-[0_4px_10px_-4px_rgba(60,50,20,0.35),0_1.5px_3px_-1px_rgba(60,50,20,0.25)]"
+          style={{ top: s.top, left: s.left, background: s.tone, transform: `rotate(${s.rot}deg)` }}
+        >
+          <div className="text-[9px] font-bold uppercase tracking-wider text-[#5a4a1f]">{s.title}</div>
+          <div className="mt-0.5">{s.body}</div>
+        </div>
+      ))}
+
+      {/* connector doodles */}
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 880 495" preserveAspectRatio="none" aria-hidden>
+        <g stroke="#4b5563" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.55">
+          <path d="M 130 90 C 200 130, 260 130, 320 130" />
+          <path d="M 460 90 C 520 130, 560 140, 620 130" />
+          <path d="M 200 220 C 220 270, 260 300, 310 320" />
+          <path d="M 480 240 C 520 280, 560 300, 610 310" />
+          <path d="M 260 400 C 310 380, 380 380, 490 400" strokeDasharray="4 4" />
+        </g>
+      </svg>
+    </div>
+  </div>
+)
+
+/* Simple accessible carousel for the Screens section. */
+export const ScreenCarousel = ({
+  slides,
+}: {
+  slides: {
+    src: string
+    alt: string
+    tag: string
+    title: string
+    body: ReactNode
+    blur?: BlurZone[]
+  }[]
+}) => {
+  const [i, setI] = useState(0)
+  const total = slides.length
+  const s = slides[i]
+  const go = (delta: number) => setI((prev) => (prev + delta + total) % total)
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
+        {/* image */}
+        <div className="relative overflow-hidden rounded-2xl border border-[#e8e8e8] bg-surface">
+          <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
+          {s.blur?.map((z, k) => (
+            <div
+              key={k}
+              aria-hidden
+              className="absolute rounded-[3px]"
+              style={{
+                left: `${z.x}%`,
+                top: `${z.y}%`,
+                width: `${z.w}%`,
+                height: `${z.h}%`,
+                backdropFilter: 'blur(9px)',
+                WebkitBackdropFilter: 'blur(9px)',
+                background: 'rgba(255,255,255,0.35)',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* description */}
+        <div className="flex flex-col gap-4 rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
+          <span className="inline-flex w-fit rounded-full bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-tag-blue">
+            {s.tag}
+          </span>
+          <h4 className="text-xl font-semibold text-ink lg:text-2xl">{s.title}</h4>
+          <div className="text-base leading-7 text-charcoal">{s.body}</div>
+          <div className="mt-auto flex items-center justify-between pt-4">
+            <span className="text-sm text-muted">
+              {String(i + 1).padStart(2, '0')} <span className="text-[#c8c8c8]">/ {String(total).padStart(2, '0')}</span>
+            </span>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous screen"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden><path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z"/></svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next screen"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden><path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* progress dots */}
+      <div className="flex justify-center gap-2">
+        {slides.map((_, k) => (
+          <button
+            key={k}
+            type="button"
+            onClick={() => setI(k)}
+            aria-label={`Show screen ${k + 1}`}
+            className={`h-1.5 rounded-full transition-all ${k === i ? 'w-6 bg-ink' : 'w-1.5 bg-[#c8c8c8] hover:bg-muted'}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* Process step — number + icon + title + body. */
+export const ProcessStep = ({
+  index,
+  icon,
+  title,
+  body,
+}: {
+  index: string
+  icon: ReactNode
+  title: string
+  body: ReactNode
+}) => (
+  <div className="flex flex-col gap-3 rounded-2xl border border-[#e8e8e8] bg-surface p-6">
+    <div className="flex items-center gap-3">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-semibold text-white">
+        {index}
+      </span>
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
+        {icon}
+      </span>
+    </div>
+    <h4 className="text-lg font-semibold text-ink">{title}</h4>
+    <p className="text-sm leading-6 text-charcoal lg:text-base">{body}</p>
+  </div>
+)
+
+/* Small icon set used across the RMN page. Stroke-based, currentColor. */
+const iconProps = {
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.8,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+  className: 'h-5 w-5',
+  'aria-hidden': true,
+}
+export const IconSearch = () => (
+  <svg {...iconProps}><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+)
+export const IconDoc = () => (
+  <svg {...iconProps}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" /><path d="M14 3v5h5" /><path d="M9 13h6M9 17h6M9 9h2" /></svg>
+)
+export const IconWire = () => (
+  <svg {...iconProps}><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18M7 14h4M7 17h6" /></svg>
+)
+export const IconStack = () => (
+  <svg {...iconProps}><path d="m4 8 8-4 8 4-8 4Z" /><path d="m4 12 8 4 8-4" /><path d="m4 16 8 4 8-4" /></svg>
+)
+export const IconFlag = () => (
+  <svg {...iconProps}><path d="M4 21V4h11l-1 4h6v8h-8l-1-4H4" /></svg>
+)
+export const IconShield = () => (
+  <svg {...iconProps}><path d="M12 3 4 6v6c0 5 3.4 8.6 8 9 4.6-.4 8-4 8-9V6Z" /><path d="m9 12 2 2 4-4" /></svg>
+)
+export const IconCards = () => (
+  <svg {...iconProps}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18M8 15h4" /></svg>
+)
+export const IconReport = () => (
+  <svg {...iconProps}><path d="M5 21V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15" /><path d="M9 21v-6M12 21v-9M15 21v-4" /></svg>
+)
+export const IconSpark = () => (
+  <svg {...iconProps}><path d="M12 3v3M12 18v3M4.2 5.6l2.1 2.1M17.7 16.3l2.1 2.1M3 12h3M18 12h3M4.2 18.4l2.1-2.1M17.7 7.7l2.1-2.1" /></svg>
+)
 
 export const PlanCampaignProve = () => (
   <svg viewBox="0 0 900 300" role="img" aria-label="RMN operating layer: Plan → Campaign → Prove" className="w-full">
