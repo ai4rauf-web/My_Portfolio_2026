@@ -188,59 +188,51 @@ export const LaptopMockup = () => (
 )
 
 export const PortalMap = () => (
-  <svg viewBox="0 0 900 480" role="img" aria-label="Three portals, seven roles" className="w-full">
+  <svg viewBox="0 0 900 480" role="img" aria-label="Two workspaces — Demand and Supply — with personas switched via profile toggle" className="w-full">
     <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
       <text x="30" y="30" fontSize="12" fill="#686868" letterSpacing="1.2">
-        THREE PORTALS · SEVEN ROLES · ONE PLATFORM
+        TWO WORKSPACES · PERSONA-BASED VIEWS · ONE SHARED PLATFORM
       </text>
 
-      {/* Three portals */}
+      {/* Two workspaces */}
       {[
         {
           x: 30,
-          title: 'SSP',
-          full: 'Supply-Side Portal',
-          sub: 'Inventory owners — Media Owners, Aggregators. Plus Ops and Finance sub-roles.',
+          title: 'DEMAND',
+          full: 'Demand-Side workspace',
+          sub: 'Advertiser side. Search availability, build campaigns, bind creatives, review performance.',
           fill: '#eef6fb',
           border: '#bcdbec',
           color: '#1377b0',
-          roles: ['Inventory Admin', 'Operations', 'Finance'],
+          personas: ['Advertiser', 'Brand Team', 'Media Buyer'],
         },
         {
-          x: 320,
-          title: 'DSP',
-          full: 'Demand-Side Portal',
-          sub: 'Advertiser side. Build campaigns, target audiences, place bids, upload creatives.',
+          x: 460,
+          title: 'SUPPLY',
+          full: 'Supply-Side workspace',
+          sub: 'Inventory side. One login, multiple personas — switched via the profile toggle.',
           fill: '#eaf6ea',
           border: '#c8e6c8',
           color: '#197417',
-          roles: ['Advertiser', 'Brand Team', 'Media Buyer'],
-        },
-        {
-          x: 610,
-          title: 'Retail',
-          full: 'Retail Partner Portal',
-          sub: 'Retail tenants — screen owners at the venue level. Rate-card ownership, availability.',
-          fill: '#fdefc0',
-          border: '#e1c465',
-          color: '#5b4700',
-          roles: ['Retail Admin'],
+          personas: ['Inventory Manager', 'Operations', 'Finance'],
         },
       ].map((p) => (
         <g key={p.title} transform={`translate(${p.x}, 60)`}>
-          <rect width="260" height="330" rx="18" fill={p.fill} stroke={p.border} />
-          <text x="24" y="38" fontSize="14" fontWeight="600" fill={p.color} letterSpacing="1">{p.title}</text>
-          <text x="24" y="64" fontSize="16" fontWeight="600" fill="#071012">{p.full}</text>
-          <foreignObject x="24" y="76" width="212" height="80">
+          <rect width="410" height="320" rx="18" fill={p.fill} stroke={p.border} />
+          <text x="24" y="38" fontSize="14" fontWeight="600" fill={p.color} letterSpacing="1.2">{p.title}</text>
+          <text x="24" y="66" fontSize="18" fontWeight="600" fill="#071012">{p.full}</text>
+          <foreignObject x="24" y="80" width="362" height="60">
             <div style={{ fontFamily: 'IBM Plex Sans, system-ui, sans-serif', fontSize: 12, color: '#242424', lineHeight: 1.5 }}>
               {p.sub}
             </div>
           </foreignObject>
+          <text x="24" y="168" fontSize="11" fill="#686868" letterSpacing="1.2">PERSONAS</text>
           <g transform="translate(24, 180)">
-            {p.roles.map((r, i) => (
-              <g key={r} transform={`translate(0, ${i * 34})`}>
-                <rect width="212" height="26" rx="7" fill="#ffffff" stroke={p.border} />
-                <text x="14" y="18" fontSize="12" fill="#242424">{r}</text>
+            {p.personas.map((r, i) => (
+              <g key={r} transform={`translate(0, ${i * 36})`}>
+                <rect width="362" height="28" rx="7" fill="#ffffff" stroke={p.border} />
+                <text x="14" y="19" fontSize="12" fill="#242424">{r}</text>
+                <text x="348" y="19" fontSize="10" fill="#686868" textAnchor="end">Viewing as</text>
               </g>
             ))}
           </g>
@@ -248,10 +240,13 @@ export const PortalMap = () => (
       ))}
 
       {/* Base layer */}
-      <g transform="translate(30, 410)">
-        <rect width="840" height="50" rx="10" fill="#071012" />
-        <text x="420" y="32" textAnchor="middle" fontSize="13" fill="#ffffff">
-          Shared platform — audiences from first-party telco data · compliance and security automated across stages
+      <g transform="translate(30, 400)">
+        <rect width="840" height="60" rx="10" fill="#071012" />
+        <text x="420" y="26" textAnchor="middle" fontSize="13" fill="#ffffff">
+          Shared platform — first-party telco audiences · compliance and security automated across stages
+        </text>
+        <text x="420" y="46" textAnchor="middle" fontSize="11" fill="#a8a8a8">
+          Administration lives in a third workspace, Platform — a separate login, not covered in this case study.
         </text>
       </g>
     </g>

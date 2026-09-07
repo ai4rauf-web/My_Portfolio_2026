@@ -1,4 +1,5 @@
 /* Diagrams for the Shop & Manage revamp case study. */
+import type { ReactNode } from 'react'
 
 export const TwoDrops = () => (
   <svg viewBox="0 0 900 340" role="img" aria-label="Drop 1 shipped, Drop 2 refined after real usage" className="w-full">
@@ -422,3 +423,422 @@ export const FlowMockup = ({
   )
 }
 
+/* ------------------------------------------------------------------
+ * ResearchSnapshot — mock of a FigJam-style research board
+ *
+ * Feels like a real working artifact rather than a designed one:
+ * dark toolbar, dot-grid canvas, dense sticky clusters, live
+ * cursors with participant tags, sketchy connectors, comment
+ * pins, minimap, zoom control. Text on stickies is deliberately
+ * small so the board reads as texture, not content.
+ * ------------------------------------------------------------------ */
+
+const CANVAS_W = 1120
+const CANVAS_H = 640
+
+const stickyBase =
+  'absolute rounded-[3px] p-1.5 shadow-[0_4px_10px_-4px_rgba(60,50,20,0.35),0_1.5px_3px_-1px_rgba(60,50,20,0.25)]'
+
+const Sticky = ({
+  x,
+  y,
+  w = 78,
+  h = 78,
+  tone,
+  rotate = 0,
+  children,
+  fontSize = 10,
+}: {
+  x: number
+  y: number
+  w?: number
+  h?: number
+  tone: 'yellow' | 'pink' | 'orange' | 'green' | 'blue' | 'lilac'
+  rotate?: number
+  children: ReactNode
+  fontSize?: number
+}) => {
+  const tones = {
+    yellow: '#FDF3B0',
+    pink: '#FBCFE4',
+    orange: '#FED7AA',
+    green: '#D6F1D0',
+    blue: '#C7DFF7',
+    lilac: '#E6D9FF',
+  }
+  return (
+    <div
+      className={stickyBase}
+      style={{
+        left: x,
+        top: y,
+        width: w,
+        height: h,
+        background: tones[tone],
+        transform: `rotate(${rotate}deg)`,
+        fontFamily: '"Caveat", "Bradley Hand", cursive',
+        fontSize,
+        lineHeight: 1.1,
+        color: '#3d2b12',
+        overflow: 'hidden',
+      }}
+    >
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
+      <span className="relative">{children}</span>
+    </div>
+  )
+}
+
+const ClusterLabel = ({ x, y, children, rotate = 0 }: { x: number; y: number; children: ReactNode; rotate?: number }) => (
+  <div
+    className="absolute"
+    style={{
+      left: x,
+      top: y,
+      transform: `rotate(${rotate}deg)`,
+      fontFamily: '"Kalam", "Caveat", cursive',
+      fontSize: 14,
+      fontWeight: 700,
+      letterSpacing: '0.03em',
+      color: '#1a1a1a',
+      background:
+        'linear-gradient(180deg, transparent 55%, rgba(253, 224, 71, 0.65) 55%, rgba(253, 224, 71, 0.65) 88%, transparent 88%)',
+      padding: '1px 6px',
+    }}
+  >
+    {children}
+  </div>
+)
+
+const Cursor = ({
+  x,
+  y,
+  color,
+  name,
+}: {
+  x: number
+  y: number
+  color: string
+  name: string
+}) => (
+  <div className="pointer-events-none absolute" style={{ left: x, top: y }}>
+    <svg width="18" height="20" viewBox="0 0 18 20" style={{ filter: `drop-shadow(0 1px 2px rgba(0,0,0,0.2))` }}>
+      <path d="M 1 1 L 1 15 L 5 11 L 8 18 L 11 17 L 8 10 L 14 10 Z" fill={color} stroke="white" strokeWidth="1" />
+    </svg>
+    <div
+      className="mt-0.5 rounded-[3px] px-1.5 py-[1px] text-white"
+      style={{
+        background: color,
+        fontFamily: '"IBM Plex Sans", system-ui, sans-serif',
+        fontSize: 10,
+        fontWeight: 500,
+        display: 'inline-block',
+      }}
+    >
+      {name}
+    </div>
+  </div>
+)
+
+const CommentPin = ({ x, y, count }: { x: number; y: number; count: number }) => (
+  <div
+    className="absolute flex items-center justify-center rounded-full text-white shadow"
+    style={{
+      left: x,
+      top: y,
+      width: 20,
+      height: 20,
+      background: '#0EA5E9',
+      fontFamily: 'system-ui, sans-serif',
+      fontSize: 10,
+      fontWeight: 600,
+      border: '2px solid white',
+    }}
+  >
+    {count}
+  </div>
+)
+
+export const ResearchSnapshot = () => (
+  <div
+    className="relative overflow-hidden rounded-2xl border border-[#E4E4E7] bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25),0_8px_20px_-14px_rgba(0,0,0,0.15)]"
+  >
+    {/* Toolbar chrome */}
+    <div className="flex items-center justify-between border-b border-[#2A2C33] bg-[#1E1F24] px-3 py-2 text-white">
+      <div className="flex min-w-0 items-center gap-2">
+        <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-to-br from-[#F24E1E] via-[#A259FF] to-[#0ACF83]">
+          <span style={{ fontFamily: 'system-ui', fontSize: 10, fontWeight: 700 }}>F</span>
+        </div>
+        <div className="min-w-0 truncate" style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 12 }}>
+          <span className="text-white/50">Design / Research /</span>{' '}
+          <span className="text-white">shop-manage · card sort · nov 24</span>
+        </div>
+      </div>
+
+      {/* Tools cluster */}
+      <div className="hidden items-center gap-1 sm:flex">
+        {[
+          { key: 'select', title: 'Select' },
+          { key: 'sticky', title: 'Sticky' },
+          { key: 'shape', title: 'Shape' },
+          { key: 'text', title: 'Text' },
+          { key: 'draw', title: 'Draw' },
+          { key: 'connect', title: 'Connector' },
+        ].map((t, i) => (
+          <div
+            key={t.key}
+            className="flex h-6 w-6 items-center justify-center rounded text-white/60"
+            style={{ background: i === 1 ? '#3B3E46' : 'transparent' }}
+          >
+            {t.key === 'sticky' && (
+              <div className="h-3 w-3 rounded-[2px] bg-[#FDF3B0] shadow-inner" />
+            )}
+            {t.key === 'shape' && <div className="h-3 w-3 rounded-full border border-white/60" />}
+            {t.key === 'text' && (
+              <span style={{ fontFamily: 'serif', fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>T</span>
+            )}
+            {t.key === 'draw' && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"><path d="M2 10 L10 2 M8 2 L10 2 L10 4" /></svg>
+            )}
+            {t.key === 'connect' && (
+              <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"><path d="M0 4 L12 4 M9 1 L12 4 L9 7" /></svg>
+            )}
+            {t.key === 'select' && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="rgba(255,255,255,0.6)"><path d="M1 1 L1 9 L4 6 L6 11 L8 10 L6 5 L11 5 Z" /></svg>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Participants + share */}
+      <div className="flex items-center gap-2">
+        <div className="flex -space-x-1.5">
+          {[
+            { c: '#EC4899', l: 'R' },
+            { c: '#8B5CF6', l: 'S' },
+            { c: '#10B981', l: 'A' },
+            { c: '#F59E0B', l: 'M' },
+          ].map((p, i) => (
+            <div
+              key={i}
+              className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#1E1F24] text-white"
+              style={{
+                background: p.c,
+                fontFamily: 'system-ui',
+                fontSize: 9,
+                fontWeight: 600,
+              }}
+            >
+              {p.l}
+            </div>
+          ))}
+        </div>
+        <div
+          className="rounded bg-[#3B82F6] px-2 py-0.5 text-white"
+          style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 11, fontWeight: 500 }}
+        >
+          Share
+        </div>
+      </div>
+    </div>
+
+    {/* Canvas viewport (scrolls if needed on narrow screens) */}
+    <div className="relative overflow-auto bg-[#FAFAF7]" style={{ maxHeight: 640 }}>
+      <div
+        className="relative"
+        style={{
+          width: CANVAS_W,
+          height: CANVAS_H,
+          backgroundImage:
+            'radial-gradient(#D8D6CE 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          backgroundPosition: '0 0',
+        }}
+      >
+        {/* Sketchy background connector arrows */}
+        <svg
+          className="pointer-events-none absolute inset-0"
+          width={CANVAS_W}
+          height={CANVAS_H}
+          fill="none"
+          stroke="#A17F3F"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        >
+          <defs>
+            <marker id="arr-brown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#A17F3F" />
+            </marker>
+            <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#B91C1C" />
+            </marker>
+          </defs>
+          {/* SHOP → PLAN */}
+          <path d="M 250 200 C 300 220, 340 240, 400 250" strokeDasharray="4 3" markerEnd="url(#arr-brown)" />
+          {/* PLAN → SIM */}
+          <path d="M 570 260 C 620 260, 660 260, 710 250" strokeDasharray="4 3" markerEnd="url(#arr-brown)" />
+          {/* SIM → INSIGHTS */}
+          <path d="M 880 280 C 900 350, 780 400, 700 430" strokeDasharray="4 3" markerEnd="url(#arr-brown)" />
+          {/* Big red highlight arrow to the plan tile insight */}
+          <path
+            d="M 320 490 C 380 500, 440 490, 480 460"
+            stroke="#B91C1C"
+            strokeWidth="2.5"
+            markerEnd="url(#arr-red)"
+          />
+        </svg>
+
+        {/* Freehand highlight loop around plan cluster */}
+        <svg
+          className="pointer-events-none absolute"
+          style={{ left: 340, top: 190, width: 250, height: 130 }}
+          viewBox="0 0 250 130"
+          fill="none"
+          stroke="#B91C1C"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        >
+          <path d="M 20 60 C 20 20, 80 8, 130 12 C 200 18, 240 55, 235 85 C 228 118, 160 128, 100 122 C 40 116, 15 100, 20 60 Z" />
+        </svg>
+
+        {/* Cluster: SHOP (top-left) */}
+        <ClusterLabel x={100} y={140} rotate={-1}>SHOP</ClusterLabel>
+        <Sticky x={90} y={175} w={72} h={72} tone="yellow" rotate={-4}>Buy new<br/>plan</Sticky>
+        <Sticky x={160} y={168} w={68} h={64} tone="yellow" rotate={3}>Roaming<br/>pack</Sticky>
+        <Sticky x={110} y={240} w={60} h={58} tone="yellow" rotate={-2}>Top-up</Sticky>
+        <Sticky x={175} y={232} w={64} h={62} tone="yellow" rotate={2}>Buy<br/>device</Sticky>
+        <Sticky x={95} y={295} w={70} h={58} tone="yellow" rotate={-3} fontSize={9}>Add-on<br/>subscription</Sticky>
+        <Sticky x={170} y={295} w={62} h={54} tone="yellow" rotate={1} fontSize={9}>Gift<br/>data</Sticky>
+
+        {/* Cluster: MY PLAN (mid) */}
+        <ClusterLabel x={410} y={200} rotate={1}>MY PLAN</ClusterLabel>
+        <Sticky x={400} y={230} w={78} h={72} tone="pink" rotate={-3}>See usage<br/>this cycle</Sticky>
+        <Sticky x={480} y={225} w={64} h={62} tone="pink" rotate={2}>Pay bill</Sticky>
+        <Sticky x={412} y={302} w={70} h={62} tone="pink" rotate={-2}>Change<br/>plan</Sticky>
+        <Sticky x={485} y={295} w={64} h={58} tone="pink" rotate={3}>Freeze<br/>line</Sticky>
+        <Sticky x={545} y={252} w={64} h={62} tone="pink" rotate={-1} fontSize={9}>Auto-pay<br/>settings</Sticky>
+
+        {/* Cluster: SIM & NUMBER (top-right) */}
+        <ClusterLabel x={720} y={155} rotate={-1}>SIM &amp; NUMBER</ClusterLabel>
+        <Sticky x={710} y={185} w={72} h={68} tone="orange" rotate={2}>Replace<br/>lost SIM</Sticky>
+        <Sticky x={790} y={175} w={68} h={64} tone="orange" rotate={-3}>Clone<br/>SIM</Sticky>
+        <Sticky x={860} y={190} w={64} h={62} tone="orange" rotate={2}>Port<br/>number</Sticky>
+        <Sticky x={720} y={252} w={70} h={60} tone="orange" rotate={-2}>Activate<br/>e-SIM</Sticky>
+        <Sticky x={795} y={244} w={62} h={58} tone="orange" rotate={3} fontSize={9}>Swap<br/>SIM tier</Sticky>
+        <Sticky x={860} y={258} w={60} h={54} tone="orange" rotate={-2} fontSize={9}>Migrate<br/>pre↔post</Sticky>
+
+        {/* Cluster: ACCOUNT (right, lower) */}
+        <ClusterLabel x={960} y={195} rotate={1}>ACCOUNT</ClusterLabel>
+        <Sticky x={950} y={225} w={70} h={64} tone="green" rotate={-2}>Switch<br/>company</Sticky>
+        <Sticky x={1025} y={230} w={62} h={58} tone="green" rotate={3}>Family<br/>plan</Sticky>
+        <Sticky x={955} y={294} w={64} h={58} tone="green" rotate={2}>Settings</Sticky>
+        <Sticky x={1025} y={290} w={60} h={58} tone="green" rotate={-3}>Consent</Sticky>
+
+        {/* Cluster: INSIGHTS / RAW NOTES (bottom band, mixed) */}
+        <ClusterLabel x={90} y={430} rotate={-1}>WHAT WE HEARD</ClusterLabel>
+        <Sticky x={80} y={460} w={130} h={70} tone="blue" rotate={-2} fontSize={11}>
+          <span style={{ color: '#7a1a1a', fontWeight: 700, fontSize: 13 }}>!! 62%</span> of first-8-sec taps → plan tile
+        </Sticky>
+        <Sticky x={220} y={455} w={130} h={70} tone="yellow" rotate={3} fontSize={11}>
+          “Where is my bill?” asked 4× in 30 min
+        </Sticky>
+        <Sticky x={360} y={465} w={140} h={68} tone="pink" rotate={-2} fontSize={10}>
+          Users don&apos;t distinguish <b>Manage</b> vs <b>Settings</b>
+        </Sticky>
+        <Sticky x={510} y={460} w={130} h={70} tone="orange" rotate={2} fontSize={10}>
+          “Opened Shop by <i>mistake</i> — wanted usage.”
+        </Sticky>
+        <Sticky x={650} y={468} w={130} h={68} tone="lilac" rotate={-3} fontSize={10}>
+          &quot;Manage&quot; = the settings gear to most people
+        </Sticky>
+        <Sticky x={790} y={462} w={130} h={72} tone="green" rotate={1} fontSize={10}>
+          SIM tasks got sorted into <b>Account</b> just as often as <b>Manage</b>
+        </Sticky>
+        <Sticky x={935} y={468} w={135} h={72} tone="pink" rotate={-2} fontSize={10}>
+          Nobody used the word <b>&quot;shop&quot;</b> — they said <i>&quot;buy&quot;</i>
+        </Sticky>
+
+        {/* Marker doodle underline under an insight */}
+        <svg className="pointer-events-none absolute" style={{ left: 78, top: 528, width: 140, height: 12 }} viewBox="0 0 140 12" fill="none" stroke="#B91C1C" strokeWidth="2.5" strokeLinecap="round">
+          <path d="M 4 6 C 30 2, 60 10, 90 5 S 130 8, 138 6" />
+        </svg>
+
+        {/* Comment pins on specific stickies */}
+        <CommentPin x={175} y={175} count={3} />
+        <CommentPin x={550} y={225} count={1} />
+        <CommentPin x={880} y={240} count={2} />
+        <CommentPin x={190} y={465} count={5} />
+
+        {/* Live cursors */}
+        <Cursor x={310} y={330} color="#EC4899" name="Rauf" />
+        <Cursor x={620} y={210} color="#8B5CF6" name="Sarah · PM" />
+        <Cursor x={880} y={370} color="#10B981" name="Ahmed · Dev" />
+        <Cursor x={430} y={490} color="#F59E0B" name="Maya · Care" />
+
+        {/* Section label at top-left of canvas */}
+        <div
+          className="absolute"
+          style={{ left: 60, top: 60, fontFamily: '"Kalam", cursive', fontSize: 22, fontWeight: 700, color: '#1a1a1a' }}
+        >
+          Where does this task live? <span style={{ color: '#8a6a2a', fontSize: 14, fontWeight: 400 }}>· 42 tasks · 9 participants · open→closed</span>
+        </div>
+
+        {/* Timestamp / meta pinned to canvas */}
+        <div
+          className="absolute"
+          style={{
+            right: 60,
+            top: 60,
+            fontFamily: '"Kalam", cursive',
+            fontSize: 12,
+            color: '#6a5a2a',
+            textAlign: 'right',
+            lineHeight: 1.4,
+          }}
+        >
+          Session 3 of 3 · Nov 12<br />
+          <span style={{ color: '#8a6a2a' }}>Rauf, Sarah, Ahmed, Maya</span>
+        </div>
+      </div>
+
+      {/* Zoom control (fixed to viewport bottom-left) */}
+      <div
+        className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1 rounded bg-white/95 px-2 py-1 shadow"
+        style={{ fontFamily: '"IBM Plex Sans", sans-serif', fontSize: 11, color: '#3f3f46' }}
+      >
+        <span className="text-[#71717a]">−</span>
+        <span className="font-medium">60%</span>
+        <span className="text-[#71717a]">+</span>
+        <span className="ml-2 text-[#a1a1aa]">Fit to page</span>
+      </div>
+
+      {/* Minimap (fixed to viewport bottom-right) */}
+      <div
+        className="pointer-events-none absolute bottom-3 right-3 overflow-hidden rounded bg-white/95 shadow"
+        style={{ width: 132, height: 78, border: '1px solid #E4E4E7' }}
+      >
+        <div className="relative h-full w-full" style={{ background: '#FAFAF7' }}>
+          {/* mini clusters */}
+          <div className="absolute" style={{ left: 8, top: 12, width: 22, height: 20, background: '#FDF3B0', borderRadius: 2 }} />
+          <div className="absolute" style={{ left: 40, top: 14, width: 20, height: 18, background: '#FBCFE4', borderRadius: 2 }} />
+          <div className="absolute" style={{ left: 66, top: 10, width: 24, height: 20, background: '#FED7AA', borderRadius: 2 }} />
+          <div className="absolute" style={{ left: 96, top: 14, width: 20, height: 18, background: '#D6F1D0', borderRadius: 2 }} />
+          <div className="absolute" style={{ left: 10, top: 42, width: 108, height: 20, background: 'linear-gradient(90deg,#C7DFF7,#FDF3B0,#FBCFE4,#FED7AA,#D6F1D0)', borderRadius: 2, opacity: 0.7 }} />
+          {/* viewport indicator */}
+          <div
+            className="absolute"
+            style={{
+              left: 4,
+              top: 4,
+              width: 124,
+              height: 70,
+              border: '1.5px solid #3B82F6',
+              borderRadius: 2,
+              boxShadow: '0 0 0 1px rgba(59,130,246,0.15)',
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+)

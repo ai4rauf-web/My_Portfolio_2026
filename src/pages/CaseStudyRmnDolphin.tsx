@@ -1,22 +1,22 @@
 import Footer from '../components/Footer'
 import {
   BackLink,
+  BlurredFigure,
   Body,
   Callout,
   CaseStudyHeader,
-  Figure,
   NextProject,
   SectionLabel,
   SectionTitle,
   Stat,
   StickySectionNav,
 } from '../components/caseStudy'
+import type { BlurZone } from '../components/caseStudy'
 import {
   AiWorkflow,
   LaptopMockup,
   PortalMap,
   RateCardModel,
-  ScreenPlaceholder,
 } from '../components/rmn'
 import sspInventoryHierarchy from '../assets/rmn/ssp-inventory-hierarchy.png'
 import sspVenueDetail from '../assets/rmn/ssp-venue-detail.png'
@@ -28,11 +28,15 @@ import dspCampaignTargeting from '../assets/rmn/dsp-campaign-targeting.png'
 import dspCreativeBinding from '../assets/rmn/dsp-creative-binding.png'
 
 const snapshot = [
-  { label: 'Role', value: 'Lead Product Designer — all three portals (SSP, DSP, Retail)' },
+  { label: 'Role', value: 'Lead Product Designer — Demand and Supply workspaces' },
   { label: 'Team', value: 'Product owner, engineering (vendor + internal), Ops, Finance stakeholders' },
-  { label: 'Platform', value: 'Web · three portals · one shared platform' },
+  { label: 'Platform', value: 'Web · two workspaces · persona-based views · one shared platform' },
   { label: 'Tools', value: 'Figma · FigJam · Claude Code · GitFlow · Git' },
 ]
+
+/* Redaction zone shared across every screenshot — the top-right name+avatar area.
+   Preserves the "Viewing as: [persona]" pill (sits to the left of this area) intact. */
+const topRightUser: BlurZone[] = [{ x: 88, y: 1, w: 11, h: 7 }]
 
 const navItems = [
   { id: 'context', label: 'Context' },
@@ -56,10 +60,11 @@ const CaseStudyRmnDolphin = () => (
       title="RMN — a retail media network on first-party telco data"
       overview={
         <p>
-          A single operating layer for screen-led retail commerce: three portals — supply, demand,
-          and retail partner — sharing one audience layer, one rate model, one governance stack.
-          I led design across all three, then rebuilt a walkable demo of the whole thing using
-          Claude Code and Git.
+          A single operating layer for screen-led retail commerce. Two workspaces — Demand and
+          Supply — sitting over one audience layer, one rate model, one governance stack, with
+          persona-based views (Inventory Manager, Operations, Finance) switched via a profile
+          toggle inside Supply. Administration lives in a separate workspace (Platform), not
+          shown here.
         </p>
       }
       snapshot={snapshot}
@@ -103,12 +108,17 @@ const CaseStudyRmnDolphin = () => (
         {/* Scope */}
         <section className="flex flex-col gap-4">
           <SectionLabel>Scope</SectionLabel>
-          <SectionTitle id="scope">Three portals, seven roles, one platform</SectionTitle>
+          <SectionTitle id="scope">Two workspaces, personas via profile toggle</SectionTitle>
           <Body>
-            One system, three tenant-shaped surfaces: <strong>SSP</strong> for inventory owners,
-            <strong> DSP</strong> for advertisers, <strong>Retail portal</strong> for the retail
-            partners that host the screens. Inside SSP, Operations and Finance get their own role
-            views. Governance and audience data are shared across everything.
+            One system, two tenant-shaped workspaces: <strong>Demand</strong> for advertisers,
+            <strong> Supply</strong> for inventory owners. Inside Supply, the same login switches
+            between three personas — <em>Inventory Manager</em>, <em>Operations</em>,
+            <em> Finance</em> — via a “Viewing as” profile toggle in the header. Governance and
+            audience data are shared across everything.
+          </Body>
+          <Body>
+            A third workspace, <strong>Platform</strong>, holds administration — but it’s a
+            separate login and outside the scope of this case study.
           </Body>
           <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
             <PortalMap />
@@ -120,11 +130,11 @@ const CaseStudyRmnDolphin = () => (
           <SectionLabel>Team &amp; role</SectionLabel>
           <SectionTitle id="team">Who built it, and what I owned</SectionTitle>
           <Body>
-            I was <strong>Lead Product Designer</strong> across all three portals — journey design,
-            information architecture, wireframes, high-fidelity screens, developer handoff, and the
-            continuous review loop with Ops and Finance stakeholders. The build was a partnership
-            between the telco’s product team and an engineering vendor; my design work was the
-            connective tissue.
+            I was <strong>Lead Product Designer</strong> across both workspaces and every persona
+            inside them — journey design, information architecture, wireframes, high-fidelity
+            screens, developer handoff, and the continuous review loop with Ops and Finance
+            stakeholders. The build was a partnership between the telco’s product team and an
+            engineering vendor; my design work was the connective tissue.
           </Body>
           <Body>
             The team, in broad strokes:
@@ -143,12 +153,13 @@ const CaseStudyRmnDolphin = () => (
           <SectionTitle id="problem">Programmatic advertising with a retail body</SectionTitle>
           <Body>
             The problem to solve wasn’t “sell ad space.” Ad space is the easy part. The problem was
-            making three very different roles work in one system without collapsing under each
-            other’s vocabulary — a media buyer who thinks in impressions, an inventory owner who
-            thinks in <em>slots</em>, and a retail partner who thinks in <em>venues</em>.
+            making very different roles work in one system without collapsing under each other’s
+            vocabulary — a media buyer who thinks in impressions, an inventory manager who thinks
+            in <em>slots</em>, and finance and ops teams who think in <em>venues</em>, <em>SKUs</em>,
+            and <em>invoices</em>.
           </Body>
           <Body>
-            The solution reshapes the unit of sale so all three can talk about the same thing. A
+            The solution reshapes the unit of sale so all of them can talk about the same thing. A
             slot is a real, physical, ownable thing on a screen; impressions are derived from it via
             a footfall coefficient the platform manages. Bookings look like flight bookings —
             availability by date range and location — because that’s the metaphor humans already
@@ -162,16 +173,16 @@ const CaseStudyRmnDolphin = () => (
         {/* User research */}
         <section className="flex flex-col gap-4">
           <SectionLabel>User research</SectionLabel>
-          <SectionTitle id="research">Understanding six roles across three parties</SectionTitle>
+          <SectionTitle id="research">Understanding six personas across two organisations</SectionTitle>
           <Body>
-            Because the portals sit inside three separate organisations — the telco (SSP + Ops +
-            Finance), the retail partner (Retail portal), and the advertiser (DSP + Brand) — no
-            single set of user interviews could cover all of them. I ran research in three shapes:
+            The workspaces sit inside two organisations — the telco (Supply + Ops + Finance
+            personas) and the advertiser (Demand + Brand teams) — and no single set of user
+            interviews could cover all of them. I ran research in three shapes:
           </Body>
           <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
             <li>
               <strong>Working sessions with Ops and Finance</strong> — the users closest to me
-              inside the telco, and the ones who would live in the SSP daily. FigJam boards,
+              inside the telco, and the ones who would live in Supply daily. FigJam boards,
               screen-by-screen walkthroughs, unmoderated task passes.
             </li>
             <li>
@@ -180,7 +191,7 @@ const CaseStudyRmnDolphin = () => (
               the design and not lost in the ticket queue.
             </li>
             <li>
-              <strong>Persona reconstruction from advertiser data</strong> — until the DSP had real
+              <strong>Persona reconstruction from advertiser data</strong> — until Demand had real
               users, I worked from marketing-buyer archetypes we could pressure-test decisions
               against.
             </li>
@@ -204,9 +215,9 @@ const CaseStudyRmnDolphin = () => (
                   'A rival brand booking the adjacent slot is the retail-media version of ad malpractice. The platform treats separation as a policy the advertiser sets and the system enforces, not a note in an email.',
               },
               {
-                title: 'Rate cards live in the retail portal',
+                title: 'Personas over portals for supply',
                 body:
-                  'Retail partners own the price of their own inventory; SSP surfaces it, DSP shops it, but the source of truth is the venue. Pricing changes never require a platform ticket.',
+                  'Rather than shipping separate Ops and Finance portals, Supply is one workspace with a “Viewing as” profile toggle. Same login, same audit trail, three lenses. It kept the codebase small and the ops-to-finance handoff continuous.',
               },
               {
                 title: 'PoP is generated, not written',
@@ -228,64 +239,84 @@ const CaseStudyRmnDolphin = () => (
         {/* Screens */}
         <section className="flex flex-col gap-4">
           <SectionLabel>Screens</SectionLabel>
-          <SectionTitle id="screens">A pass through each portal</SectionTitle>
+          <SectionTitle id="screens">A pass through each workspace</SectionTitle>
           <Body>
-            Screens below are from the shipped product. Retail-partner surfaces are shown as
-            placeholders where the export set didn’t include them.
+            Screens below are from the shipped product. Real advertiser, agency, buyer, and user
+            details are blurred — the persona-switch pills in the top-right (“Viewing as: Inventory
+            Manager / Operations / Finance / Advertiser”) are kept visible because they’re the
+            piece that carries the design story.
           </Body>
 
-          <p className="mt-4 text-sm font-medium uppercase tracking-wide text-muted">SSP — Supply</p>
+          <p className="mt-4 text-sm font-medium uppercase tracking-wide text-muted">
+            Supply workspace — Inventory Manager, Operations, Finance personas
+          </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <Figure
+            <BlurredFigure
               src={sspInventoryHierarchy}
-              alt="SSP — Venues & hierarchy inventory browser"
+              alt="Supply — Venues & hierarchy inventory browser (Inventory Manager view)"
               caption="Inventory hierarchy — Region → City → Venue → Zone → Screen. CMS sync visible for every level."
+              blur={topRightUser}
             />
-            <Figure
+            <BlurredFigure
               src={sspVenueDetail}
-              alt="SSP — Venue details for Dubai Intl Airport"
+              alt="Supply — Venue details (Inventory Manager view)"
               caption="Venue configuration — operating hours, content restrictions, exclusivity, plus KPIs (avg fill, floor CPM, daily impressions, footfall)."
+              blur={[...topRightUser, { x: 37, y: 18, w: 14, h: 5 }]}
             />
-            <Figure
+            <BlurredFigure
               src={opsCreativeReview}
-              alt="Ops — Creative review queue with pending, approved, and rejected creatives"
+              alt="Supply — Creative review queue (Operations persona)"
               caption="Ops reviews every creative before it goes live. Format check, buyer, submission date, and one-click approve or reject."
+              blur={[
+                ...topRightUser,
+                { x: 36, y: 29, w: 22, h: 5 },
+                { x: 55, y: 29, w: 9, h: 5 },
+              ]}
             />
-            <Figure
+            <BlurredFigure
               src={financeInvoices}
-              alt="Finance — Invoice list with actions menu"
+              alt="Supply — Invoice list (Finance persona)"
               caption="Finance reconciliation — CDR-fed invoice drafts with release, credit-note, and dispute actions inline."
+              blur={[...topRightUser, { x: 29, y: 23, w: 17, h: 5 }]}
             />
           </div>
 
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">DSP — Demand</p>
+          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+            Demand workspace — Advertiser persona
+          </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <Figure
+            <BlurredFigure
               src={dspAvailabilityGrid}
-              alt="DSP — Inventory availability grid by screen and day"
+              alt="Demand — Inventory availability grid by screen and day"
               caption="Availability search — flight-search-shaped. Screens down the side, days across the top; colour tells you what’s bookable at a glance."
+              blur={topRightUser}
             />
-            <Figure
+            <BlurredFigure
               src={dspBundleBuilder}
-              alt="DSP — Build your own bundle stepper"
+              alt="Demand — Build your own bundle stepper"
               caption="Custom bundle setup — region, venue type, audience. Bundle summary updates live as targeting narrows."
+              blur={topRightUser}
             />
-            <Figure
+            <BlurredFigure
               src={dspCampaignTargeting}
-              alt="DSP — Campaign builder ad group and targeting step"
+              alt="Demand — Campaign builder ad-group and targeting step"
               caption="Ad group & targeting — inventory, day-of-week, day-part, audience tier, frequency / SOV. Campaign summary calculates estimated impressions, screens, CPM live."
+              blur={[
+                ...topRightUser,
+                { x: 78, y: 32, w: 20, h: 4 },
+                { x: 78, y: 36, w: 20, h: 4 },
+              ]}
             />
-            <Figure
+            <BlurredFigure
               src={dspCreativeBinding}
-              alt="DSP — Bind approved creatives to ad group"
+              alt="Demand — Bind approved creatives to ad group"
               caption="Creative binding — only approved creatives are eligible; even rotation and other rotation modes selectable per ad group."
+              blur={[
+                ...topRightUser,
+                { x: 78, y: 32, w: 20, h: 4 },
+                { x: 78, y: 36, w: 20, h: 4 },
+              ]}
             />
-          </div>
-
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">Retail — Partner</p>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <ScreenPlaceholder portal="Retail" label="Retail — Rate-card management" caption="Retail partners set and evolve the price of their own inventory." />
-            <ScreenPlaceholder portal="Retail" label="Retail — Bookings across venues" caption="A retail chain sees demand across their footprint, roll up to portfolio-level revenue." />
           </div>
         </section>
 

@@ -58,7 +58,7 @@ export const projects: Project[] = [
     tag: 'Product Design',
     title: 'RMN — Retail Media Network',
     description:
-      'A retail media network on first-party telco data. Three portals (SSP, DSP, Retail) sharing one audience and governance layer. Owned design across all three — spanning the plan → campaign → prove lifecycle from inventory discovery to billing-ready proof of performance.',
+      'A retail media network on first-party telco data. Two workspaces — Demand and Supply — sharing one audience and governance layer, with personas switched via a profile toggle. Owned design across both, spanning the plan → campaign → prove lifecycle from inventory discovery to billing-ready proof of performance.',
     image: rmnCover,
     imageAlt: 'RMN — Retail Media Network cover art',
     updating: false,

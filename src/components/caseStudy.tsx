@@ -54,6 +54,45 @@ export const Figure = ({
   </figure>
 )
 
+export type BlurZone = { x: number; y: number; w: number; h: number }
+
+/* Figure that overlays soft blur rectangles on top of the image — for
+   redacting sensitive details (names, brands, IDs) without editing the raster. */
+export const BlurredFigure = ({
+  src,
+  alt,
+  caption,
+  blur,
+}: {
+  src: string
+  alt: string
+  caption?: string
+  blur?: BlurZone[]
+}) => (
+  <figure className="flex flex-col gap-3">
+    <div className="relative overflow-hidden rounded-2xl border border-[#e8e8e8] bg-surface">
+      <img src={src} alt={alt} className="block w-full" loading="lazy" />
+      {blur?.map((z, i) => (
+        <div
+          key={i}
+          aria-hidden
+          className="absolute rounded-[3px]"
+          style={{
+            left: `${z.x}%`,
+            top: `${z.y}%`,
+            width: `${z.w}%`,
+            height: `${z.h}%`,
+            backdropFilter: 'blur(9px)',
+            WebkitBackdropFilter: 'blur(9px)',
+            background: 'rgba(255, 255, 255, 0.35)',
+          }}
+        />
+      ))}
+    </div>
+    {caption && <figcaption className="text-sm leading-6 text-muted">{caption}</figcaption>}
+  </figure>
+)
+
 export const Stat = ({ value, label }: { value: string; label: string }) => (
   <div className="flex flex-col gap-1 rounded-2xl bg-surface p-6">
     <span className="text-[36px] font-semibold leading-none text-ink lg:text-[44px]">{value}</span>
