@@ -4,6 +4,7 @@ import {
   Body,
   Callout,
   CaseStudyHeader,
+  Figure,
   NextProject,
   SectionLabel,
   SectionTitle,
@@ -17,6 +18,14 @@ import {
   RateCardModel,
   ScreenPlaceholder,
 } from '../components/rmn'
+import sspInventoryHierarchy from '../assets/rmn/ssp-inventory-hierarchy.png'
+import sspVenueDetail from '../assets/rmn/ssp-venue-detail.png'
+import opsCreativeReview from '../assets/rmn/ops-creative-review.png'
+import financeInvoices from '../assets/rmn/finance-invoices.png'
+import dspAvailabilityGrid from '../assets/rmn/dsp-availability-grid.png'
+import dspBundleBuilder from '../assets/rmn/dsp-bundle-builder.png'
+import dspCampaignTargeting from '../assets/rmn/dsp-campaign-targeting.png'
+import dspCreativeBinding from '../assets/rmn/dsp-creative-binding.png'
 
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — all three portals (SSP, DSP, Retail)' },
@@ -221,24 +230,56 @@ const CaseStudyRmnDolphin = () => (
           <SectionLabel>Screens</SectionLabel>
           <SectionTitle id="screens">A pass through each portal</SectionTitle>
           <Body>
-            Screens below are from the shipped product; the real system lives behind the telco
-            network so real screens will be dropped in as branding-abstracted exports.
+            Screens below are from the shipped product. Retail-partner surfaces are shown as
+            placeholders where the export set didn’t include them.
           </Body>
 
           <p className="mt-4 text-sm font-medium uppercase tracking-wide text-muted">SSP — Supply</p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <ScreenPlaceholder portal="SSP" label="SSP — Inventory dashboard" caption="A single view of screens the platform owns or manages, by venue and package tier." />
-            <ScreenPlaceholder portal="SSP" label="SSP — Venue configuration" caption="Adding a screen, defining its package tier, ownership, and default availability." />
-            <ScreenPlaceholder portal="Ops" label="Ops — Approvals queue" caption="Ops sees pending creatives, blacklist matches, and competitive-separation conflicts." />
-            <ScreenPlaceholder portal="Finance" label="Finance — Reconciliation" caption="CDR-fed billing state per campaign, per advertiser, per venue." />
+            <Figure
+              src={sspInventoryHierarchy}
+              alt="SSP — Venues & hierarchy inventory browser"
+              caption="Inventory hierarchy — Region → City → Venue → Zone → Screen. CMS sync visible for every level."
+            />
+            <Figure
+              src={sspVenueDetail}
+              alt="SSP — Venue details for Dubai Intl Airport"
+              caption="Venue configuration — operating hours, content restrictions, exclusivity, plus KPIs (avg fill, floor CPM, daily impressions, footfall)."
+            />
+            <Figure
+              src={opsCreativeReview}
+              alt="Ops — Creative review queue with pending, approved, and rejected creatives"
+              caption="Ops reviews every creative before it goes live. Format check, buyer, submission date, and one-click approve or reject."
+            />
+            <Figure
+              src={financeInvoices}
+              alt="Finance — Invoice list with actions menu"
+              caption="Finance reconciliation — CDR-fed invoice drafts with release, credit-note, and dispute actions inline."
+            />
           </div>
 
           <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">DSP — Demand</p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <ScreenPlaceholder portal="DSP" label="DSP — Availability search" caption="Flight-search-shaped: date range, venue set, package tier. Availability calculated live." />
-            <ScreenPlaceholder portal="DSP" label="DSP — Campaign builder" caption="Audience selection layered on top of screen selection. First-party telco data does the targeting work." />
-            <ScreenPlaceholder portal="DSP" label="DSP — Creative upload &amp; approval" caption="Upload, preview against a physical-screen simulation, submit for security review." />
-            <ScreenPlaceholder portal="DSP" label="DSP — PoP report" caption="Delivery, dwell, impressions — the number the media buyer actually justifies budget with." />
+            <Figure
+              src={dspAvailabilityGrid}
+              alt="DSP — Inventory availability grid by screen and day"
+              caption="Availability search — flight-search-shaped. Screens down the side, days across the top; colour tells you what’s bookable at a glance."
+            />
+            <Figure
+              src={dspBundleBuilder}
+              alt="DSP — Build your own bundle stepper"
+              caption="Custom bundle setup — region, venue type, audience. Bundle summary updates live as targeting narrows."
+            />
+            <Figure
+              src={dspCampaignTargeting}
+              alt="DSP — Campaign builder ad group and targeting step"
+              caption="Ad group & targeting — inventory, day-of-week, day-part, audience tier, frequency / SOV. Campaign summary calculates estimated impressions, screens, CPM live."
+            />
+            <Figure
+              src={dspCreativeBinding}
+              alt="DSP — Bind approved creatives to ad group"
+              caption="Creative binding — only approved creatives are eligible; even rotation and other rotation modes selectable per ad group."
+            />
           </div>
 
           <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">Retail — Partner</p>
