@@ -97,6 +97,15 @@ const CaseStudyDaiticsCdp = () => (
             and every one of those artifacts moves through a single governed lifecycle. My work sits at
             that authoring layer, where the human and the platform meet.
           </Body>
+          <Callout tone="info" title="The brief">
+            Telcos generate more first-party customer data than almost any other sector — CDRs,
+            network signalling, DPI, billing, CRM, app, web, location. But that data lives in 15+
+            siloed systems, and a single customer shows up under 5–10 different identifiers.
+            Marketing is generic, care agents have no context, churn is invisible, compliance is
+            inconsistent. AI CDP unifies this fragmented data into a single governed Customer 360
+            — purpose-built for Telco, sovereign-deployed inside the operator’s own infrastructure,
+            and AI-native from the ground up (90+ AI operators, MCP Server for agent access).
+          </Callout>
         </section>
 
         {/* Scale */}
