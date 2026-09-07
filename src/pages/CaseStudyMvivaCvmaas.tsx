@@ -12,19 +12,28 @@ import {
 } from '../components/caseStudy'
 import {
   BeforeAfterFlow,
+  MvivaInsightsCanvas,
   OnboardingFlow,
   ProductModel,
   RoleMatrix,
   ScreenPlaceholder,
 } from '../components/mvivaCvmaas'
+import {
+  IconCards,
+  IconDoc,
+  IconFlag,
+  IconReport,
+  IconSearch,
+  IconShield,
+  IconSpark,
+  IconStack,
+} from '../components/rmn'
 
 const snapshot = [
   { label: 'Role', value: 'Lead UX/UI — owned CVMaaS; collaboration lead on mViva' },
   { label: 'Team', value: 'Product owner, engineering, security, vendor (Pelatro), business ops' },
-  { label: 'Timeline', value: '~8 months (Jan 2025 → Sep 2025 go-live)' },
   { label: 'Platform', value: 'Web · B2B portal (CVMaaS) + vendor product (mViva)' },
-  { label: 'Tools', value: 'Figma · FigJam · UAT sessions with business ops' },
-  { label: 'Context', value: 'Enterprise data monetisation program at a Gulf telco' },
+  { label: 'Tools', value: 'Figma · FigJam · ClickUp · UAT with business ops' },
 ]
 
 const navItems = [
@@ -38,6 +47,7 @@ const navItems = [
   { id: 'mviva', label: 'mViva collaboration' },
   { id: 'outcome', label: 'Outcome' },
   { id: 'change', label: 'What I’d change' },
+  { id: 'takeaway', label: 'My takeaway' },
 ]
 
 const CaseStudyMvivaCvmaas = () => (
@@ -90,6 +100,14 @@ const CaseStudyMvivaCvmaas = () => (
             multi-team, multi-tool, calendar-weeks long. The whole point of the initiative was to
             replace that with a product experience the business team could use themselves.
           </Body>
+          <Callout tone="info" title="The brief">
+            CVM (Customer Value Management) — the discipline of finding the right offer, for the
+            right subscriber, at the right moment — used to live inside a specialist team. The
+            brief was to lift it out: package the CVM capability as a service the telco could
+            sell to enterprise customers, and give business users a product they could operate
+            themselves — without a data-team ticket, a security review email, or an ops-team
+            handover for every campaign.
+          </Callout>
         </section>
 
         {/* Before */}
@@ -191,19 +209,30 @@ const CaseStudyMvivaCvmaas = () => (
         <section className="flex flex-col gap-4">
           <SectionLabel>Design decisions</SectionLabel>
           <SectionTitle id="decisions">Three calls I want to defend</SectionTitle>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+
+          <Body>
+            The decisions below came out of a FigJam board that tracked personas, the reality of
+            the old pipeline, and the vendor product’s existing shape. Sanitised version below:
+          </Body>
+
+          <MvivaInsightsCanvas />
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
             {[
               {
+                icon: <IconFlag />,
                 title: 'One notification per package, on the party dashboard only',
                 body:
                   'A B2B portal has multiple dashboards. Surfacing the “add manager” prompt on the main dashboard would be noise for accounts where the package didn’t apply. Party dashboard, per-package, is where the context lives — that’s where the prompt belongs.',
               },
               {
+                icon: <IconShield />,
                 title: 'From the email entry point, no back button',
                 body:
                   'When the admin clicks the email link and lands directly on “Add campaign manager,” a back button would suggest there’s somewhere upstream to go — there isn’t. Removing it makes the destination read as the whole task.',
               },
               {
+                icon: <IconSpark />,
                 title: 'Test numbers before manager is required',
                 body:
                   'The admin often wants to trial-run the channel before deciding who will actually run campaigns. So test numbers live under Account Inquiry as their own affordance — no manager needed. Governance still applies; setup does not block on people-decisions.',
@@ -211,8 +240,11 @@ const CaseStudyMvivaCvmaas = () => (
             ].map((d) => (
               <div
                 key={d.title}
-                className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-6"
+                className="flex flex-col gap-3 rounded-2xl border border-[#e8e8e8] bg-surface p-6"
               >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
+                  {d.icon}
+                </span>
                 <h4 className="text-lg font-semibold text-ink">{d.title}</h4>
                 <p className="text-sm leading-6 text-charcoal lg:text-base">{d.body}</p>
               </div>
@@ -239,34 +271,54 @@ const CaseStudyMvivaCvmaas = () => (
           <SectionTitle id="mviva">The design work that lived outside the Figma file</SectionTitle>
           <Body>
             mViva was a vendor product. My contribution wasn’t screens — it was making sure the
-            vendor built the right screens for our people. Concretely:
+            vendor built the right screens for our people. Five moves, in parallel:
           </Body>
-          <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
-            <li>
-              <strong>Scoping and requirements gathering.</strong> Translating what the business
-              operations team actually needed — real-time vs ad-hoc campaigns, the audience-count
-              expectation, the approval steps — into a shape the vendor could implement against.
-            </li>
-            <li>
-              <strong>Fit for a business user, not a campaign specialist.</strong> Pushing back on
-              vendor defaults that assumed prior familiarity — vocabulary, defaults, the flow
-              between “build” and “review.”
-            </li>
-            <li>
-              <strong>Approval workflow shape.</strong> Multi-step, per-channel, with an e&amp; hand
-              in the loop — that was the shape the business needed and the vendor needed to build.
-            </li>
-            <li>
-              <strong>User testing with real ops users.</strong> Sessions run with the people who
-              would live in the tool, feeding structured feedback back to the vendor before UAT
-              locked in.
-            </li>
-            <li>
-              <strong>Post-go-live support.</strong> Once the business team took over campaign
-              execution, my team stayed on as technical support — closing the loop on questions
-              and edge cases the vendor documentation didn’t cover.
-            </li>
-          </ul>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {[
+              {
+                icon: <IconDoc />,
+                title: 'Scoping and requirements gathering',
+                body:
+                  'Translating what the business operations team actually needed — real-time vs ad-hoc campaigns, the audience-count expectation, the approval steps — into a shape the vendor could implement against.',
+              },
+              {
+                icon: <IconSearch />,
+                title: 'Fit for a business user, not a campaign specialist',
+                body:
+                  'Pushing back on vendor defaults that assumed prior familiarity — vocabulary, defaults, the flow between “build” and “review.”',
+              },
+              {
+                icon: <IconShield />,
+                title: 'Approval workflow shape',
+                body:
+                  'Multi-step, per-channel, with an e& hand in the loop — that was the shape the business needed and the vendor needed to build.',
+              },
+              {
+                icon: <IconCards />,
+                title: 'User testing with real ops users',
+                body:
+                  'Sessions with the people who would live in the tool, feeding structured feedback back to the vendor before UAT locked in.',
+              },
+              {
+                icon: <IconStack />,
+                title: 'Post-go-live support',
+                body:
+                  'Once the business team took over campaign execution, my team stayed on as technical support — closing the loop on questions and edge cases the vendor documentation didn’t cover.',
+              },
+            ].map((m) => (
+              <div
+                key={m.title}
+                className="flex flex-col gap-3 rounded-2xl border border-[#e8e8e8] bg-surface p-6"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
+                  {m.icon}
+                </span>
+                <h4 className="text-base font-semibold text-ink lg:text-lg">{m.title}</h4>
+                <p className="text-sm leading-6 text-charcoal">{m.body}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Outcome */}
@@ -279,7 +331,27 @@ const CaseStudyMvivaCvmaas = () => (
             the whole flow, and my team dropped into a technical-support role. That’s a real
             operational shift, and it happened.
           </Body>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+            {[
+              { icon: <IconSpark />, value: 'Self-serve', label: 'business teams run their own campaigns end-to-end' },
+              { icon: <IconStack />, value: '2 products', label: 'CVMaaS + mViva, one experience for the user' },
+              { icon: <IconFlag />, value: '3 roles', label: 'Admin · Campaign Manager · Tester-Manager, cleanly split' },
+              { icon: <IconReport />, value: 'Support-only', label: 'my team moved from execution to technical support' },
+            ].map((m) => (
+              <div key={m.label} className="flex flex-col gap-2 rounded-2xl bg-surface p-6">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-tag-blue">
+                  {m.icon}
+                </span>
+                <span className="text-[26px] font-semibold leading-tight text-ink lg:text-[30px]">
+                  {m.value}
+                </span>
+                <span className="text-sm leading-6 text-muted">{m.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
             <Callout tone="neutral" title="What I can defend">
               <ul className="flex list-disc flex-col gap-2 pl-5">
                 <li>
@@ -291,8 +363,8 @@ const CaseStudyMvivaCvmaas = () => (
                   with the right slice of the product pair.
                 </li>
                 <li>
-                  Business operations team runs campaigns end-to-end. My team’s posture moved from
-                  execution to support.
+                  Business operations team runs campaigns end-to-end. My team’s posture moved
+                  from execution to support.
                 </li>
               </ul>
             </Callout>
@@ -302,9 +374,7 @@ const CaseStudyMvivaCvmaas = () => (
                   Concrete before/after cycle times (calendar days to launch a campaign) — I want
                   to source this from the ops team before I put a number on it.
                 </li>
-                <li>
-                  Volume — campaigns per week / month, before and after. Same reason.
-                </li>
+                <li>Volume — campaigns per week / month, before and after. Same reason.</li>
                 <li>
                   Direct quotes from the business ops team — I have relationships there and can
                   ask.
@@ -340,6 +410,28 @@ const CaseStudyMvivaCvmaas = () => (
               a cycle-time delta. Worth an hour with the ops team to pull.
             </li>
           </ul>
+        </section>
+
+        {/* Takeaway */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>My takeaway</SectionLabel>
+          <SectionTitle id="takeaway">Designing across a product boundary you don’t own</SectionTitle>
+          <Body>
+            The interesting shape of this project isn’t either product on its own — it’s the seam
+            between them. CVMaaS was ours; mViva belonged to a vendor with its own defaults,
+            release cadence, and idea of what a “campaign specialist” looked like. The work was
+            partly UX and partly steering — making sure the vendor built the right screens for
+            <em> our</em> business users, not the specialist Pelatro was optimised for.
+          </Body>
+          <Body>
+            The lesson I take from it: <strong>when you own only one side of a two-product
+            experience, design the seam before you design the surfaces</strong>. Decide where
+            control lives (governance in CVMaaS, action in mViva), what the roles carry across
+            the boundary (Admin / Manager / Tester-Manager), and what the user should feel at the
+            crossover (nothing — the seam should read as one experience). Everything else
+            downstream — a notification here, a back button there, a test-numbers affordance —
+            follows from those choices.
+          </Body>
         </section>
 
         <ProjectFooterNav currentId="mviva-cvmaas" />
