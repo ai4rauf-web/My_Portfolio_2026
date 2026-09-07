@@ -31,8 +31,8 @@ import {
 } from '../components/rmn'
 
 // Flow 1 — Admin adds a manager
-import partyDashboardDefault from '../assets/cvmaas/party-dashboard-default.jpg'
-import partyDashboardNotification from '../assets/cvmaas/party-dashboard-notification.jpg'
+import partyDashboard from '../assets/cvmaas/party-dashboard.jpg'
+import partyDashboardWithNotification from '../assets/cvmaas/party-dashboard-with-notification.jpg'
 import accountInquiryDefault from '../assets/cvmaas/account-inquiry-default.jpg'
 import addManagerUserDetails from '../assets/cvmaas/add-manager-user-details.jpg'
 import adminSuccess from '../assets/cvmaas/admin-success.jpg'
@@ -93,8 +93,14 @@ const CaseStudyMvivaCvmaas = () => (
       snapshot={snapshot}
       heroSlot={
         <CvmaasHeroMockup
-          src={partyDashboardDefault}
+          src={partyDashboard}
           alt="CVMaaS party dashboard — the surface where the campaign-manager notification will appear"
+          blur={[
+            { x: 82, y: 1, w: 17, h: 6 }, // top-right user pill
+            { x: 8, y: 12, w: 20, h: 5 }, // party name
+            { x: 66, y: 32, w: 22, h: 8 }, // total-due amount
+            { x: 66, y: 44, w: 22, h: 10 }, // per-service due amounts
+          ]}
         />
       }
     />
@@ -229,7 +235,7 @@ const CaseStudyMvivaCvmaas = () => (
           <ScreenCarousel
             slides={[
               {
-                src: partyDashboardDefault,
+                src: partyDashboard,
                 alt: 'Party dashboard — default state',
                 tag: 'Admin · Party Dashboard',
                 title: 'Party dashboard — default state',
@@ -240,9 +246,15 @@ const CaseStudyMvivaCvmaas = () => (
                     tickets. It’s the surface the notification will appear on.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // user pill
+                  { x: 8, y: 12, w: 20, h: 5 }, // party name
+                  { x: 66, y: 32, w: 22, h: 8 }, // total due
+                  { x: 66, y: 44, w: 22, h: 10 }, // per-service dues
+                ],
               },
               {
-                src: partyDashboardNotification,
+                src: partyDashboardWithNotification,
                 alt: 'Party dashboard with the “add campaign managers” notification',
                 tag: 'Admin · Notification',
                 title: 'Notification — “add campaign managers”',
@@ -253,6 +265,12 @@ const CaseStudyMvivaCvmaas = () => (
                     the package it belongs to.
                   </>
                 ),
+                blur: [
+                  { x: 8, y: 12, w: 20, h: 5 }, // party name
+                  { x: 66, y: 18, w: 32, h: 15 }, // top notification block (account overdue)
+                  { x: 66, y: 32, w: 32, h: 18 }, // CVMaaS package number in "no managers" note
+                  { x: 66, y: 52, w: 32, h: 46 }, // yesterday's notifications (account numbers)
+                ],
               },
               {
                 src: accountInquiryDefault,
@@ -265,6 +283,11 @@ const CaseStudyMvivaCvmaas = () => (
                     un-block for the admin — the setup doesn’t stall on a people-decision.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // user pill
+                  { x: 8, y: 10, w: 30, h: 6 }, // account name / breadcrumb
+                  { x: 8, y: 20, w: 50, h: 60 }, // main account details panel
+                ],
               },
               {
                 src: addManagerUserDetails,
@@ -278,6 +301,10 @@ const CaseStudyMvivaCvmaas = () => (
                     imply.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // user pill
+                  { x: 22, y: 22, w: 56, h: 55 }, // form fields (name / email / phone)
+                ],
               },
               {
                 src: adminSuccess,
@@ -290,6 +317,10 @@ const CaseStudyMvivaCvmaas = () => (
                     invite email and complete their side of onboarding.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // user pill
+                  { x: 30, y: 35, w: 40, h: 14 }, // confirmation names / details
+                ],
               },
             ]}
           />
@@ -311,6 +342,7 @@ const CaseStudyMvivaCvmaas = () => (
                     outside.
                   </>
                 ),
+                blur: [{ x: 82, y: 1, w: 17, h: 6 }],
               },
               {
                 src: uaePassLoginRequest,
@@ -323,6 +355,10 @@ const CaseStudyMvivaCvmaas = () => (
                     UAE PASS mobile app — nothing typed here, nothing to leak.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // top-right user
+                  { x: 30, y: 30, w: 40, h: 30 }, // request details incl. any phone / name
+                ],
               },
               {
                 src: uaePassVerifyFace,
@@ -335,6 +371,7 @@ const CaseStudyMvivaCvmaas = () => (
                     identity requirements before they can act on any live campaign.
                   </>
                 ),
+                blur: [{ x: 82, y: 1, w: 17, h: 6 }],
               },
               {
                 src: uaePassTC,
@@ -347,6 +384,7 @@ const CaseStudyMvivaCvmaas = () => (
                     “are you sure?” dead-end — accept and go.
                   </>
                 ),
+                blur: [{ x: 82, y: 1, w: 17, h: 6 }],
               },
             ]}
           />
@@ -368,6 +406,9 @@ const CaseStudyMvivaCvmaas = () => (
                     choice honest.
                   </>
                 ),
+                blur: [
+                  { x: 30, y: 30, w: 40, h: 20 }, // inviter name + company reference
+                ],
               },
               {
                 src: endUserOtp,
@@ -380,6 +421,9 @@ const CaseStudyMvivaCvmaas = () => (
                     accepting person are provably the same. Minimum ceremony.
                   </>
                 ),
+                blur: [
+                  { x: 30, y: 30, w: 40, h: 24 }, // OTP details (email / phone target)
+                ],
               },
               {
                 src: endUserTC,
@@ -392,6 +436,7 @@ const CaseStudyMvivaCvmaas = () => (
                     but never loses the accept CTA.
                   </>
                 ),
+                blur: [],
               },
               {
                 src: endUserVerified,
@@ -404,6 +449,9 @@ const CaseStudyMvivaCvmaas = () => (
                     them into mViva to build their first campaign.
                   </>
                 ),
+                blur: [
+                  { x: 30, y: 35, w: 40, h: 20 }, // name / account confirmation
+                ],
               },
             ]}
           />
@@ -425,6 +473,10 @@ const CaseStudyMvivaCvmaas = () => (
                     trial the channel.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 }, // user pill
+                  { x: 8, y: 10, w: 30, h: 6 }, // account name / breadcrumb
+                ],
               },
               {
                 src: testNumbersGenerateOtp,
@@ -437,6 +489,10 @@ const CaseStudyMvivaCvmaas = () => (
                     number itself, so an admin can’t just add a phone they don’t control.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 },
+                  { x: 25, y: 35, w: 50, h: 12 }, // phone number entry
+                ],
               },
               {
                 src: testNumbersGenerateOtpAlt,
@@ -449,6 +505,10 @@ const CaseStudyMvivaCvmaas = () => (
                     with the admin identity behind it.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 },
+                  { x: 25, y: 35, w: 50, h: 12 }, // phone number entry
+                ],
               },
               {
                 src: testNumbersOtpEntry,
@@ -461,6 +521,11 @@ const CaseStudyMvivaCvmaas = () => (
                     which OTP goes where.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 },
+                  { x: 25, y: 35, w: 50, h: 12 }, // phone number reference
+                  { x: 25, y: 48, w: 50, h: 12 }, // OTP entry
+                ],
               },
               {
                 src: testNumbersAccountAfter,
@@ -473,6 +538,11 @@ const CaseStudyMvivaCvmaas = () => (
                     bought without loosening the rules.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 },
+                  { x: 8, y: 10, w: 30, h: 6 }, // account name
+                  { x: 8, y: 55, w: 84, h: 30 }, // test-numbers list rows (real phone numbers)
+                ],
               },
               {
                 src: testNumbersSuccess,
@@ -486,6 +556,10 @@ const CaseStudyMvivaCvmaas = () => (
                     signs in.
                   </>
                 ),
+                blur: [
+                  { x: 82, y: 1, w: 17, h: 6 },
+                  { x: 30, y: 40, w: 40, h: 15 }, // number confirmation
+                ],
               },
             ]}
           />
