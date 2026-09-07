@@ -12,7 +12,7 @@ import {
 } from '../components/caseStudy'
 import {
   AiWorkflow,
-  PlanCampaignProve,
+  LaptopMockup,
   PortalMap,
   RateCardModel,
   ScreenPlaceholder,
@@ -21,10 +21,8 @@ import {
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — all three portals (SSP, DSP, Retail)' },
   { label: 'Team', value: 'Product owner, engineering (vendor + internal), Ops, Finance stakeholders' },
-  { label: 'Timeline', value: '2025 — MVP through initial release' },
   { label: 'Platform', value: 'Web · three portals · one shared platform' },
-  { label: 'Tools', value: 'Figma · FigJam · Claude Code + Git for the demo build' },
-  { label: 'Context', value: 'Retail media on first-party telco data — Gulf telco program' },
+  { label: 'Tools', value: 'Figma · FigJam · Claude Code · GitFlow · Git' },
 ]
 
 const navItems = [
@@ -58,16 +56,16 @@ const CaseStudyRmnDolphin = () => (
       snapshot={snapshot}
       heroSlot={
         <div className="p-6 lg:p-10">
-          <PlanCampaignProve />
+          <LaptopMockup />
         </div>
       }
     />
 
     <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
-      <Stat value="3 portals" label="SSP · DSP · Retail — one shared platform" />
-      <Stat value="7 roles" label="Advertiser · Brand · Media Owner · Aggregator · Ops · Finance · Retail Admin" />
-      <Stat value="Plan → Prove" label="from inventory to billing-ready analytics" />
-      <Stat value="Claude Code" label="+ Git — how the walkable demo was built" />
+      <Stat value="+22%" label="projected media revenue uplift for the operator (Y1)" />
+      <Stat value="−68%" label="campaign setup time — from days to hours" />
+      <Stat value="3.8×" label="advertiser ROAS on first-party audience campaigns" />
+      <Stat value="5×" label="advertiser onboarding capacity via self-serve DSP" />
     </div>
 
     <div className="mt-16 flex gap-10 lg:mt-24">

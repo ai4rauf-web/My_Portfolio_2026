@@ -53,6 +53,140 @@ export const PlanCampaignProve = () => (
   </svg>
 )
 
+export const LaptopMockup = () => (
+  <svg viewBox="0 0 900 520" role="img" aria-label="RMN platform running on a laptop — advertiser managing a campaign" className="w-full">
+    <defs>
+      <linearGradient id="lap-screen" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stopColor="#1a1a1a" />
+        <stop offset="1" stopColor="#0b0b0b" />
+      </linearGradient>
+      <linearGradient id="lap-base" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stopColor="#d8d8d8" />
+        <stop offset="1" stopColor="#a8a8a8" />
+      </linearGradient>
+      <linearGradient id="rev-line" x1="0" x2="1">
+        <stop offset="0" stopColor="#1377b0" />
+        <stop offset="1" stopColor="#197417" />
+      </linearGradient>
+    </defs>
+
+    {/* Laptop base (trapezoid) */}
+    <path d="M 60 470 L 840 470 L 880 500 L 20 500 Z" fill="url(#lap-base)" />
+    <rect x="380" y="470" width="140" height="4" rx="2" fill="#8a8a8a" />
+
+    {/* Laptop lid */}
+    <rect x="60" y="30" width="780" height="440" rx="12" fill="url(#lap-screen)" />
+    {/* Bezel */}
+    <rect x="80" y="50" width="740" height="400" rx="6" fill="#f8f8f9" />
+
+    {/* Browser chrome */}
+    <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
+      <rect x="80" y="50" width="740" height="30" fill="#eef0f2" />
+      <circle cx="100" cy="65" r="4" fill="#e57373" />
+      <circle cx="114" cy="65" r="4" fill="#f2c94c" />
+      <circle cx="128" cy="65" r="4" fill="#68c186" />
+      <rect x="150" y="55" width="500" height="20" rx="10" fill="#ffffff" stroke="#d8d8d8" />
+      <text x="164" y="69" fontSize="10" fill="#686868">rmn.telco-platform.local  ·  DSP — Campaign Manager</text>
+
+      {/* App top bar */}
+      <rect x="80" y="80" width="740" height="42" fill="#071012" />
+      <text x="100" y="105" fontSize="12" fontWeight="600" fill="#ffffff" letterSpacing="2">RMN</text>
+      {['Plan', 'Campaigns', 'Creative', 'Audiences', 'Prove'].map((t, i) => (
+        <text
+          key={t}
+          x={168 + i * 76}
+          y="105"
+          fontSize="11"
+          fill={t === 'Campaigns' ? '#ffffff' : '#8f8f8f'}
+          fontWeight={t === 'Campaigns' ? 600 : 400}
+        >
+          {t}
+        </text>
+      ))}
+      <circle cx="794" cy="101" r="10" fill="#1377b0" />
+      <text x="794" y="105" textAnchor="middle" fontSize="10" fill="#ffffff" fontWeight="600">A</text>
+
+      {/* Left sidebar */}
+      <rect x="80" y="122" width="160" height="328" fill="#f6f6f7" />
+      <text x="98" y="148" fontSize="10" fill="#686868" letterSpacing="1.4">WORKSPACE</text>
+      {[
+        { label: 'All campaigns', active: true },
+        { label: 'Drafts' },
+        { label: 'Awaiting approval' },
+        { label: 'Live' },
+        { label: 'Completed' },
+        { label: 'Archived' },
+      ].map((r, i) => (
+        <g key={r.label} transform={`translate(90, ${160 + i * 26})`}>
+          {r.active && <rect width="140" height="22" rx="6" fill="#ffffff" stroke="#e0e0e0" />}
+          <text x="14" y="15" fontSize="11" fill={r.active ? '#071012' : '#5b5b5b'} fontWeight={r.active ? 600 : 400}>
+            {r.label}
+          </text>
+        </g>
+      ))}
+
+      <text x="98" y="336" fontSize="10" fill="#686868" letterSpacing="1.4">TOOLS</text>
+      {['Audience library', 'Creative studio', 'Reports', 'Billing'].map((r, i) => (
+        <text key={r} x="104" y={352 + i * 22} fontSize="11" fill="#5b5b5b">{r}</text>
+      ))}
+
+      {/* Main content */}
+      <text x="260" y="150" fontSize="15" fontWeight="600" fill="#071012">Campaign performance</text>
+      <text x="260" y="168" fontSize="11" fill="#686868">Last 14 days · all live campaigns · advertiser workspace</text>
+
+      {/* KPI cards */}
+      {[
+        { x: 260, label: 'Impressions', val: '18.4M', delta: '+22% vs LP', tone: '#eef6fb', border: '#bcdbec' },
+        { x: 400, label: 'Media spend', val: 'AED 1.24M', delta: 'pacing +4%', tone: '#eaf6ea', border: '#c8e6c8' },
+        { x: 540, label: 'ROAS', val: '3.8×', delta: 'target 3.0×', tone: '#fdefc0', border: '#e1c465' },
+        { x: 680, label: 'Setup time', val: '2h avg', delta: '−68% vs prior', tone: '#eef6fb', border: '#bcdbec' },
+      ].map((k) => (
+        <g key={k.label} transform={`translate(${k.x}, 180)`}>
+          <rect width="128" height="72" rx="8" fill={k.tone} stroke={k.border} />
+          <text x="12" y="20" fontSize="9" fill="#5b5b5b" letterSpacing="1">{k.label.toUpperCase()}</text>
+          <text x="12" y="42" fontSize="18" fontWeight="600" fill="#071012">{k.val}</text>
+          <text x="12" y="60" fontSize="9" fill="#5b5b5b">{k.delta}</text>
+        </g>
+      ))}
+
+      {/* Trend chart panel */}
+      <g transform="translate(260, 268)">
+        <rect width="548" height="80" rx="8" fill="#ffffff" stroke="#e0e0e0" />
+        <text x="14" y="20" fontSize="10" fill="#686868" letterSpacing="1">MEDIA REVENUE — 14 DAYS</text>
+        <polyline
+          points="20,60 60,55 100,58 140,52 180,50 220,44 260,46 300,40 340,42 380,36 420,34 460,30 500,26 540,22"
+          fill="none"
+          stroke="url(#rev-line)"
+          strokeWidth="2"
+        />
+        {[20, 100, 180, 260, 340, 420, 500].map((x) => (
+          <circle key={x} cx={x} cy={x < 260 ? 55 : x < 380 ? 40 : x < 460 ? 32 : 26} r="1.6" fill="#1377b0" />
+        ))}
+      </g>
+
+      {/* Campaigns table */}
+      <g transform="translate(260, 360)">
+        <rect width="548" height="82" rx="8" fill="#ffffff" stroke="#e0e0e0" />
+        <text x="14" y="18" fontSize="10" fill="#686868" letterSpacing="1">LIVE CAMPAIGNS</text>
+        {[
+          { name: 'Ramadan — Home fibre push', pkg: 'Premium', spend: 'AED 340K', roas: '4.1×', status: 'Live' },
+          { name: 'GCC roamers — travel add-on', pkg: 'Executive', spend: 'AED 210K', roas: '3.6×', status: 'Live' },
+          { name: 'Gold tier — retention', pkg: 'Residential', spend: 'AED 88K', roas: '3.2×', status: 'Pacing' },
+        ].map((c, i) => (
+          <g key={c.name} transform={`translate(14, ${34 + i * 16})`} fontSize="10" fill="#242424">
+            <circle cx="0" cy="-3" r="3" fill={c.status === 'Live' ? '#197417' : '#e0a63a'} />
+            <text x="10">{c.name}</text>
+            <text x="260">{c.pkg}</text>
+            <text x="352">{c.spend}</text>
+            <text x="448">{c.roas}</text>
+            <text x="500">{c.status}</text>
+          </g>
+        ))}
+      </g>
+    </g>
+  </svg>
+)
+
 export const PortalMap = () => (
   <svg viewBox="0 0 900 480" role="img" aria-label="Three portals, seven roles" className="w-full">
     <g fontFamily="IBM Plex Sans, system-ui, sans-serif">

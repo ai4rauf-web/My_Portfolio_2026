@@ -64,8 +64,8 @@ export const projects: Project[] = [
     updating: false,
     privateAccess: true,
     metrics: [
-      { value: '3 portals', label: 'SSP · DSP · Retail — one shared platform' },
-      { value: 'New revenue', label: 'monetises first-party telco data as enterprise ad inventory' },
+      { value: '+22%', label: 'projected media revenue uplift for the operator (Y1)' },
+      { value: '−68%', label: 'campaign setup time — from days to hours' },
     ],
   },
   {
