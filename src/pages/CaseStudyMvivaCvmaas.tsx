@@ -1,10 +1,10 @@
 import Footer from '../components/Footer'
+import ProjectFooterNav from '../components/ProjectFooterNav'
 import {
   BackLink,
   Body,
   Callout,
   CaseStudyHeader,
-  NextProject,
   SectionLabel,
   SectionTitle,
   Stat,
@@ -342,7 +342,7 @@ const CaseStudyMvivaCvmaas = () => (
           </ul>
         </section>
 
-        <NextProject href="/projects/rmn-dolphin" title="RMN — Retail Media Network" />
+        <ProjectFooterNav currentId="mviva-cvmaas" />
       </div>
     </div>
 

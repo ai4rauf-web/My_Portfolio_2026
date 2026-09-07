@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight } from '../components/Icons'
+import { useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
+import ProjectFooterNav from '../components/ProjectFooterNav'
 import * as a from '../data/hubbitAssets'
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
@@ -599,22 +599,7 @@ const CaseStudyHubbit = () => {
       </div>
 
       {/* Prev / next navigation */}
-      <div className="mt-16 flex items-center justify-between lg:mt-24">
-        <Link
-          to="/projects/emerson-deltav-psm"
-          className="group/btn flex items-center gap-1 rounded-full border border-[#019fb9] bg-white py-2 pl-3 pr-4 transition-shadow duration-300 hover:shadow-md"
-        >
-          <ArrowRight className="h-6 w-6 rotate-180 text-ink transition-transform duration-300 group-hover/btn:-translate-x-1" />
-          <span className="text-base text-ink">Previous Project</span>
-        </Link>
-        <Link
-          to="/projects/lashic"
-          className="group/btn flex items-center gap-1 rounded-full border border-[#019fb9] bg-white py-2 pl-4 pr-3 transition-shadow duration-300 hover:shadow-md"
-        >
-          <span className="text-base text-ink">Next Project</span>
-          <ArrowRight className="h-6 w-6 text-ink transition-transform duration-300 group-hover/btn:translate-x-1" />
-        </Link>
-      </div>
+      <ProjectFooterNav currentId="hubbit" />
 
       <Footer />
     </main>

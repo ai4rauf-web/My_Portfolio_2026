@@ -1,10 +1,10 @@
 import Footer from '../components/Footer'
+import ProjectFooterNav from '../components/ProjectFooterNav'
 import {
   BackLink,
   Body,
   Callout,
   CaseStudyHeader,
-  NextProject,
   SectionLabel,
   SectionTitle,
   Stat,
@@ -427,7 +427,7 @@ const CaseStudyDaiticsCdp = () => (
           </ul>
         </section>
 
-        <NextProject href="/projects/mviva-cvmaas" title="mViva + CVMaaS — self-serve campaigns" />
+        <ProjectFooterNav currentId="daitics-cdp" />
       </div>
     </div>
 

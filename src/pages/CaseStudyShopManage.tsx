@@ -1,10 +1,10 @@
 import Footer from '../components/Footer'
+import ProjectFooterNav from '../components/ProjectFooterNav'
 import {
   BackLink,
   Body,
   Callout,
   CaseStudyHeader,
-  NextProject,
   SectionLabel,
   SectionTitle,
   Stat,
@@ -279,7 +279,7 @@ const CaseStudyShopManage = () => (
           </ul>
         </section>
 
-        <NextProject href="/projects/daitics-cdp" label="Back to the hero" title="Telco AI CDP" />
+        <ProjectFooterNav currentId="shop-manage" />
       </div>
     </div>
 

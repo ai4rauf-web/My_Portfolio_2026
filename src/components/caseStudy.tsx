@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const BackIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
@@ -147,27 +147,6 @@ export const SnapshotRow = ({ items }: { items: Chip[] }) => (
         )}
       </div>
     ))}
-  </div>
-)
-
-export const NextProject = ({
-  href,
-  label,
-  title,
-}: {
-  href: string
-  label?: string
-  title: string
-}) => (
-  <div className="mt-24 flex flex-col gap-3 border-t border-[#ededed] pt-10 lg:mt-32">
-    <p className="text-sm uppercase tracking-wide text-muted">{label ?? 'Next case study'}</p>
-    <Link
-      to={href}
-      className="group flex items-center justify-between gap-6 text-2xl font-medium text-ink transition-colors hover:text-tag-blue lg:text-[32px]"
-    >
-      <span>{title}</span>
-      <span className="text-3xl transition-transform group-hover:translate-x-1">→</span>
-    </Link>
   </div>
 )
 
