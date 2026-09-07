@@ -24,10 +24,8 @@ import {
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — shaped the authoring paradigm' },
   { label: 'Team', value: 'Product owners, data engineers, ML engineers, DPO advisor' },
-  { label: 'Timeline', value: 'Ongoing R&D · Feb 2025 – present' },
   { label: 'Platform', value: 'Web · one React portal · sovereign on-prem deploy' },
-  { label: 'Tools', value: 'Figma · FigJam · Miro · working sessions with engineering' },
-  { label: 'Context', value: 'Internal R&D — a Gulf telco Data Monetization program' },
+  { label: 'Tools', value: 'Figma · FigJam · ClickUp · Claude Code · Git' },
 ]
 
 const navItems = [
