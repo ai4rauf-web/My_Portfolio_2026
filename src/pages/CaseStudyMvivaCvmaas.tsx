@@ -17,7 +17,6 @@ import {
   OnboardingFlow,
   ProductModel,
   RoleMatrix,
-  ScreenPlaceholder,
 } from '../components/mvivaCvmaas'
 import {
   IconCards,
@@ -28,6 +27,7 @@ import {
   IconShield,
   IconSpark,
   IconStack,
+  ScreenCarousel,
 } from '../components/rmn'
 
 const snapshot = [
@@ -191,73 +191,175 @@ const CaseStudyMvivaCvmaas = () => (
           </div>
 
           <Body className="mt-4">
-            Four flows carry the onboarding story. Real screens from the Figma will drop into
-            these slots as they’re exported.
+            Four flows carry the onboarding story. Walk each one on its own carousel — real
+            screens from the Figma will drop into the slots as they’re exported.
           </Body>
 
           <p className="mt-2 text-sm font-medium uppercase tracking-wide text-muted">
             Flow 1 — Admin adds a campaign manager
           </p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <ScreenPlaceholder
-              label="Party Dashboard — notification"
-              caption="One notification per CVMS package with no manager assigned. Surfaced on the party dashboard only — not the main one. Figma frame: 3076-12646."
-            />
-            <ScreenPlaceholder
-              label="Account Inquiry — default state"
-              caption="Test numbers can be configured even before a manager is added — an intentional un-block for the admin. Figma frame: 3076-12534."
-            />
-            <ScreenPlaceholder
-              label="Add campaign manager — user details"
-              caption="From the email entry point the back button is intentionally removed; the admin lands on the exact step they were asked to complete. Figma frame: 3076-12998."
-            />
-            <ScreenPlaceholder
-              label="Success — managers added"
-              caption="Confirmation with a clear next-step: the manager will receive their own invite email. Figma frame: 3076-13106."
-            />
-          </div>
+          <ScreenCarousel
+            slides={[
+              {
+                alt: 'Party Dashboard with the "add campaign manager" notification panel',
+                tag: 'Admin · Party Dashboard',
+                title: 'Notification — “add campaign managers”',
+                body: (
+                  <>
+                    One notification per CVMS package with no manager assigned. Surfaced on the
+                    party dashboard only, never the main dashboard — the prompt lives next to
+                    the package it belongs to.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-12646',
+              },
+              {
+                alt: 'Account Inquiry default state',
+                tag: 'Admin · Account Inquiry',
+                title: 'Account Inquiry — default state',
+                body: (
+                  <>
+                    Test numbers can be configured even before a manager is added. Deliberate
+                    un-block for the admin — the setup doesn’t stall on a people-decision.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-12534',
+              },
+              {
+                alt: 'Add campaign manager form — enter user details',
+                tag: 'Admin · Add manager',
+                title: 'Add campaign manager — user details',
+                body: (
+                  <>
+                    From the email entry point the back button is intentionally removed. The
+                    admin lands on the exact step they were asked to complete — no upstream to
+                    imply.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-12998',
+              },
+              {
+                alt: 'Success — managers added',
+                tag: 'Admin · Success',
+                title: 'Success — managers added',
+                body: (
+                  <>
+                    Confirmation with a clear next-step: the manager will receive their own
+                    invite email. Nothing left ambiguous.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-13106',
+              },
+            ]}
+          />
 
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+          <p className="mt-10 text-sm font-medium uppercase tracking-wide text-muted">
             Flow 2 — Campaign manager logs in with UAE PASS
           </p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <ScreenPlaceholder
-              label="Welcome email → sign in with UAE PASS"
-              caption="Manager receives an invite email; the CTA lands them on a dedicated login page — reachable only through the email link. Figma frames: 3076-12517 (email), 3076-11942 (login)."
-            />
-            <ScreenPlaceholder
-              label="Multi-organisation → choose account"
-              caption="If a manager is assigned to multiple accounts, they pick which one to enter before proceeding. Figma frame: 3076-11956."
-            />
-          </div>
+          <ScreenCarousel
+            slides={[
+              {
+                alt: 'Invitation email with UAE PASS sign-in CTA',
+                tag: 'Manager · Email',
+                title: 'Invite email → sign in with UAE PASS',
+                body: (
+                  <>
+                    The manager receives an invite email; the CTA lands them on a dedicated
+                    login page — reachable only through the email link, not the marketing site.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-12517 (email) · 3076-11942 (login)',
+              },
+              {
+                alt: 'Organisation picker for managers assigned to multiple accounts',
+                tag: 'Manager · Multi-org',
+                title: 'Choose the organisation to enter',
+                body: (
+                  <>
+                    If a manager is assigned to multiple accounts, they pick which one to enter
+                    before proceeding. Context is set before any campaign work begins.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-11956',
+              },
+              {
+                alt: 'UAE PASS identity verification screen',
+                tag: 'Manager · Identity',
+                title: 'UAE PASS verification',
+                body: (
+                  <>
+                    Government-grade auth off the shelf — no separate CVMaaS credentials to
+                    manage, no password reset flow for the admin to chase.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-12010',
+              },
+            ]}
+          />
 
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+          <p className="mt-10 text-sm font-medium uppercase tracking-wide text-muted">
             Flow 3 — Campaign manager sets up their profile
           </p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <ScreenPlaceholder
-              label="Profile setup — first-run"
-              caption="Post-UAE-PASS, the manager completes their working profile. Figma section: 3076-13140."
-            />
-            <ScreenPlaceholder
-              label="Landing — ready to run campaigns"
-              caption="Handover point into mViva — the seam we designed to be invisible. Figma section: 3076-13140."
-            />
-          </div>
+          <ScreenCarousel
+            slides={[
+              {
+                alt: 'First-run profile setup for a new campaign manager',
+                tag: 'Manager · First-run',
+                title: 'Profile setup',
+                body: (
+                  <>
+                    Post-UAE-PASS, the manager completes their working profile — role, contact,
+                    notification preferences. Kept short; the goal is to get to a live tool.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-13140',
+              },
+              {
+                alt: 'Landing state — manager is ready to run campaigns',
+                tag: 'Manager · Landing',
+                title: 'Ready to run campaigns',
+                body: (
+                  <>
+                    Handover point into mViva. Designed to feel like arriving somewhere, not
+                    leaving somewhere else — the seam should read as one product.
+                  </>
+                ),
+                placeholderNote: 'Figma 3076-13140 (child frame)',
+              },
+            ]}
+          />
 
-          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+          <p className="mt-10 text-sm font-medium uppercase tracking-wide text-muted">
             Flow 4 — Test numbers configured before any manager exists
           </p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <ScreenPlaceholder
-              label="Add test number"
-              caption="Admin trials the channel without waiting for a manager decision. Figma section: 2784-1986."
-            />
-            <ScreenPlaceholder
-              label="Test numbers list"
-              caption="Governance still applies: numbers are recorded, capped, and audit-visible. Figma section: 2784-1986."
-            />
-          </div>
+          <ScreenCarousel
+            slides={[
+              {
+                alt: 'Add a test number to the account',
+                tag: 'Admin · Test setup',
+                title: 'Add test number',
+                body: (
+                  <>
+                    Admin trials the channel without waiting for a manager decision. Small,
+                    reversible, immediate — the un-block that keeps setup moving.
+                  </>
+                ),
+                placeholderNote: 'Figma 2784-1986',
+              },
+              {
+                alt: 'List of test numbers on the account',
+                tag: 'Admin · Test list',
+                title: 'Test numbers list',
+                body: (
+                  <>
+                    Governance still applies: numbers are recorded, capped per package, and
+                    audit-visible. Speed is bought without loosening the rules.
+                  </>
+                ),
+                placeholderNote: 'Figma 2784-1986 (child frame)',
+              },
+            ]}
+          />
         </section>
 
         {/* Decisions */}

@@ -263,12 +263,15 @@ export const EcosystemDiagram = () => (
 )
 
 export type CarouselSlide = {
-  src: string
+  /** Real screenshot; when omitted the slide shows a labelled placeholder frame. */
+  src?: string
   alt: string
   tag: string
   title: string
   body: ReactNode
   blur?: BlurZone[]
+  /** Optional short line (e.g. Figma frame ID) shown in the placeholder */
+  placeholderNote?: string
 }
 
 /* Single-list carousel — image and description live inside ONE container.
@@ -283,25 +286,42 @@ export const ScreenCarousel = ({ slides }: { slides: CarouselSlide[] }) => {
     <div className="flex flex-col gap-4">
       {/* One container: image on top, description below, inside same card */}
       <div className="overflow-hidden rounded-2xl border border-[#e8e8e8] bg-white">
-        {/* Image */}
+        {/* Image — real screenshot or labelled placeholder */}
         <div className="relative bg-surface">
-          <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
-          {s.blur?.map((z, k) => (
-            <div
-              key={k}
-              aria-hidden
-              className="absolute rounded-[3px]"
-              style={{
-                left: `${z.x}%`,
-                top: `${z.y}%`,
-                width: `${z.w}%`,
-                height: `${z.h}%`,
-                backdropFilter: 'blur(9px)',
-                WebkitBackdropFilter: 'blur(9px)',
-                background: 'rgba(255,255,255,0.35)',
-              }}
-            />
-          ))}
+          {s.src ? (
+            <>
+              <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
+              {s.blur?.map((z, k) => (
+                <div
+                  key={k}
+                  aria-hidden
+                  className="absolute rounded-[3px]"
+                  style={{
+                    left: `${z.x}%`,
+                    top: `${z.y}%`,
+                    width: `${z.w}%`,
+                    height: `${z.h}%`,
+                    backdropFilter: 'blur(9px)',
+                    WebkitBackdropFilter: 'blur(9px)',
+                    background: 'rgba(255,255,255,0.35)',
+                  }}
+                />
+              ))}
+            </>
+          ) : (
+            <div className="flex aspect-[16/10] w-full items-center justify-center bg-[repeating-linear-gradient(45deg,#f6f6f6_0_10px,#eeeeef_10px_20px)]">
+              <div className="flex flex-col items-center gap-2 px-6 text-center">
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-tag-blue">
+                  {s.tag}
+                </span>
+                <span className="text-lg font-medium text-charcoal">{s.title}</span>
+                <span className="text-sm text-muted">
+                  Figma export slot
+                  {s.placeholderNote ? ` · ${s.placeholderNote}` : ''}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Description strip — same container */}
