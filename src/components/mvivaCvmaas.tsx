@@ -1,5 +1,167 @@
 /* Abstracted diagrams for the mViva + CVMaaS case study.
    No customer logos, no real product screens — placeholders where PNGs will go. */
+import type { BlurZone } from './caseStudy'
+
+/* CVMaaS hero mockup — laptop-in-office wrapper (same visual language
+   as the RMN hero) with an abstract Party Dashboard inside. Ships now;
+   swap the children for a real screenshot once one lands on disk. */
+export const CvmaasHeroMockup = ({
+  src,
+  alt,
+  blur,
+}: {
+  src?: string
+  alt?: string
+  blur?: BlurZone[]
+}) => (
+  <div className="relative overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#f6ecdc_0%,#e8dbc4_45%,#cfbfa1_100%)] px-6 py-10 lg:px-12 lg:py-16">
+    {/* ambient bokeh */}
+    <div className="pointer-events-none absolute -left-16 -top-10 h-56 w-56 rounded-full bg-emerald-300/30 blur-3xl" aria-hidden />
+    <div className="pointer-events-none absolute right-4 top-6 h-48 w-48 rounded-full bg-amber-200/50 blur-3xl" aria-hidden />
+    <div className="pointer-events-none absolute -bottom-20 left-1/3 h-56 w-72 rounded-full bg-rose-200/40 blur-3xl" aria-hidden />
+
+    {/* laptop */}
+    <div className="relative z-10 mx-auto max-w-[820px]">
+      <div className="rounded-t-2xl bg-[#141414] p-3 shadow-[0_50px_60px_-24px_rgba(20,10,0,0.45),0_10px_30px_-12px_rgba(20,10,0,0.35)]">
+        <div className="relative overflow-hidden rounded-md bg-white">
+          {src ? (
+            <>
+              <img src={src} alt={alt ?? ''} className="block w-full" loading="lazy" />
+              {blur?.map((z, i) => (
+                <div
+                  key={i}
+                  aria-hidden
+                  className="absolute rounded-[3px]"
+                  style={{
+                    left: `${z.x}%`,
+                    top: `${z.y}%`,
+                    width: `${z.w}%`,
+                    height: `${z.h}%`,
+                    backdropFilter: 'blur(9px)',
+                    WebkitBackdropFilter: 'blur(9px)',
+                    background: 'rgba(255,255,255,0.35)',
+                  }}
+                />
+              ))}
+            </>
+          ) : (
+            /* Abstract Party Dashboard — until real screen lands */
+            <svg viewBox="0 0 1440 900" className="block w-full" role="img" aria-label="CVMaaS Party Dashboard with 'add campaign manager' notification">
+              <rect width="1440" height="900" fill="#f8f8f9" />
+              {/* Top bar */}
+              <rect x="0" y="0" width="1440" height="58" fill="#ffffff" />
+              <text x="72" y="36" fontFamily="IBM Plex Sans, system-ui" fontSize="18" fontWeight="700" fill="#c8102e">e&amp;</text>
+              {['Dashboard', 'Manage', 'Pay', 'Order', 'Services', 'Support'].map((t, i) => (
+                <text key={t} x={220 + i * 90} y="36" fontFamily="IBM Plex Sans, system-ui" fontSize="14" fill={t === 'Dashboard' ? '#c8102e' : '#5a5a5a'} fontWeight={t === 'Dashboard' ? 600 : 400}>
+                  {t}
+                </text>
+              ))}
+              <line x1="220" y1="55" x2="298" y2="55" stroke="#c8102e" strokeWidth="2" />
+
+              {/* Party header */}
+              <text x="72" y="122" fontFamily="IBM Plex Sans, system-ui" fontSize="26" fontWeight="700" fill="#242424">JVC sec34</text>
+              <text x="72" y="146" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868" letterSpacing="1.4">VIEW DOCUMENTS  ›</text>
+
+              {/* Accounts card */}
+              <rect x="72" y="184" width="440" height="200" rx="12" fill="#ffffff" stroke="#ececec" />
+              <text x="88" y="212" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868" letterSpacing="1.4">ACCOUNTS</text>
+              <text x="88" y="234" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#c8102e">82 Active · 1 Inactive · 1 Suspended</text>
+              <circle cx="180" cy="310" r="52" fill="none" stroke="#5c1b3b" strokeWidth="16" />
+              <text x="180" y="316" fontFamily="IBM Plex Sans, system-ui" fontSize="24" fontWeight="700" fill="#242424" textAnchor="middle">142</text>
+              {[
+                { l: 'Mobile', v: '150', c: '#c8102e' },
+                { l: 'Internet & Data', v: '40', c: '#5c1b3b' },
+                { l: 'Business in a Box', v: '10', c: '#2b6cb0' },
+                { l: 'Devices', v: '8', c: '#8b8b8b' },
+              ].map((r, i) => (
+                <g key={r.l} transform={`translate(272, ${256 + i * 22})`}>
+                  <rect width="8" height="8" y="-8" fill={r.c} />
+                  <text x="16" y="0" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">{r.l}</text>
+                  <text x="220" y="0" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fontWeight="600" fill="#242424" textAnchor="end">{r.v}</text>
+                </g>
+              ))}
+
+              {/* Quick access card */}
+              <rect x="530" y="184" width="240" height="200" rx="12" fill="#ffffff" stroke="#ececec" />
+              <text x="546" y="212" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868" letterSpacing="1.4">QUICK ACCESS</text>
+              {['Make a payment', 'Bulk payment', 'Order smartphone', 'Support ticket', 'Cloud services'].map((l, i) => (
+                <text key={l} x="558" y={242 + i * 22} fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">
+                  ○  {l}
+                </text>
+              ))}
+
+              {/* Orders + support */}
+              <rect x="72" y="404" width="440" height="120" rx="12" fill="#ffffff" stroke="#ececec" />
+              <text x="88" y="432" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868" letterSpacing="1.4">ORDERS · LAST 30 DAYS</text>
+              {[
+                { l: 'All', v: '20' },
+                { l: 'In Progress', v: '3' },
+                { l: 'Delivered', v: '15' },
+                { l: 'Cancelled', v: '2' },
+              ].map((r, i) => (
+                <g key={r.l} transform={`translate(${104 + i * 100}, 476)`}>
+                  <text x="0" y="0" fontFamily="IBM Plex Sans, system-ui" fontSize="22" fontWeight="700" fill="#242424">{r.v}</text>
+                  <text x="0" y="20" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868">{r.l}</text>
+                </g>
+              ))}
+              <rect x="530" y="404" width="240" height="120" rx="12" fill="#ffffff" stroke="#ececec" />
+              <text x="546" y="432" fontFamily="IBM Plex Sans, system-ui" fontSize="11" fill="#686868" letterSpacing="1.4">SUPPORT · LAST 30 DAYS</text>
+              <text x="560" y="472" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">Open tickets  2</text>
+              <text x="560" y="492" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">Closed tickets  2</text>
+
+              {/* Notifications panel (right-hand slide-over) */}
+              <rect x="792" y="0" width="648" height="900" fill="#ffffff" />
+              <line x1="792" y1="0" x2="792" y2="900" stroke="#ececec" />
+              <text x="828" y="42" fontFamily="IBM Plex Sans, system-ui" fontSize="20" fontWeight="700" fill="#242424">Notifications.</text>
+              <line x1="828" y1="80" x2="878" y2="80" stroke="#c8102e" strokeWidth="2" />
+              <text x="828" y="72" fontFamily="IBM Plex Sans, system-ui" fontSize="13" fill="#242424">All</text>
+              <text x="880" y="72" fontFamily="IBM Plex Sans, system-ui" fontSize="13" fill="#686868">Unread  3</text>
+              <text x="828" y="110" fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#686868" letterSpacing="1.4">NEW</text>
+
+              {/* Notification 1 — bill payment */}
+              <text x="856" y="146" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">Bill payment for account number 6544756 is overdue by 6 days.</text>
+              <text x="856" y="166" fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#a8a8a8">Today at 9:42 AM</text>
+
+              {/* Notification 2 — CVMaaS ADD USERS — the important one */}
+              <rect x="820" y="196" width="600" height="120" rx="6" fill="#fef7f0" stroke="#f2d7c7" />
+              <text x="856" y="220" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">Your CVMaaS package (90064683833) has no campaign managers.</text>
+              <text x="856" y="238" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">To start using the service, add campaign managers.</text>
+              <rect x="856" y="256" width="120" height="36" rx="4" fill="#ffffff" stroke="#c8102e" />
+              <text x="916" y="278" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fontWeight="600" fill="#c8102e" textAnchor="middle">ADD USERS</text>
+              <text x="856" y="304" fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#a8a8a8">Today at 9:42 AM</text>
+
+              {/* Notification 3 — payment overdue again */}
+              <text x="856" y="346" fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">Bill payment for account 6544756 is overdue by 6 days.</text>
+              <text x="856" y="366" fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#a8a8a8">Today at 9:42 AM</text>
+
+              {/* YESTERDAY divider */}
+              <text x="828" y="406" fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#686868" letterSpacing="1.4">YESTERDAY</text>
+              {[0, 1, 2, 3].map((i) => (
+                <g key={i}>
+                  <text x="856" y={438 + i * 44} fontFamily="IBM Plex Sans, system-ui" fontSize="12" fill="#242424">
+                    Bill payment for account 65446547 is overdue by 6 days.
+                  </text>
+                  <text x="856" y={458 + i * 44} fontFamily="IBM Plex Sans, system-ui" fontSize="10" fill="#a8a8a8">
+                    Today at 9:42 AM
+                  </text>
+                </g>
+              ))}
+
+              {/* Close X */}
+              <text x="1408" y="42" fontFamily="IBM Plex Sans, system-ui" fontSize="22" fill="#686868" textAnchor="middle">×</text>
+            </svg>
+          )}
+        </div>
+      </div>
+      {/* base */}
+      <div className="relative mx-auto h-3 w-[104%] -translate-x-[2%] rounded-b-[16px] bg-[linear-gradient(180deg,#dcdcdc_0%,#a5a5a5_100%)]" />
+      <div className="mx-auto -mt-[6px] h-[6px] w-24 rounded-b-[6px] bg-[#8a8a8a]" />
+    </div>
+
+    {/* desk shadow */}
+    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-[linear-gradient(to_top,rgba(80,50,20,0.16),transparent)]" aria-hidden />
+  </div>
+)
 
 /* FigJam-style research canvas — sticky notes grouped in four columns.
    Same visual grammar as the RMN canvas: dot-grid, warm tones, dotted

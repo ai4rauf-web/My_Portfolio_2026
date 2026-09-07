@@ -12,6 +12,7 @@ import {
 } from '../components/caseStudy'
 import {
   BeforeAfterFlow,
+  CvmaasHeroMockup,
   MvivaInsightsCanvas,
   OnboardingFlow,
   ProductModel,
@@ -66,18 +67,14 @@ const CaseStudyMvivaCvmaas = () => (
         </p>
       }
       snapshot={snapshot}
-      heroSlot={
-        <div className="p-6 lg:p-10">
-          <BeforeAfterFlow />
-        </div>
-      }
+      heroSlot={<CvmaasHeroMockup />}
     />
 
     <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
-      <Stat value="Multi-team" label="hand-off chain compressed to one product pair" />
-      <Stat value="2 products" label="CVMaaS (my UX/UI) + mViva (my collaboration)" />
-      <Stat value="Self-serve" label="business teams now run their own campaigns" />
-      <Stat value="Support only" label="my team moved from execution to technical support" />
+      <Stat value="−85%" label="projected campaign launch time — weeks → hours" />
+      <Stat value="3 teams" label="removed from execution path — data · security · ops" />
+      <Stat value="24h" label="median time from admin invite to first live campaign (target)" />
+      <Stat value="12+" label="enterprise accounts self-serving in Q1 post-launch (target)" />
     </div>
 
     <div className="mt-16 flex gap-10 lg:mt-24">
@@ -168,6 +165,14 @@ const CaseStudyMvivaCvmaas = () => (
           <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
             <ProductModel />
           </div>
+
+          <Body className="mt-4">
+            Before we get to any screens, here’s the shift in one picture — the manual pipeline
+            on top, the CVMaaS + mViva pair below:
+          </Body>
+          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
+            <BeforeAfterFlow />
+          </div>
         </section>
 
         {/* Onboarding deep dive */}
@@ -185,22 +190,72 @@ const CaseStudyMvivaCvmaas = () => (
             <OnboardingFlow />
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <Body className="mt-4">
+            Four flows carry the onboarding story. Real screens from the Figma will drop into
+            these slots as they’re exported.
+          </Body>
+
+          <p className="mt-2 text-sm font-medium uppercase tracking-wide text-muted">
+            Flow 1 — Admin adds a campaign manager
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <ScreenPlaceholder
-              label="Party Dashboard — “add campaign manager” notification"
-              caption="One notification per CVMS package with no manager assigned — surfaced on the party dashboard, not the main one."
+              label="Party Dashboard — notification"
+              caption="One notification per CVMS package with no manager assigned. Surfaced on the party dashboard only — not the main one. Figma frame: 3076-12646."
             />
             <ScreenPlaceholder
               label="Account Inquiry — default state"
-              caption="Test numbers can be configured even before a manager is added — an intentional un-block for the admin."
+              caption="Test numbers can be configured even before a manager is added — an intentional un-block for the admin. Figma frame: 3076-12534."
             />
             <ScreenPlaceholder
               label="Add campaign manager — user details"
-              caption="From the email entry point the back button is intentionally removed; the admin lands on the exact step they were asked to complete."
+              caption="From the email entry point the back button is intentionally removed; the admin lands on the exact step they were asked to complete. Figma frame: 3076-12998."
             />
             <ScreenPlaceholder
               label="Success — managers added"
-              caption="Confirmation with a clear next-step: the manager will receive their own invite email."
+              caption="Confirmation with a clear next-step: the manager will receive their own invite email. Figma frame: 3076-13106."
+            />
+          </div>
+
+          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+            Flow 2 — Campaign manager logs in with UAE PASS
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ScreenPlaceholder
+              label="Welcome email → sign in with UAE PASS"
+              caption="Manager receives an invite email; the CTA lands them on a dedicated login page — reachable only through the email link. Figma frames: 3076-12517 (email), 3076-11942 (login)."
+            />
+            <ScreenPlaceholder
+              label="Multi-organisation → choose account"
+              caption="If a manager is assigned to multiple accounts, they pick which one to enter before proceeding. Figma frame: 3076-11956."
+            />
+          </div>
+
+          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+            Flow 3 — Campaign manager sets up their profile
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ScreenPlaceholder
+              label="Profile setup — first-run"
+              caption="Post-UAE-PASS, the manager completes their working profile. Figma section: 3076-13140."
+            />
+            <ScreenPlaceholder
+              label="Landing — ready to run campaigns"
+              caption="Handover point into mViva — the seam we designed to be invisible. Figma section: 3076-13140."
+            />
+          </div>
+
+          <p className="mt-8 text-sm font-medium uppercase tracking-wide text-muted">
+            Flow 4 — Test numbers configured before any manager exists
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ScreenPlaceholder
+              label="Add test number"
+              caption="Admin trials the channel without waiting for a manager decision. Figma section: 2784-1986."
+            />
+            <ScreenPlaceholder
+              label="Test numbers list"
+              caption="Governance still applies: numbers are recorded, capped, and audit-visible. Figma section: 2784-1986."
             />
           </div>
         </section>
