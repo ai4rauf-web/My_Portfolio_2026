@@ -56,134 +56,321 @@ export const RealisticMockup = ({
 
 /* FigJam-style canvas — a sticky-note "IA insights" board with drawn arrows.
    Intentionally rough — captures the feel of research, not a polished diagram. */
-export const IaInsightsCanvas = () => (
-  <div className="relative overflow-hidden rounded-2xl bg-[#f2ede3] p-6 lg:p-10" style={{
-    backgroundImage:
-      'radial-gradient(#d9d3c6 1px, transparent 1.6px)',
-    backgroundSize: '18px 18px',
-  }}>
-    <div className="relative mx-auto aspect-[16/9] max-w-[880px]">
-      {/* stickies + connectors as absolute-positioned atoms */}
-      {[
-        { top: '6%', left: '4%', tone: '#fde68a', rot: -2, title: 'Media buyers', body: 'Think in impressions, ROAS, flight windows.' },
-        { top: '10%', left: '38%', tone: '#bbf7d0', rot: 1, title: 'Inventory managers', body: 'Think in slots × screens × venues.' },
-        { top: '7%', left: '72%', tone: '#fecdd3', rot: -3, title: 'Ops + Finance', body: 'Think in approvals, invoices, disputes.' },
+export const IaInsightsCanvas = () => {
+  type Note = {
+    top: string
+    left: string
+    w: string
+    tone: string
+    rot: number
+    title?: string
+    body: string
+    kind?: 'insight' | 'decision' | 'question'
+  }
 
-        { top: '38%', left: '12%', tone: '#c7d2fe', rot: 2, title: 'Comp analysis', body: 'DoubleClick, Adform, VIOOH — hand-off patterns studied.' },
-        { top: '42%', left: '42%', tone: '#fef3c7', rot: -1, title: 'BRD → journeys', body: 'Wrote user journeys per persona from the BRD.' },
-        { top: '40%', left: '70%', tone: '#e9d5ff', rot: 3, title: 'Wireframe pass', body: 'Scribbled in Figma to pressure-test the flows.' },
+  const notes: Note[] = [
+    // Column A — PERSONAS
+    { top: '10%', left: '3%', w: '18%', tone: '#fde68a', rot: -2, title: 'Media buyers', body: 'Think in impressions, ROAS, flight windows. Want live estimates before committing.' },
+    { top: '30%', left: '4%', w: '18%', tone: '#fde68a', rot: 1, title: 'Inventory managers', body: 'Think in slots × screens × venues. Care about fill rate and price floor.' },
+    { top: '52%', left: '2%', w: '18%', tone: '#fde68a', rot: -3, title: 'Ops', body: 'Approve creatives, hold campaigns, resolve conflicts.' },
+    { top: '73%', left: '4%', w: '18%', tone: '#fde68a', rot: 2, title: 'Finance', body: 'Reconcile CDRs, release invoices, manage disputes.' },
 
-        { top: '70%', left: '20%', tone: '#bae6fd', rot: -2, title: 'INSIGHT', body: 'One noun the whole system speaks in — the slot.' },
-        { top: '72%', left: '55%', tone: '#bae6fd', rot: 2, title: 'DECISION', body: 'Flight-search shape for availability.' },
-      ].map((s, i) => (
-        <div
-          key={i}
-          className="absolute w-[22%] rounded-sm p-2 text-[10px] leading-tight text-[#3f3320] shadow-[0_4px_10px_-4px_rgba(60,50,20,0.35),0_1.5px_3px_-1px_rgba(60,50,20,0.25)]"
-          style={{ top: s.top, left: s.left, background: s.tone, transform: `rotate(${s.rot}deg)` }}
-        >
-          <div className="text-[9px] font-bold uppercase tracking-wider text-[#5a4a1f]">{s.title}</div>
-          <div className="mt-0.5">{s.body}</div>
-        </div>
-      ))}
+    // Column B — DOMAIN KNOWLEDGE (learned building the first RMN)
+    { top: '6%', left: '26%', w: '19%', tone: '#c7d2fe', rot: 2, title: 'Three-way rev split', body: 'Advertiser · Venue Partner · Rental Partner. The commercial structure of every DOOH play.' },
+    { top: '28%', left: '25%', w: '19%', tone: '#c7d2fe', rot: -1, title: 'SSP integration', body: 'Programmatic demand via SSPs — supplements Guaranteed / Preferred / PMP; doesn’t replace them.' },
+    { top: '50%', left: '25%', w: '19%', tone: '#c7d2fe', rot: 2, title: 'DMA vs venue', body: 'US market plans by DMA. Gulf market plans by venue + region. Different taxonomy, same shape.' },
+    { top: '72%', left: '26%', w: '19%', tone: '#c7d2fe', rot: -2, title: 'Footfall audit', body: 'Impressions ≈ plays × footfall coefficient. Audit trail is table-stakes.' },
 
-      {/* connector doodles */}
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 880 495" preserveAspectRatio="none" aria-hidden>
-        <g stroke="#4b5563" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.55">
-          <path d="M 130 90 C 200 130, 260 130, 320 130" />
-          <path d="M 460 90 C 520 130, 560 140, 620 130" />
-          <path d="M 200 220 C 220 270, 260 300, 310 320" />
-          <path d="M 480 240 C 520 280, 560 300, 610 310" />
-          <path d="M 260 400 C 310 380, 380 380, 490 400" strokeDasharray="4 4" />
-        </g>
-      </svg>
-    </div>
-  </div>
-)
+    // Column C — INSIGHTS
+    { top: '4%', left: '49%', w: '20%', tone: '#bae6fd', rot: -2, kind: 'insight', title: 'INSIGHT', body: 'One noun the whole system speaks in — the slot. Everything else derives.' },
+    { top: '26%', left: '49%', w: '20%', tone: '#bae6fd', rot: 2, kind: 'insight', title: 'INSIGHT', body: 'Personas > portals. One workspace, three lenses, one audit trail.' },
+    { top: '48%', left: '50%', w: '20%', tone: '#bae6fd', rot: -1, kind: 'question', title: 'HYPOTHESIS', body: 'If availability looks like flight search, an advertiser learns it in one session.' },
+    { top: '70%', left: '48%', w: '20%', tone: '#bae6fd', rot: 3, kind: 'insight', title: 'INSIGHT', body: 'PoP has to be generated by the platform. If ops writes it, disputes never end.' },
 
-/* Simple accessible carousel for the Screens section. */
-export const ScreenCarousel = ({
-  slides,
-}: {
-  slides: {
-    src: string
-    alt: string
-    tag: string
-    title: string
-    body: ReactNode
-    blur?: BlurZone[]
-  }[]
-}) => {
-  const [i, setI] = useState(0)
-  const total = slides.length
-  const s = slides[i]
-  const go = (delta: number) => setI((prev) => (prev + delta + total) % total)
+    // Column D — DECISIONS
+    { top: '10%', left: '76%', w: '20%', tone: '#bbf7d0', rot: 1, kind: 'decision', title: 'DECISION', body: 'Flight-search shape for availability. Filters up top; grid below.' },
+    { top: '32%', left: '76%', w: '20%', tone: '#bbf7d0', rot: -2, kind: 'decision', title: 'DECISION', body: '“Viewing as” profile toggle inside Supply — no separate Ops or Finance portal.' },
+    { top: '55%', left: '77%', w: '20%', tone: '#bbf7d0', rot: 2, kind: 'decision', title: 'DECISION', body: 'Competitive separation is a first-class policy, not a note in an email.' },
+    { top: '75%', left: '76%', w: '20%', tone: '#bbf7d0', rot: -1, kind: 'decision', title: 'DECISION', body: 'CDR streams straight to billing. Finance reconciles inside the tool.' },
+
+    // Column labels (annotations)
+    { top: '2%', left: '3%', w: '17%', tone: 'transparent', rot: 0, body: 'PERSONAS' },
+    { top: '2%', left: '26%', w: '17%', tone: 'transparent', rot: 0, body: 'DOMAIN' },
+    { top: '2%', left: '49%', w: '17%', tone: 'transparent', rot: 0, body: 'INSIGHTS' },
+    { top: '2%', left: '76%', w: '17%', tone: 'transparent', rot: 0, body: 'DECISIONS' },
+  ]
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
-        {/* image */}
-        <div className="relative overflow-hidden rounded-2xl border border-[#e8e8e8] bg-surface">
-          <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
-          {s.blur?.map((z, k) => (
+    <div
+      className="relative overflow-hidden rounded-2xl bg-[#f2ede3] p-4 lg:p-8"
+      style={{
+        backgroundImage: 'radial-gradient(#d9d3c6 1px, transparent 1.6px)',
+        backgroundSize: '18px 18px',
+      }}
+    >
+      <div className="relative mx-auto aspect-[16/10] w-full">
+        {notes.map((s, i) =>
+          s.tone === 'transparent' ? (
             <div
-              key={k}
-              aria-hidden
-              className="absolute rounded-[3px]"
+              key={i}
+              className="absolute text-[10px] font-bold uppercase tracking-[0.14em] text-[#8a7a54]"
+              style={{ top: s.top, left: s.left, width: s.w }}
+            >
+              {s.body}
+            </div>
+          ) : (
+            <div
+              key={i}
+              className="absolute rounded-sm p-2 text-[10px] leading-tight text-[#3f3320] shadow-[0_4px_10px_-4px_rgba(60,50,20,0.35),0_1.5px_3px_-1px_rgba(60,50,20,0.25)]"
               style={{
-                left: `${z.x}%`,
-                top: `${z.y}%`,
-                width: `${z.w}%`,
-                height: `${z.h}%`,
-                backdropFilter: 'blur(9px)',
-                WebkitBackdropFilter: 'blur(9px)',
-                background: 'rgba(255,255,255,0.35)',
+                top: s.top,
+                left: s.left,
+                width: s.w,
+                background: s.tone,
+                transform: `rotate(${s.rot}deg)`,
               }}
-            />
-          ))}
-        </div>
+            >
+              {s.title && (
+                <div
+                  className={`text-[9px] font-bold uppercase tracking-wider ${
+                    s.kind === 'insight'
+                      ? 'text-[#0369a1]'
+                      : s.kind === 'decision'
+                      ? 'text-[#166534]'
+                      : s.kind === 'question'
+                      ? 'text-[#7c3aed]'
+                      : 'text-[#5a4a1f]'
+                  }`}
+                >
+                  {s.title}
+                </div>
+              )}
+              <div className="mt-0.5 text-[10px]">{s.body}</div>
+            </div>
+          ),
+        )}
 
-        {/* description */}
-        <div className="flex flex-col gap-4 rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
+        {/* Hand-drawn connectors linking clusters */}
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 625" preserveAspectRatio="none" aria-hidden>
+          <g stroke="#4b5563" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.5">
+            <path d="M 210 100 C 240 120, 260 100, 280 80" />
+            <path d="M 210 220 C 240 240, 260 220, 280 200" />
+            <path d="M 210 360 C 240 360, 260 340, 280 340" />
+            <path d="M 210 500 C 240 500, 260 480, 280 470" />
+
+            <path d="M 460 100 C 500 90, 520 60, 540 60" />
+            <path d="M 460 210 C 500 210, 520 200, 540 200" />
+            <path d="M 460 350 C 500 350, 520 340, 540 340" />
+            <path d="M 460 470 C 500 470, 520 460, 540 460" strokeDasharray="4 4" />
+
+            <path d="M 720 60 C 770 80, 790 100, 820 110" strokeWidth="1.7" />
+            <path d="M 720 200 C 770 220, 790 240, 820 250" strokeWidth="1.7" />
+            <path d="M 720 340 C 770 380, 790 400, 820 400" strokeWidth="1.7" />
+            <path d="M 720 460 C 770 480, 790 490, 820 490" strokeWidth="1.7" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+/* Ecosystem diagram — how the RMN stakeholders connect around the platform.
+   Abstracted from the domain (advertisers · SSPs · venue partners · rental partners),
+   no customer-specific branding. */
+export const EcosystemDiagram = () => (
+  <svg viewBox="0 0 900 420" role="img" aria-label="RMN ecosystem — stakeholders, data flow, and billing" className="w-full">
+    <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
+      {/* Central platform */}
+      <g transform="translate(370, 155)">
+        <rect width="160" height="110" rx="14" fill="#071012" />
+        <text x="80" y="42" textAnchor="middle" fontSize="12" fill="#a8a8a8" letterSpacing="1.2">RMN PLATFORM</text>
+        <text x="80" y="66" textAnchor="middle" fontSize="14" fontWeight="600" fill="#ffffff">Demand + Supply</text>
+        <text x="80" y="86" textAnchor="middle" fontSize="11" fill="#d0eeff">plan · campaign · prove</text>
+      </g>
+
+      {/* Left column — Demand side */}
+      {[
+        { y: 40, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', name: 'Advertisers' },
+        { y: 130, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', name: 'Brand teams / agencies' },
+        { y: 220, label: 'PROGRAMMATIC', color: '#686868', fill: '#f6f6f6', border: '#e0e0e0', name: 'SSP / RTB integrations' },
+      ].map((n) => (
+        <g key={n.y} transform={`translate(30, ${n.y})`}>
+          <rect width="200" height="60" rx="12" fill={n.fill} stroke={n.border} />
+          <text x="16" y="24" fontSize="11" fill={n.color} letterSpacing="1.2">{n.label}</text>
+          <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">{n.name}</text>
+        </g>
+      ))}
+
+      {/* Right column — Supply side */}
+      {[
+        { y: 40, label: 'SUPPLY', name: 'Inventory owners' },
+        { y: 130, label: 'VENUE PARTNERS', name: 'Screen locations · mall · airport · transit' },
+        { y: 220, label: 'RENTAL PARTNERS', name: 'Hardware investors · revenue share' },
+      ].map((n) => (
+        <g key={n.y} transform={`translate(670, ${n.y})`}>
+          <rect width="200" height="60" rx="12" fill="#eaf6ea" stroke="#c8e6c8" />
+          <text x="16" y="24" fontSize="11" fill="#197417" letterSpacing="1.2">{n.label}</text>
+          <text x="16" y="46" fontSize="12" fontWeight="600" fill="#071012">{n.name}</text>
+        </g>
+      ))}
+
+      {/* Bottom — data + billing */}
+      <g transform="translate(230, 330)">
+        <rect width="200" height="60" rx="12" fill="#fdefc0" stroke="#e1c465" />
+        <text x="16" y="24" fontSize="11" fill="#5b4700" letterSpacing="1.2">FIRST-PARTY DATA</text>
+        <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">Telco audience + footfall</text>
+      </g>
+      <g transform="translate(470, 330)">
+        <rect width="200" height="60" rx="12" fill="#fdefc0" stroke="#e1c465" />
+        <text x="16" y="24" fontSize="11" fill="#5b4700" letterSpacing="1.2">BILLING · PoP</text>
+        <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">CDR → telco billing rails</text>
+      </g>
+
+      {/* Connectors */}
+      <g stroke="#686868" strokeWidth="1.3" fill="none" markerEnd="url(#eco-arr)">
+        <line x1="230" y1="70" x2="370" y2="180" />
+        <line x1="230" y1="160" x2="370" y2="200" />
+        <line x1="230" y1="250" x2="370" y2="230" />
+        <line x1="530" y1="180" x2="670" y2="70" />
+        <line x1="530" y1="205" x2="670" y2="160" />
+        <line x1="530" y1="235" x2="670" y2="250" />
+        <line x1="410" y1="265" x2="330" y2="330" />
+        <line x1="490" y1="265" x2="570" y2="330" />
+      </g>
+
+      <defs>
+        <marker id="eco-arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#686868" />
+        </marker>
+      </defs>
+    </g>
+  </svg>
+)
+
+export type CarouselSlide = {
+  src: string
+  alt: string
+  tag: string
+  title: string
+  body: ReactNode
+  blur?: BlurZone[]
+}
+
+/* Full-width, tabbed carousel for the Screens section.
+   Tabs at top switch between Demand-side and Supply-side slide lists.
+   Image takes the full width; description sits below with a tag pill,
+   title, prose, counter and prev/next arrows. */
+export const ScreenCarousel = ({
+  tabs,
+}: {
+  tabs: { key: string; label: string; slides: CarouselSlide[] }[]
+}) => {
+  const [tabIdx, setTabIdx] = useState(0)
+  const [slideIdx, setSlideIdx] = useState(0)
+
+  const activeTab = tabs[tabIdx]
+  const slides = activeTab.slides
+  const s = slides[slideIdx]
+  const total = slides.length
+  const go = (delta: number) => setSlideIdx((prev) => (prev + delta + total) % total)
+
+  const chooseTab = (i: number) => {
+    setTabIdx(i)
+    setSlideIdx(0)
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      {/* Tabs */}
+      <div role="tablist" className="flex w-fit gap-1 rounded-full border border-[#e0e0e0] bg-white p-1">
+        {tabs.map((t, i) => (
+          <button
+            key={t.key}
+            type="button"
+            role="tab"
+            aria-selected={i === tabIdx}
+            onClick={() => chooseTab(i)}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors sm:text-base ${
+              i === tabIdx ? 'bg-ink text-white' : 'text-muted hover:bg-ink/5 hover:text-ink'
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Full-width image */}
+      <div className="relative overflow-hidden rounded-2xl border border-[#e8e8e8] bg-surface">
+        <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
+        {s.blur?.map((z, k) => (
+          <div
+            key={k}
+            aria-hidden
+            className="absolute rounded-[3px]"
+            style={{
+              left: `${z.x}%`,
+              top: `${z.y}%`,
+              width: `${z.w}%`,
+              height: `${z.h}%`,
+              backdropFilter: 'blur(9px)',
+              WebkitBackdropFilter: 'blur(9px)',
+              background: 'rgba(255,255,255,0.35)',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Description block below */}
+      <div className="flex flex-col gap-4 rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:p-8">
+        <div className="flex flex-col gap-3 lg:max-w-[720px]">
           <span className="inline-flex w-fit rounded-full bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-tag-blue">
             {s.tag}
           </span>
           <h4 className="text-xl font-semibold text-ink lg:text-2xl">{s.title}</h4>
-          <div className="text-base leading-7 text-charcoal">{s.body}</div>
-          <div className="mt-auto flex items-center justify-between pt-4">
-            <span className="text-sm text-muted">
-              {String(i + 1).padStart(2, '0')} <span className="text-[#c8c8c8]">/ {String(total).padStart(2, '0')}</span>
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                aria-label="Previous screen"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden><path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z"/></svg>
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                aria-label="Next screen"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden><path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z"/></svg>
-              </button>
-            </div>
+          <div className="text-base leading-7 text-charcoal lg:text-lg">{s.body}</div>
+        </div>
+
+        <div className="flex items-center gap-4 lg:flex-col lg:items-end">
+          <span className="text-sm text-muted">
+            {String(slideIdx + 1).padStart(2, '0')}{' '}
+            <span className="text-[#c8c8c8]">/ {String(total).padStart(2, '0')}</span>
+          </span>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="Previous screen"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                <path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="Next screen"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                <path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* progress dots */}
+      {/* Progress dots */}
       <div className="flex justify-center gap-2">
         {slides.map((_, k) => (
           <button
             key={k}
             type="button"
-            onClick={() => setI(k)}
+            onClick={() => setSlideIdx(k)}
             aria-label={`Show screen ${k + 1}`}
-            className={`h-1.5 rounded-full transition-all ${k === i ? 'w-6 bg-ink' : 'w-1.5 bg-[#c8c8c8] hover:bg-muted'}`}
+            className={`h-1.5 rounded-full transition-all ${
+              k === slideIdx ? 'w-6 bg-ink' : 'w-1.5 bg-[#c8c8c8] hover:bg-muted'
+            }`}
           />
         ))}
       </div>

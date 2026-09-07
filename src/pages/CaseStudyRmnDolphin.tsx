@@ -1,10 +1,10 @@
 import Footer from '../components/Footer'
+import ProjectFooterNav from '../components/ProjectFooterNav'
 import {
   BackLink,
   Body,
   Callout,
   CaseStudyHeader,
-  NextProject,
   SectionLabel,
   SectionTitle,
   Stat,
@@ -12,6 +12,7 @@ import {
 } from '../components/caseStudy'
 import type { BlurZone } from '../components/caseStudy'
 import {
+  EcosystemDiagram,
   IaInsightsCanvas,
   IconCards,
   IconDoc,
@@ -143,6 +144,17 @@ const CaseStudyRmnDolphin = () => (
           </Body>
           <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
             <PortalMap />
+          </div>
+
+          <Body>
+            Under the hood, the platform sits inside a broader ecosystem — advertisers on one
+            side, venue and rental partners on the other, an SSP/RTB pipe for programmatic
+            demand, first-party telco data feeding audience, and a CDR stream feeding billing.
+            The revenue split (advertiser · venue partner · rental partner) is the shape
+            everything else derives from.
+          </Body>
+          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
+            <EcosystemDiagram />
           </div>
         </section>
 
@@ -284,127 +296,140 @@ const CaseStudyRmnDolphin = () => (
           </Body>
 
           <ScreenCarousel
-            slides={[
+            tabs={[
               {
-                src: sspInventoryHierarchy,
-                alt: 'Supply — Venues & hierarchy inventory browser (Inventory Manager view)',
-                tag: 'Supply · Inventory Manager',
-                title: 'Inventory hierarchy',
-                body: (
-                  <>
-                    Region → City → Venue → Zone → Screen, with CMS sync visible at every level.
-                    The hierarchy dropdown lets Inventory Managers move down a level in one click
-                    while keeping the parent context.
-                  </>
-                ),
-                blur: topRightUser,
-              },
-              {
-                src: sspVenueDetail,
-                alt: 'Supply — Venue detail (Inventory Manager view)',
-                tag: 'Supply · Inventory Manager',
-                title: 'Venue configuration',
-                body: (
-                  <>
-                    Operating hours, content restrictions, exclusivity, plus the KPIs the ops
-                    team looks at day-to-day: avg fill, floor CPM, daily impressions, footfall.
-                  </>
-                ),
-                blur: [...topRightUser, { x: 37, y: 18, w: 14, h: 5 }],
-              },
-              {
-                src: opsCreativeReview,
-                alt: 'Supply — Creative review queue (Operations persona)',
-                tag: 'Supply · Operations',
-                title: 'Creative review queue',
-                body: (
-                  <>
-                    Ops reviews every creative before it goes live — format check, buyer,
-                    submission date, one-click approve or reject. Same login as Inventory
-                    Manager, different lens.
-                  </>
-                ),
-                blur: [
-                  ...topRightUser,
-                  { x: 36, y: 29, w: 22, h: 5 },
-                  { x: 55, y: 29, w: 9, h: 5 },
+                key: 'demand',
+                label: 'Demand-side',
+                slides: [
+                  {
+                    src: dspAvailabilityGrid,
+                    alt: 'Demand — Inventory availability grid by screen and day',
+                    tag: 'Demand · Advertiser',
+                    title: 'Availability search',
+                    body: (
+                      <>
+                        Flight-search-shaped: screens down the side, days across the top, colour
+                        tells you what’s bookable at a glance. Filters up top narrow to region,
+                        venue, audience, deal type.
+                      </>
+                    ),
+                    blur: topRightUser,
+                  },
+                  {
+                    src: dspBundleBuilder,
+                    alt: 'Demand — Build your own bundle stepper',
+                    tag: 'Demand · Advertiser',
+                    title: 'Custom bundle builder',
+                    body: (
+                      <>
+                        Region + venue type + audience. Bundle summary updates live as targeting
+                        narrows — nothing is held until the advertiser saves.
+                      </>
+                    ),
+                    blur: topRightUser,
+                  },
+                  {
+                    src: dspCampaignTargeting,
+                    alt: 'Demand — Campaign builder ad-group and targeting step',
+                    tag: 'Demand · Advertiser',
+                    title: 'Campaign builder — targeting',
+                    body: (
+                      <>
+                        Day-of-week, day-part, audience tier, frequency / share-of-voice. Campaign
+                        summary calculates estimated impressions, screens, and CPM live as the
+                        advertiser adjusts.
+                      </>
+                    ),
+                    blur: [
+                      ...topRightUser,
+                      { x: 78, y: 32, w: 20, h: 4 },
+                      { x: 78, y: 36, w: 20, h: 4 },
+                    ],
+                  },
+                  {
+                    src: dspCreativeBinding,
+                    alt: 'Demand — Bind approved creatives to ad group',
+                    tag: 'Demand · Advertiser',
+                    title: 'Creative binding',
+                    body: (
+                      <>
+                        Only approved creatives are eligible; even-rotation and other rotation
+                        modes are selectable per ad group. Approval status is a first-class state,
+                        not a check-and-hope.
+                      </>
+                    ),
+                    blur: [
+                      ...topRightUser,
+                      { x: 78, y: 32, w: 20, h: 4 },
+                      { x: 78, y: 36, w: 20, h: 4 },
+                    ],
+                  },
                 ],
               },
               {
-                src: financeInvoices,
-                alt: 'Supply — Invoice list (Finance persona)',
-                tag: 'Supply · Finance',
-                title: 'Invoice reconciliation',
-                body: (
-                  <>
-                    CDR-fed invoice drafts with release, credit-note, and dispute actions inline.
-                    Nothing gets typed up by hand; ops and finance work off the same underlying
-                    event stream.
-                  </>
-                ),
-                blur: [...topRightUser, { x: 29, y: 23, w: 17, h: 5 }],
-              },
-              {
-                src: dspAvailabilityGrid,
-                alt: 'Demand — Inventory availability grid by screen and day',
-                tag: 'Demand · Advertiser',
-                title: 'Availability search',
-                body: (
-                  <>
-                    Flight-search-shaped: screens down the side, days across the top, colour tells
-                    you what’s bookable at a glance. Filters up top narrow to region, venue,
-                    audience, deal type.
-                  </>
-                ),
-                blur: topRightUser,
-              },
-              {
-                src: dspBundleBuilder,
-                alt: 'Demand — Build your own bundle stepper',
-                tag: 'Demand · Advertiser',
-                title: 'Custom bundle builder',
-                body: (
-                  <>
-                    Region + venue type + audience. Bundle summary updates live as targeting
-                    narrows — nothing is held until the advertiser saves.
-                  </>
-                ),
-                blur: topRightUser,
-              },
-              {
-                src: dspCampaignTargeting,
-                alt: 'Demand — Campaign builder ad-group and targeting step',
-                tag: 'Demand · Advertiser',
-                title: 'Campaign builder — targeting',
-                body: (
-                  <>
-                    Day-of-week, day-part, audience tier, frequency / share-of-voice. Campaign
-                    summary calculates estimated impressions, screens, and CPM live as the
-                    advertiser adjusts.
-                  </>
-                ),
-                blur: [
-                  ...topRightUser,
-                  { x: 78, y: 32, w: 20, h: 4 },
-                  { x: 78, y: 36, w: 20, h: 4 },
-                ],
-              },
-              {
-                src: dspCreativeBinding,
-                alt: 'Demand — Bind approved creatives to ad group',
-                tag: 'Demand · Advertiser',
-                title: 'Creative binding',
-                body: (
-                  <>
-                    Only approved creatives are eligible; even-rotation and other rotation modes
-                    are selectable per ad group. Approval status is a first-class state, not a
-                    check-and-hope.
-                  </>
-                ),
-                blur: [
-                  ...topRightUser,
-                  { x: 78, y: 32, w: 20, h: 4 },
-                  { x: 78, y: 36, w: 20, h: 4 },
+                key: 'supply',
+                label: 'Supply-side',
+                slides: [
+                  {
+                    src: sspInventoryHierarchy,
+                    alt: 'Supply — Venues & hierarchy inventory browser (Inventory Manager view)',
+                    tag: 'Supply · Inventory Manager',
+                    title: 'Inventory hierarchy',
+                    body: (
+                      <>
+                        Region → City → Venue → Zone → Screen, with CMS sync visible at every
+                        level. The hierarchy dropdown lets Inventory Managers move down a level
+                        in one click while keeping the parent context.
+                      </>
+                    ),
+                    blur: topRightUser,
+                  },
+                  {
+                    src: sspVenueDetail,
+                    alt: 'Supply — Venue detail (Inventory Manager view)',
+                    tag: 'Supply · Inventory Manager',
+                    title: 'Venue configuration',
+                    body: (
+                      <>
+                        Operating hours, content restrictions, exclusivity, plus the KPIs the ops
+                        team looks at day-to-day: avg fill, floor CPM, daily impressions,
+                        footfall.
+                      </>
+                    ),
+                    blur: [...topRightUser, { x: 37, y: 18, w: 14, h: 5 }],
+                  },
+                  {
+                    src: opsCreativeReview,
+                    alt: 'Supply — Creative review queue (Operations persona)',
+                    tag: 'Supply · Operations',
+                    title: 'Creative review queue',
+                    body: (
+                      <>
+                        Ops reviews every creative before it goes live — format check, buyer,
+                        submission date, one-click approve or reject. Same login as Inventory
+                        Manager, different lens.
+                      </>
+                    ),
+                    blur: [
+                      ...topRightUser,
+                      { x: 36, y: 29, w: 22, h: 5 },
+                      { x: 55, y: 29, w: 9, h: 5 },
+                    ],
+                  },
+                  {
+                    src: financeInvoices,
+                    alt: 'Supply — Invoice list (Finance persona)',
+                    tag: 'Supply · Finance',
+                    title: 'Invoice reconciliation',
+                    body: (
+                      <>
+                        CDR-fed invoice drafts with release, credit-note, and dispute actions
+                        inline. Nothing gets typed up by hand; ops and finance work off the same
+                        underlying event stream.
+                      </>
+                    ),
+                    blur: [...topRightUser, { x: 29, y: 23, w: 17, h: 5 }],
+                  },
                 ],
               },
             ]}
@@ -546,21 +571,30 @@ const CaseStudyRmnDolphin = () => (
         {/* Takeaway */}
         <section className="flex flex-col gap-4">
           <SectionLabel>My takeaway</SectionLabel>
-          <SectionTitle id="takeaway">Shape the noun before you touch the verbs</SectionTitle>
+          <SectionTitle id="takeaway">Second retail media project — the domain is concrete now</SectionTitle>
           <Body>
-            The biggest lesson from RMN was upstream of any screen. Once you name the “thing” every
-            party can hold in their head — a slot on a screen for a stretch of days — availability,
-            pricing, targeting, invoicing, disputes all start to line up in the same shape. Get the
-            noun right and the verbs fall into place.
+            RMN is my <strong>second</strong> retail media network. The first was Dolphin — a
+            DOOH network in the US market with 3,500+ screens across 90+ DMAs, working with
+            advertisers, venue partners, and rental partners around a three-way revenue split.
+            Coming into RMN, the domain wasn’t a hypothesis; it was a body of practice.
           </Body>
           <Body>
-            The design that makes that noun feel natural to a media buyer <em>and</em> to a
-            finance analyst <em>and</em> to an inventory manager is where the real product work
-            happens. UI is a downstream artefact.
+            That changes what design costs. On the first RMN, most of the effort went into
+            <em> naming things</em> — what a slot is, what an availability window means, what PoP
+            covers. On the second, that vocabulary is a given, and the design work moves upstream:
+            fitting the platform to a different market shape (venue-based Gulf, not DMA-based US),
+            a different data spine (first-party telco vs store-loyalty), and a different persona
+            model (personas over portals inside Supply).
+          </Body>
+          <Body>
+            The generalisable lesson is still the same one:{' '}
+            <strong>shape the noun before you touch the verbs</strong>. Once every party can hold
+            the same “thing” in their head, pricing, availability, targeting, invoicing, and
+            disputes line up in the same shape. UI is a downstream artefact of getting that right.
           </Body>
         </section>
 
-        <NextProject href="/projects/shop-manage" title="Shop & Manage — SIM & plan revamp" />
+        <ProjectFooterNav currentId="rmn-dolphin" />
       </div>
     </div>
 
