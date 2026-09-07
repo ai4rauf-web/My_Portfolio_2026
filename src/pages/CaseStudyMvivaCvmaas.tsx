@@ -406,7 +406,11 @@ const CaseStudyMvivaCvmaas = () => (
                     but never loses the accept CTA.
                   </>
                 ),
-                blur: [],
+                blur: [
+                  { x: 25, y: 43, w: 15, h: 4 }, // Authorised Employee Name value
+                  { x: 46, y: 43, w: 20, h: 4 }, // Email Address value
+                  { x: 68, y: 43, w: 14, h: 4 }, // Mobile No value
+                ],
               },
               {
                 src: endUserVerified,
