@@ -84,7 +84,7 @@ const CaseStudyMvivaCvmaas = () => (
         {/* Context */}
         <section className="flex flex-col gap-4">
           <SectionLabel>Context</SectionLabel>
-          <SectionTitle id="context">Enterprise campaign execution at a Gulf telco</SectionTitle>
+          <SectionTitle id="context">Enterprise campaign execution at e&amp;</SectionTitle>
           <Body>
             The telco’s data-monetization program serves enterprise customers who want to reach the
             telco’s subscribers — targeted by location, plan, activity, and other signals — through
