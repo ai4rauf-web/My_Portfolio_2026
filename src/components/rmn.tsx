@@ -150,9 +150,22 @@ export const IaInsightsCanvas = () => {
           ),
         )}
 
-        {/* Hand-drawn connectors linking clusters */}
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 625" preserveAspectRatio="none" aria-hidden>
-          <g stroke="#4b5563" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.5">
+        {/* Hand-drawn connectors — deliberately soft, "by the way" only.
+            Dotted, low opacity, no arrowheads. Signals link, doesn't demand reading. */}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full"
+          viewBox="0 0 1000 625"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <g
+            stroke="#8a7a54"
+            strokeWidth="0.9"
+            fill="none"
+            strokeLinecap="round"
+            strokeDasharray="2 5"
+            opacity="0.35"
+          >
             <path d="M 210 100 C 240 120, 260 100, 280 80" />
             <path d="M 210 220 C 240 240, 260 220, 280 200" />
             <path d="M 210 360 C 240 360, 260 340, 280 340" />
@@ -161,12 +174,12 @@ export const IaInsightsCanvas = () => {
             <path d="M 460 100 C 500 90, 520 60, 540 60" />
             <path d="M 460 210 C 500 210, 520 200, 540 200" />
             <path d="M 460 350 C 500 350, 520 340, 540 340" />
-            <path d="M 460 470 C 500 470, 520 460, 540 460" strokeDasharray="4 4" />
+            <path d="M 460 470 C 500 470, 520 460, 540 460" />
 
-            <path d="M 720 60 C 770 80, 790 100, 820 110" strokeWidth="1.7" />
-            <path d="M 720 200 C 770 220, 790 240, 820 250" strokeWidth="1.7" />
-            <path d="M 720 340 C 770 380, 790 400, 820 400" strokeWidth="1.7" />
-            <path d="M 720 460 C 770 480, 790 490, 820 490" strokeWidth="1.7" />
+            <path d="M 720 60 C 770 80, 790 100, 820 110" />
+            <path d="M 720 200 C 770 220, 790 240, 820 250" />
+            <path d="M 720 340 C 770 380, 790 400, 820 400" />
+            <path d="M 720 460 C 770 480, 790 490, 820 460" />
           </g>
         </svg>
       </div>
@@ -190,52 +203,54 @@ export const EcosystemDiagram = () => (
 
       {/* Left column — Demand side */}
       {[
-        { y: 40, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', name: 'Advertisers' },
-        { y: 130, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', name: 'Brand teams / agencies' },
-        { y: 220, label: 'PROGRAMMATIC', color: '#686868', fill: '#f6f6f6', border: '#e0e0e0', name: 'SSP / RTB integrations' },
+        { y: 30, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', line1: 'Advertisers', line2: '' },
+        { y: 128, label: 'DEMAND', color: '#1377b0', fill: '#eef6fb', border: '#bcdbec', line1: 'Brand teams', line2: '& agencies' },
+        { y: 226, label: 'PROGRAMMATIC', color: '#686868', fill: '#f6f6f6', border: '#e0e0e0', line1: 'SSP / RTB', line2: 'integrations' },
       ].map((n) => (
         <g key={n.y} transform={`translate(30, ${n.y})`}>
-          <rect width="200" height="60" rx="12" fill={n.fill} stroke={n.border} />
+          <rect width="200" height="80" rx="12" fill={n.fill} stroke={n.border} />
           <text x="16" y="24" fontSize="11" fill={n.color} letterSpacing="1.2">{n.label}</text>
-          <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">{n.name}</text>
+          <text x="16" y="48" fontSize="13" fontWeight="600" fill="#071012">{n.line1}</text>
+          {n.line2 && <text x="16" y="66" fontSize="13" fontWeight="600" fill="#071012">{n.line2}</text>}
         </g>
       ))}
 
       {/* Right column — Supply side */}
       {[
-        { y: 40, label: 'SUPPLY', name: 'Inventory owners' },
-        { y: 130, label: 'VENUE PARTNERS', name: 'Screen locations · mall · airport · transit' },
-        { y: 220, label: 'RENTAL PARTNERS', name: 'Hardware investors · revenue share' },
+        { y: 30, label: 'SUPPLY', line1: 'Inventory owners', line2: '' },
+        { y: 128, label: 'VENUE PARTNERS', line1: 'Screen locations —', line2: 'mall · airport · transit' },
+        { y: 226, label: 'RENTAL PARTNERS', line1: 'Hardware investors —', line2: 'revenue share' },
       ].map((n) => (
         <g key={n.y} transform={`translate(670, ${n.y})`}>
-          <rect width="200" height="60" rx="12" fill="#eaf6ea" stroke="#c8e6c8" />
+          <rect width="200" height="80" rx="12" fill="#eaf6ea" stroke="#c8e6c8" />
           <text x="16" y="24" fontSize="11" fill="#197417" letterSpacing="1.2">{n.label}</text>
-          <text x="16" y="46" fontSize="12" fontWeight="600" fill="#071012">{n.name}</text>
+          <text x="16" y="48" fontSize="12" fontWeight="600" fill="#071012">{n.line1}</text>
+          {n.line2 && <text x="16" y="66" fontSize="12" fontWeight="600" fill="#071012">{n.line2}</text>}
         </g>
       ))}
 
       {/* Bottom — data + billing */}
-      <g transform="translate(230, 330)">
+      <g transform="translate(230, 340)">
         <rect width="200" height="60" rx="12" fill="#fdefc0" stroke="#e1c465" />
         <text x="16" y="24" fontSize="11" fill="#5b4700" letterSpacing="1.2">FIRST-PARTY DATA</text>
-        <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">Telco audience + footfall</text>
+        <text x="16" y="46" fontSize="12" fontWeight="600" fill="#071012">Telco audience + footfall</text>
       </g>
-      <g transform="translate(470, 330)">
+      <g transform="translate(470, 340)">
         <rect width="200" height="60" rx="12" fill="#fdefc0" stroke="#e1c465" />
         <text x="16" y="24" fontSize="11" fill="#5b4700" letterSpacing="1.2">BILLING · PoP</text>
-        <text x="16" y="46" fontSize="13" fontWeight="600" fill="#071012">CDR → telco billing rails</text>
+        <text x="16" y="46" fontSize="12" fontWeight="600" fill="#071012">CDR → telco billing rails</text>
       </g>
 
-      {/* Connectors */}
+      {/* Connectors — box centres are at y = 70, 168, 266 */}
       <g stroke="#686868" strokeWidth="1.3" fill="none" markerEnd="url(#eco-arr)">
-        <line x1="230" y1="70" x2="370" y2="180" />
-        <line x1="230" y1="160" x2="370" y2="200" />
-        <line x1="230" y1="250" x2="370" y2="230" />
-        <line x1="530" y1="180" x2="670" y2="70" />
-        <line x1="530" y1="205" x2="670" y2="160" />
-        <line x1="530" y1="235" x2="670" y2="250" />
-        <line x1="410" y1="265" x2="330" y2="330" />
-        <line x1="490" y1="265" x2="570" y2="330" />
+        <line x1="230" y1="70" x2="370" y2="185" />
+        <line x1="230" y1="168" x2="370" y2="210" />
+        <line x1="230" y1="266" x2="370" y2="230" />
+        <line x1="530" y1="185" x2="670" y2="70" />
+        <line x1="530" y1="210" x2="670" y2="168" />
+        <line x1="530" y1="235" x2="670" y2="266" />
+        <line x1="410" y1="265" x2="330" y2="340" />
+        <line x1="490" y1="265" x2="570" y2="340" />
       </g>
 
       <defs>
@@ -256,120 +271,90 @@ export type CarouselSlide = {
   blur?: BlurZone[]
 }
 
-/* Full-width, tabbed carousel for the Screens section.
-   Tabs at top switch between Demand-side and Supply-side slide lists.
-   Image takes the full width; description sits below with a tag pill,
-   title, prose, counter and prev/next arrows. */
-export const ScreenCarousel = ({
-  tabs,
-}: {
-  tabs: { key: string; label: string; slides: CarouselSlide[] }[]
-}) => {
-  const [tabIdx, setTabIdx] = useState(0)
-  const [slideIdx, setSlideIdx] = useState(0)
-
-  const activeTab = tabs[tabIdx]
-  const slides = activeTab.slides
-  const s = slides[slideIdx]
+/* Single-list carousel — image and description live inside ONE container.
+   Use twice on the page (once for Supply, once for Demand) rather than as tabs. */
+export const ScreenCarousel = ({ slides }: { slides: CarouselSlide[] }) => {
+  const [idx, setIdx] = useState(0)
   const total = slides.length
-  const go = (delta: number) => setSlideIdx((prev) => (prev + delta + total) % total)
-
-  const chooseTab = (i: number) => {
-    setTabIdx(i)
-    setSlideIdx(0)
-  }
+  const s = slides[idx]
+  const go = (delta: number) => setIdx((prev) => (prev + delta + total) % total)
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Tabs */}
-      <div role="tablist" className="flex w-fit gap-1 rounded-full border border-[#e0e0e0] bg-white p-1">
-        {tabs.map((t, i) => (
-          <button
-            key={t.key}
-            type="button"
-            role="tab"
-            aria-selected={i === tabIdx}
-            onClick={() => chooseTab(i)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors sm:text-base ${
-              i === tabIdx ? 'bg-ink text-white' : 'text-muted hover:bg-ink/5 hover:text-ink'
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Full-width image */}
-      <div className="relative overflow-hidden rounded-2xl border border-[#e8e8e8] bg-surface">
-        <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
-        {s.blur?.map((z, k) => (
-          <div
-            key={k}
-            aria-hidden
-            className="absolute rounded-[3px]"
-            style={{
-              left: `${z.x}%`,
-              top: `${z.y}%`,
-              width: `${z.w}%`,
-              height: `${z.h}%`,
-              backdropFilter: 'blur(9px)',
-              WebkitBackdropFilter: 'blur(9px)',
-              background: 'rgba(255,255,255,0.35)',
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Description block below */}
-      <div className="flex flex-col gap-4 rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:p-8">
-        <div className="flex flex-col gap-3 lg:max-w-[720px]">
-          <span className="inline-flex w-fit rounded-full bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-tag-blue">
-            {s.tag}
-          </span>
-          <h4 className="text-xl font-semibold text-ink lg:text-2xl">{s.title}</h4>
-          <div className="text-base leading-7 text-charcoal lg:text-lg">{s.body}</div>
+    <div className="flex flex-col gap-4">
+      {/* One container: image on top, description below, inside same card */}
+      <div className="overflow-hidden rounded-2xl border border-[#e8e8e8] bg-white">
+        {/* Image */}
+        <div className="relative bg-surface">
+          <img src={s.src} alt={s.alt} className="block w-full" loading="lazy" />
+          {s.blur?.map((z, k) => (
+            <div
+              key={k}
+              aria-hidden
+              className="absolute rounded-[3px]"
+              style={{
+                left: `${z.x}%`,
+                top: `${z.y}%`,
+                width: `${z.w}%`,
+                height: `${z.h}%`,
+                backdropFilter: 'blur(9px)',
+                WebkitBackdropFilter: 'blur(9px)',
+                background: 'rgba(255,255,255,0.35)',
+              }}
+            />
+          ))}
         </div>
 
-        <div className="flex items-center gap-4 lg:flex-col lg:items-end">
-          <span className="text-sm text-muted">
-            {String(slideIdx + 1).padStart(2, '0')}{' '}
-            <span className="text-[#c8c8c8]">/ {String(total).padStart(2, '0')}</span>
-          </span>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              aria-label="Previous screen"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-                <path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => go(1)}
-              aria-label="Next screen"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-                <path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z" />
-              </svg>
-            </button>
+        {/* Description strip — same container */}
+        <div className="flex flex-col gap-4 border-t border-[#ededed] p-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:p-8">
+          <div className="flex flex-col gap-3 lg:max-w-[720px]">
+            <span className="inline-flex w-fit rounded-full bg-surface px-3 py-1 text-xs font-medium uppercase tracking-wide text-tag-blue">
+              {s.tag}
+            </span>
+            <h4 className="text-xl font-semibold text-ink lg:text-2xl">{s.title}</h4>
+            <div className="text-base leading-7 text-charcoal lg:text-lg">{s.body}</div>
+          </div>
+
+          <div className="flex items-center gap-4 lg:flex-col lg:items-end">
+            <span className="text-sm text-muted">
+              {String(idx + 1).padStart(2, '0')}{' '}
+              <span className="text-[#c8c8c8]">/ {String(total).padStart(2, '0')}</span>
+            </span>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous screen"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                  <path fill="currentColor" d="M14 6 8 12l6 6 1.4-1.4L10.8 12l4.6-4.6z" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next screen"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-ink transition-colors hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                  <path fill="currentColor" d="M10 6l6 6-6 6-1.4-1.4L13.2 12 8.6 7.4z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Progress dots */}
+      {/* Progress dots below the container */}
       <div className="flex justify-center gap-2">
         {slides.map((_, k) => (
           <button
             key={k}
             type="button"
-            onClick={() => setSlideIdx(k)}
+            onClick={() => setIdx(k)}
             aria-label={`Show screen ${k + 1}`}
             className={`h-1.5 rounded-full transition-all ${
-              k === slideIdx ? 'w-6 bg-ink' : 'w-1.5 bg-[#c8c8c8] hover:bg-muted'
+              k === idx ? 'w-6 bg-ink' : 'w-1.5 bg-[#c8c8c8] hover:bg-muted'
             }`}
           />
         ))}
