@@ -93,8 +93,8 @@ const CaseStudyMvivaCvmaas = () => (
       snapshot={snapshot}
       heroSlot={
         <CvmaasHeroMockup
-          src={partyDashboardNotification}
-          alt="Party dashboard with the CVMaaS add-campaign-manager notification open"
+          src={partyDashboardDefault}
+          alt="CVMaaS party dashboard — the surface where the campaign-manager notification will appear"
         />
       }
     />
