@@ -30,6 +30,30 @@ import {
   ScreenCarousel,
 } from '../components/rmn'
 
+// Flow 1 — Admin adds a manager
+import partyDashboardDefault from '../assets/cvmaas/party-dashboard-default.jpg'
+import partyDashboardNotification from '../assets/cvmaas/party-dashboard-notification.jpg'
+import accountInquiryDefault from '../assets/cvmaas/account-inquiry-default.jpg'
+import addManagerUserDetails from '../assets/cvmaas/add-manager-user-details.jpg'
+import adminSuccess from '../assets/cvmaas/admin-success.jpg'
+// Flow 2 — Campaign manager login with UAE PASS
+import uaePassLogin from '../assets/cvmaas/uae-pass-login.jpg'
+import uaePassLoginRequest from '../assets/cvmaas/uae-pass-login-request.jpg'
+import uaePassVerifyFace from '../assets/cvmaas/uae-pass-verify-face.jpg'
+import uaePassTC from '../assets/cvmaas/uae-pass-tc.jpg'
+// Flow 3 — Campaign manager creation (end user)
+import endUserInvitation from '../assets/cvmaas/end-user-invitation.jpg'
+import endUserOtp from '../assets/cvmaas/end-user-otp.jpg'
+import endUserTC from '../assets/cvmaas/end-user-tc.jpg'
+import endUserVerified from '../assets/cvmaas/end-user-verified.jpg'
+// Flow 4 — Test numbers
+import testNumbersAccount from '../assets/cvmaas/test-numbers-account.png'
+import testNumbersGenerateOtp from '../assets/cvmaas/test-numbers-generate-otp.png'
+import testNumbersGenerateOtpAlt from '../assets/cvmaas/test-numbers-generate-otp-alt.png'
+import testNumbersOtpEntry from '../assets/cvmaas/test-numbers-otp-entry.png'
+import testNumbersAccountAfter from '../assets/cvmaas/test-numbers-account-after.png'
+import testNumbersSuccess from '../assets/cvmaas/test-numbers-success.png'
+
 const snapshot = [
   { label: 'Role', value: 'Lead UX/UI — owned CVMaaS; collaboration lead on mViva' },
   { label: 'Team', value: 'Product owner, engineering, security, vendor (Pelatro), business ops' },
@@ -67,7 +91,12 @@ const CaseStudyMvivaCvmaas = () => (
         </p>
       }
       snapshot={snapshot}
-      heroSlot={<CvmaasHeroMockup />}
+      heroSlot={
+        <CvmaasHeroMockup
+          src={partyDashboardNotification}
+          alt="Party dashboard with the CVMaaS add-campaign-manager notification open"
+        />
+      }
     />
 
     <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
@@ -191,8 +220,7 @@ const CaseStudyMvivaCvmaas = () => (
           </div>
 
           <Body className="mt-4">
-            Four flows carry the onboarding story. Walk each one on its own carousel — real
-            screens from the Figma will drop into the slots as they’re exported.
+            Four flows carry the onboarding story. Walk each one on its own carousel.
           </Body>
 
           <p className="mt-2 text-sm font-medium uppercase tracking-wide text-muted">
@@ -201,8 +229,22 @@ const CaseStudyMvivaCvmaas = () => (
           <ScreenCarousel
             slides={[
               {
-                alt: 'Party Dashboard with the "add campaign manager" notification panel',
+                src: partyDashboardDefault,
+                alt: 'Party dashboard — default state',
                 tag: 'Admin · Party Dashboard',
+                title: 'Party dashboard — default state',
+                body: (
+                  <>
+                    The admin lands here after signing in. Everything they own about the
+                    account sits on this screen — accounts, quick access, billing, orders,
+                    tickets. It’s the surface the notification will appear on.
+                  </>
+                ),
+              },
+              {
+                src: partyDashboardNotification,
+                alt: 'Party dashboard with the “add campaign managers” notification',
+                tag: 'Admin · Notification',
                 title: 'Notification — “add campaign managers”',
                 body: (
                   <>
@@ -211,22 +253,22 @@ const CaseStudyMvivaCvmaas = () => (
                     the package it belongs to.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-12646',
               },
               {
-                alt: 'Account Inquiry default state',
+                src: accountInquiryDefault,
+                alt: 'Account inquiry — default state',
                 tag: 'Admin · Account Inquiry',
-                title: 'Account Inquiry — default state',
+                title: 'Account inquiry — default state',
                 body: (
                   <>
                     Test numbers can be configured even before a manager is added. Deliberate
                     un-block for the admin — the setup doesn’t stall on a people-decision.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-12534',
               },
               {
-                alt: 'Add campaign manager form — enter user details',
+                src: addManagerUserDetails,
+                alt: 'Add users to your organisation — enter user details',
                 tag: 'Admin · Add manager',
                 title: 'Add campaign manager — user details',
                 body: (
@@ -236,19 +278,18 @@ const CaseStudyMvivaCvmaas = () => (
                     imply.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-12998',
               },
               {
+                src: adminSuccess,
                 alt: 'Success — managers added',
                 tag: 'Admin · Success',
                 title: 'Success — managers added',
                 body: (
                   <>
-                    Confirmation with a clear next-step: the manager will receive their own
-                    invite email. Nothing left ambiguous.
+                    Confirmation with a clear next-step: each manager will receive their own
+                    invite email and complete their side of onboarding.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-13106',
               },
             ]}
           />
@@ -259,72 +300,110 @@ const CaseStudyMvivaCvmaas = () => (
           <ScreenCarousel
             slides={[
               {
-                alt: 'Invitation email with UAE PASS sign-in CTA',
-                tag: 'Manager · Email',
-                title: 'Invite email → sign in with UAE PASS',
+                src: uaePassLogin,
+                alt: 'B2B login for campaign manager',
+                tag: 'Manager · Login',
+                title: 'Sign in',
                 body: (
                   <>
-                    The manager receives an invite email; the CTA lands them on a dedicated
-                    login page — reachable only through the email link, not the marketing site.
+                    A separate login page reachable only through the invite email’s CTA. No
+                    generic entry point — the credential surface can’t be brute-forced from
+                    outside.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-12517 (email) · 3076-11942 (login)',
               },
               {
-                alt: 'Organisation picker for managers assigned to multiple accounts',
-                tag: 'Manager · Multi-org',
-                title: 'Choose the organisation to enter',
+                src: uaePassLoginRequest,
+                alt: 'Login request being sent to UAE PASS app',
+                tag: 'Manager · UAE PASS',
+                title: 'Approve login request on the UAE PASS app',
                 body: (
                   <>
-                    If a manager is assigned to multiple accounts, they pick which one to enter
-                    before proceeding. Context is set before any campaign work begins.
+                    Government-grade auth off the shelf. The user confirms the request on their
+                    UAE PASS mobile app — nothing typed here, nothing to leak.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-11956',
               },
               {
-                alt: 'UAE PASS identity verification screen',
-                tag: 'Manager · Identity',
-                title: 'UAE PASS verification',
+                src: uaePassVerifyFace,
+                alt: 'Face ID verification on UAE PASS',
+                tag: 'Manager · Face ID',
+                title: 'Face ID verification',
                 body: (
                   <>
-                    Government-grade auth off the shelf — no separate CVMaaS credentials to
-                    manage, no password reset flow for the admin to chase.
+                    First-time managers verify Face ID on UAE PASS to comply with TDRA
+                    identity requirements before they can act on any live campaign.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-12010',
+              },
+              {
+                src: uaePassTC,
+                alt: 'Terms and conditions acceptance',
+                tag: 'Manager · Terms',
+                title: 'Terms & conditions',
+                body: (
+                  <>
+                    Sticky footer with a single primary action so the T&amp;C page never has an
+                    “are you sure?” dead-end — accept and go.
+                  </>
+                ),
               },
             ]}
           />
 
           <p className="mt-10 text-sm font-medium uppercase tracking-wide text-muted">
-            Flow 3 — Campaign manager sets up their profile
+            Flow 3 — Campaign manager accepts the invitation
           </p>
           <ScreenCarousel
             slides={[
               {
-                alt: 'First-run profile setup for a new campaign manager',
-                tag: 'Manager · First-run',
-                title: 'Profile setup',
+                src: endUserInvitation,
+                alt: 'Invitation to accept the campaign manager role',
+                tag: 'Manager · Invitation',
+                title: 'Invitation to join the organisation',
                 body: (
                   <>
-                    Post-UAE-PASS, the manager completes their working profile — role, contact,
-                    notification preferences. Kept short; the goal is to get to a live tool.
+                    First screen after the invite email. Names who invited them and which
+                    organisation. Two continuation options — UAE PASS or direct — keep the
+                    choice honest.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-13140',
               },
               {
-                alt: 'Landing state — manager is ready to run campaigns',
-                tag: 'Manager · Landing',
-                title: 'Ready to run campaigns',
+                src: endUserOtp,
+                alt: 'Enter OTP sent to the below details',
+                tag: 'Manager · OTP',
+                title: 'Enter OTP',
                 body: (
                   <>
-                    Handover point into mViva. Designed to feel like arriving somewhere, not
-                    leaving somewhere else — the seam should read as one product.
+                    OTP delivered to the details on the invite so the invitation and the
+                    accepting person are provably the same. Minimum ceremony.
                   </>
                 ),
-                placeholderNote: 'Figma 3076-13140 (child frame)',
+              },
+              {
+                src: endUserTC,
+                alt: 'Review terms and conditions',
+                tag: 'Manager · Terms',
+                title: 'Review terms & conditions',
+                body: (
+                  <>
+                    Long-form legal, calm layout, sticky action bar. The manager can scroll,
+                    but never loses the accept CTA.
+                  </>
+                ),
+              },
+              {
+                src: endUserVerified,
+                alt: 'Account verified — ready to continue',
+                tag: 'Manager · Verified',
+                title: 'Account verified',
+                body: (
+                  <>
+                    Confirmation state. The manager is now provisioned; the next arrival takes
+                    them into mViva to build their first campaign.
+                  </>
+                ),
               },
             ]}
           />
@@ -335,28 +414,78 @@ const CaseStudyMvivaCvmaas = () => (
           <ScreenCarousel
             slides={[
               {
-                alt: 'Add a test number to the account',
+                src: testNumbersAccount,
+                alt: 'Account inquiry — test numbers section',
                 tag: 'Admin · Test setup',
-                title: 'Add test number',
+                title: 'Account inquiry — test numbers',
                 body: (
                   <>
-                    Admin trials the channel without waiting for a manager decision. Small,
-                    reversible, immediate — the un-block that keeps setup moving.
+                    From the same account view the admin already uses, they can add a test
+                    number without any manager being present. No people-decision required to
+                    trial the channel.
                   </>
                 ),
-                placeholderNote: 'Figma 2784-1986',
               },
               {
-                alt: 'List of test numbers on the account',
-                tag: 'Admin · Test list',
-                title: 'Test numbers list',
+                src: testNumbersGenerateOtp,
+                alt: 'Generate OTP to authorise a test number',
+                tag: 'Admin · OTP',
+                title: 'Generate OTP',
                 body: (
                   <>
-                    Governance still applies: numbers are recorded, capped per package, and
-                    audit-visible. Speed is bought without loosening the rules.
+                    Governance still applies: a test number is authorised via OTP to the
+                    number itself, so an admin can’t just add a phone they don’t control.
                   </>
                 ),
-                placeholderNote: 'Figma 2784-1986 (child frame)',
+              },
+              {
+                src: testNumbersGenerateOtpAlt,
+                alt: 'Generate OTP — alternate state',
+                tag: 'Admin · OTP',
+                title: 'Generate OTP — alternate state',
+                body: (
+                  <>
+                    Resend and re-verify paths. Every OTP action is recorded to the audit log
+                    with the admin identity behind it.
+                  </>
+                ),
+              },
+              {
+                src: testNumbersOtpEntry,
+                alt: 'Enter the OTP to verify the test number',
+                tag: 'Admin · Verify',
+                title: 'Enter the OTP',
+                body: (
+                  <>
+                    Short entry field, clear ties to the number being verified — no wondering
+                    which OTP goes where.
+                  </>
+                ),
+              },
+              {
+                src: testNumbersAccountAfter,
+                alt: 'Account inquiry after the test number is added',
+                tag: 'Admin · List',
+                title: 'Test number added — listed on the account',
+                body: (
+                  <>
+                    Numbers are recorded, capped per package, and audit-visible. Speed is
+                    bought without loosening the rules.
+                  </>
+                ),
+              },
+              {
+                src: testNumbersSuccess,
+                alt: 'Success confirmation for test number setup',
+                tag: 'Admin · Success',
+                title: 'Success',
+                body: (
+                  <>
+                    Confirmation state. The admin can now send a real test to the number and
+                    verify the channel behaves as expected — all before the first manager
+                    signs in.
+                  </>
+                ),
               },
             ]}
           />
