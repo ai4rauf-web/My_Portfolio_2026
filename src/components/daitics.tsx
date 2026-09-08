@@ -496,3 +496,137 @@ export const RejectedAlternatives = () => (
     ))}
   </div>
 )
+
+/* FigJam-style research canvas — the board that led to the three-mode
+   decision, the two-AI-surface split, and the trust model. Same visual
+   grammar as the RMN and CVMaaS canvases: dot-grid, warm tones, dotted
+   "by the way" connectors. */
+export const TelcoInsightsCanvas = () => {
+  type Note = {
+    top: string
+    left: string
+    w: string
+    tone: string
+    rot: number
+    title?: string
+    body: string
+    kind?: 'insight' | 'decision' | 'question'
+  }
+
+  const notes: Note[] = [
+    // PERSONAS
+    { top: '10%', left: '3%', w: '18%', tone: '#fde68a', rot: -2, title: 'Marketing ops', body: 'Thinks in audiences, campaigns, offers. Never touches SQL.' },
+    { top: '30%', left: '4%', w: '18%', tone: '#fde68a', rot: 1, title: 'CDP developer', body: 'Thinks in SQL, pipelines, sources. Wants raw control.' },
+    { top: '52%', left: '2%', w: '18%', tone: '#fde68a', rot: -3, title: 'Data scientist', body: 'Thinks in features, models, notebooks. Lives in code.' },
+    { top: '73%', left: '4%', w: '18%', tone: '#fde68a', rot: 2, title: 'DPO / Auditor', body: 'Thinks in consent, lineage, retention. Reviews, never edits.' },
+
+    // DOMAIN — CDP-specific + telco constraints
+    { top: '6%', left: '26%', w: '19%', tone: '#c7d2fe', rot: 2, title: '30+ data sources', body: 'CDRs · billing · network · DPI · CRM · app · web · location. Silos to unify.' },
+    { top: '28%', left: '25%', w: '19%', tone: '#c7d2fe', rot: -1, title: 'Sovereign on-prem', body: 'Data cannot leave the operator. No SaaS control plane. LLM lives inside the fence.' },
+    { top: '50%', left: '25%', w: '19%', tone: '#c7d2fe', rot: 2, title: 'Authored, not learned', body: 'Every trait / signal / feature is a human-authored spec — traceable, versioned, promotable.' },
+    { top: '72%', left: '26%', w: '19%', tone: '#c7d2fe', rot: -2, title: 'DULE + consent + lineage', body: 'Governance is a property of the artifact, not a step in a queue.' },
+
+    // INSIGHTS
+    { top: '4%', left: '49%', w: '20%', tone: '#bae6fd', rot: -2, kind: 'insight', title: 'INSIGHT', body: 'One artifact model = one audit trail. Everything else derives.' },
+    { top: '26%', left: '49%', w: '20%', tone: '#bae6fd', rot: 2, kind: 'insight', title: 'INSIGHT', body: 'LLM correctness ≠ platform correctness. Separate the layers or lose control.' },
+    { top: '48%', left: '50%', w: '20%', tone: '#bae6fd', rot: -1, kind: 'question', title: 'HYPOTHESIS', body: 'If the same IR backs all three modes, users can switch mid-artifact without losing state.' },
+    { top: '70%', left: '48%', w: '20%', tone: '#bae6fd', rot: 3, kind: 'insight', title: 'INSIGHT', body: 'Different lenses on the same thing beats different apps for the same job.' },
+
+    // DECISIONS
+    { top: '10%', left: '76%', w: '20%', tone: '#bbf7d0', rot: 1, kind: 'decision', title: 'DECISION', body: 'Three peer modes — Builder · Code · Authoring Agent — over one Canonical IR.' },
+    { top: '32%', left: '76%', w: '20%', tone: '#bbf7d0', rot: -2, kind: 'decision', title: 'DECISION', body: 'Two AI surfaces — heavyweight Agent tab + ambient Co-Pilot sidebar. Never one.' },
+    { top: '55%', left: '77%', w: '20%', tone: '#bbf7d0', rot: 2, kind: 'decision', title: 'DECISION', body: 'authoring_origin on every IR. AI actions are traceable, not invisible.' },
+    { top: '75%', left: '76%', w: '20%', tone: '#bbf7d0', rot: -1, kind: 'decision', title: 'DECISION', body: 'Agent inherits the artifact’s permission model. AI can’t escalate.' },
+
+    // Column labels
+    { top: '2%', left: '3%', w: '17%', tone: 'transparent', rot: 0, body: 'PERSONAS' },
+    { top: '2%', left: '26%', w: '17%', tone: 'transparent', rot: 0, body: 'DOMAIN' },
+    { top: '2%', left: '49%', w: '17%', tone: 'transparent', rot: 0, body: 'INSIGHTS' },
+    { top: '2%', left: '76%', w: '17%', tone: 'transparent', rot: 0, body: 'DECISIONS' },
+  ]
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl bg-[#f2ede3] p-4 lg:p-8"
+      style={{
+        backgroundImage: 'radial-gradient(#d9d3c6 1px, transparent 1.6px)',
+        backgroundSize: '18px 18px',
+      }}
+    >
+      <div className="relative mx-auto aspect-[16/10] w-full">
+        {notes.map((s, i) =>
+          s.tone === 'transparent' ? (
+            <div
+              key={i}
+              className="absolute text-[10px] font-bold uppercase tracking-[0.14em] text-[#8a7a54]"
+              style={{ top: s.top, left: s.left, width: s.w }}
+            >
+              {s.body}
+            </div>
+          ) : (
+            <div
+              key={i}
+              className="absolute rounded-sm p-2 text-[10px] leading-tight text-[#3f3320] shadow-[0_4px_10px_-4px_rgba(60,50,20,0.35),0_1.5px_3px_-1px_rgba(60,50,20,0.25)]"
+              style={{
+                top: s.top,
+                left: s.left,
+                width: s.w,
+                background: s.tone,
+                transform: `rotate(${s.rot}deg)`,
+              }}
+            >
+              {s.title && (
+                <div
+                  className={`text-[9px] font-bold uppercase tracking-wider ${
+                    s.kind === 'insight'
+                      ? 'text-[#0369a1]'
+                      : s.kind === 'decision'
+                      ? 'text-[#166534]'
+                      : s.kind === 'question'
+                      ? 'text-[#7c3aed]'
+                      : 'text-[#5a4a1f]'
+                  }`}
+                >
+                  {s.title}
+                </div>
+              )}
+              <div className="mt-0.5 text-[10px]">{s.body}</div>
+            </div>
+          ),
+        )}
+
+        {/* Soft "by the way" connectors */}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full"
+          viewBox="0 0 1000 625"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <g
+            stroke="#8a7a54"
+            strokeWidth="0.9"
+            fill="none"
+            strokeLinecap="round"
+            strokeDasharray="2 5"
+            opacity="0.35"
+          >
+            <path d="M 210 100 C 240 120, 260 100, 280 80" />
+            <path d="M 210 220 C 240 240, 260 220, 280 200" />
+            <path d="M 210 360 C 240 360, 260 340, 280 340" />
+            <path d="M 210 500 C 240 500, 260 480, 280 470" />
+
+            <path d="M 460 100 C 500 90, 520 60, 540 60" />
+            <path d="M 460 210 C 500 210, 520 200, 540 200" />
+            <path d="M 460 350 C 500 350, 520 340, 540 340" />
+            <path d="M 460 470 C 500 470, 520 460, 540 460" />
+
+            <path d="M 720 60 C 770 80, 790 100, 820 110" />
+            <path d="M 720 200 C 770 220, 790 240, 820 250" />
+            <path d="M 720 340 C 770 380, 790 400, 820 400" />
+            <path d="M 720 460 C 770 480, 790 490, 820 460" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  )
+}

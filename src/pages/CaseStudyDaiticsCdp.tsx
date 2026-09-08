@@ -16,10 +16,12 @@ import {
   PersonaMap,
   RejectedAlternatives,
   RolePermissions,
+  TelcoInsightsCanvas,
   ThreeModeDiagram,
   TrustFlow,
   WorkbenchAnatomy,
 } from '../components/daitics'
+import { IconReport, IconShield, IconSpark, IconStack } from '../components/rmn'
 
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — shaped the authoring paradigm' },
@@ -33,6 +35,7 @@ const navItems = [
   { id: 'scale', label: 'The scale of one Portal' },
   { id: 'problem', label: 'The core problem' },
   { id: 'role', label: 'My role' },
+  { id: 'research', label: 'Research → decisions' },
   { id: 'three-modes', label: 'The three-mode decision' },
   { id: 'builder', label: 'The Builder' },
   { id: 'agent-copilot', label: 'Agent vs Co-Pilot' },
@@ -41,6 +44,7 @@ const navItems = [
   { id: 'workbench', label: 'ML Workbench' },
   { id: 'outcome', label: 'Outcome' },
   { id: 'change', label: 'What I’d change' },
+  { id: 'takeaway', label: 'My takeaway' },
 ]
 
 const CaseStudyDaiticsCdp = () => (
@@ -161,6 +165,18 @@ const CaseStudyDaiticsCdp = () => (
             below — <strong>workflow authoring</strong> (Trait / Signal / Feature / Source) and the{' '}
             <strong>ML Workbench</strong> — are the ones I led directly.
           </Body>
+        </section>
+
+        {/* Research → decisions canvas */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Research → decisions</SectionLabel>
+          <SectionTitle id="research">The board that shaped the three big calls</SectionTitle>
+          <Body>
+            Most of the decisions below came out of a FigJam board — personas on the left, domain
+            constraints next to them, insights that fell out, decisions on the right. Sanitised
+            snapshot:
+          </Body>
+          <TelcoInsightsCanvas />
         </section>
 
         {/* Three-mode decision */}
@@ -367,7 +383,27 @@ const CaseStudyDaiticsCdp = () => (
             to be honest about which of the outcomes are measurable and which are qualitative — the
             interviewer will ask, and they should.
           </Body>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+            {[
+              { icon: <IconStack />, value: '3 modes', label: 'Builder · Code · Authoring Agent over one canonical IR' },
+              { icon: <IconSpark />, value: '80–90%', label: 'projected Tier-1 coverage from Form alone' },
+              { icon: <IconShield />, value: '5 tags', label: 'authoring_origin classifications — every AI action traceable' },
+              { icon: <IconReport />, value: '100%', label: 'AI actions land in the same audit trail as human ones' },
+            ].map((m) => (
+              <div key={m.label} className="flex flex-col gap-2 rounded-2xl bg-surface p-6">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-tag-blue">
+                  {m.icon}
+                </span>
+                <span className="text-[26px] font-semibold leading-tight text-ink lg:text-[30px]">
+                  {m.value}
+                </span>
+                <span className="text-sm leading-6 text-muted">{m.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
             <Callout title="Design outcomes I can defend" tone="neutral">
               <ul className="flex list-disc flex-col gap-2 pl-5">
                 <li>
@@ -425,6 +461,32 @@ const CaseStudyDaiticsCdp = () => (
               louder.
             </li>
           </ul>
+        </section>
+
+        {/* Takeaway */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>My takeaway</SectionLabel>
+          <SectionTitle id="takeaway">In an AI-native product, the artifact is the design, not the chat</SectionTitle>
+          <Body>
+            The interesting design work in an AI-native product isn’t the chat surface. It’s the
+            artifact underneath. Once every AI action produces the same kind of thing a human
+            would produce, and enters the same lifecycle, the design problem stops being
+            “how do we make the AI look natural” and becomes{' '}
+            <strong>how do we make the artifact legible to every role that touches it</strong>.
+          </Body>
+          <Body>
+            Builder, Code, Co-Pilot, Authoring Agent — they’re all lenses on the same IR. The
+            chat is a way in. The IR is the product. That single reframing is what let a marketing
+            ops lead, a CDP developer, a data scientist, and a DPO all work against one system
+            without collapsing into three.
+          </Body>
+          <Body>
+            The second lesson is upstream of all of that:{' '}
+            <strong>the trust model is upstream of every other decision</strong>. Deciding early
+            that LLM correctness must not gate platform correctness turned AI from a scary edge
+            into a productive drafting layer. Governance became an invariant, not a feature — and
+            once that invariant existed, the rest of the design fell into place around it.
+          </Body>
         </section>
 
         <ProjectFooterNav currentId="daitics-cdp" />
