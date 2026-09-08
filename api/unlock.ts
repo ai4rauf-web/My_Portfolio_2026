@@ -51,8 +51,19 @@ export default async function handler(req: Request): Promise<Response> {
   const table = loadPasswords()
   const expected = table[slug]
 
-  if (!expected || !timingSafeEqual(password, expected)) {
-    return json({ error: 'invalid_password' }, 401)
+  // Diagnostic hint — safe to expose (slugs live in projects.ts already).
+  // Remove after debugging by dropping the `hint` field.
+  if (!process.env.CASE_STUDY_PASSWORDS) {
+    return json({ error: 'invalid_password', hint: 'env-missing' }, 401)
+  }
+  if (!expected) {
+    return json(
+      { error: 'invalid_password', hint: 'slug-missing', slug, keys: Object.keys(table) },
+      401,
+    )
+  }
+  if (!timingSafeEqual(password, expected)) {
+    return json({ error: 'invalid_password', hint: 'password-mismatch' }, 401)
   }
 
   const token = crypto.randomUUID()
