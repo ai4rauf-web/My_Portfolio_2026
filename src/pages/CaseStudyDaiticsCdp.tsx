@@ -5,11 +5,19 @@ import {
   Body,
   Callout,
   CaseStudyHeader,
+  Figure,
   SectionLabel,
   SectionTitle,
   Stat,
   StickySectionNav,
 } from '../components/caseStudy'
+import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
+import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
+import palantir from '../assets/AICDP/palantir.jpg'
+import pipeline from '../assets/AICDP/pipeline.png'
+import pipelineNodes from '../assets/AICDP/pipeline-nodes.png'
+import userResearchCamunda from '../assets/AICDP/user-research-camunda.png'
+import userResearchPersonaTasks from '../assets/AICDP/user-research-persona-tasks.png'
 import {
   AgentVsCoPilot,
   BuilderAnatomy,
@@ -34,6 +42,8 @@ const navItems = [
   { id: 'context', label: 'Context' },
   { id: 'scale', label: 'The scale of one Portal' },
   { id: 'problem', label: 'The core problem' },
+  { id: 'user-research', label: 'User research' },
+  { id: 'competitive', label: 'Competitive analysis' },
   { id: 'role', label: 'My role' },
   { id: 'research', label: 'Research → decisions' },
   { id: 'three-modes', label: 'The three-mode decision' },
@@ -108,6 +118,11 @@ const CaseStudyDaiticsCdp = () => (
             — purpose-built for Telco, sovereign-deployed inside the operator’s own infrastructure,
             and AI-native from the ground up (90+ AI operators, MCP Server for agent access).
           </Callout>
+          <Figure
+            src={aicdpVsAicep}
+            alt="AI CDP vs AI CEP — how the platform works together"
+            caption="The system splits cleanly into two halves: the AI CDP as the data & intelligence foundation, and the AI CEP as journey orchestration & activation. C360 is assembled only in the CDP; the CEP consumes the unified profile. Engagement events flow back for closed-loop learning."
+          />
         </section>
 
         {/* Scale */}
@@ -146,6 +161,50 @@ const CaseStudyDaiticsCdp = () => (
             doubles the truth and cripples review. The right answer had to let each user do it their
             way <em>while looking at the same artifact</em>.
           </Body>
+        </section>
+
+        {/* User research */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>User research</SectionLabel>
+          <SectionTitle id="user-research">Persona tasks and workflow research</SectionTitle>
+          <Body>
+            Before I could argue for any authoring paradigm, I had to know what each persona
+            actually did all day — what they authored, what they reviewed, what they handed off,
+            what tools they lived in. I mapped tasks per persona and then studied how existing
+            workflow tools structured those tasks (Camunda BPMN as one of the closer references).
+          </Body>
+          <Figure
+            src={userResearchPersonaTasks}
+            alt="User research — persona tasks board"
+            caption="Task inventory per persona — the raw list of what each role actually spends the day doing. Everything downstream (three modes, agent scope, role permissions) derives from this."
+          />
+          <Figure
+            src={userResearchCamunda}
+            alt="User research — Camunda-style workflow analysis"
+            caption="Reference workflows from Camunda BPMN — a study of how existing tools decompose an authoring flow into states, gates, and hand-offs. Informed the trust-model split between draft, review, and promotion."
+          />
+        </section>
+
+        {/* Competitive analysis */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Competitive analysis</SectionLabel>
+          <SectionTitle id="competitive">How the market builds this</SectionTitle>
+          <Body>
+            I looked at how the closest neighbours in the space — enterprise CDPs, data platforms,
+            and AI-operator products — shape their authoring surfaces. Two references did the
+            most work: a Figma-based sweep of visual patterns across the CDP market, and a deep
+            look at Palantir Foundry as the reference for a governed, artifact-first workspace.
+          </Body>
+          <Figure
+            src={competitorScreenshots}
+            alt="Competitor screenshots — CDP + data-platform authoring patterns"
+            caption="Sweep of authoring patterns across enterprise CDPs and data platforms. What worked, what didn’t, and what we could improve on."
+          />
+          <Figure
+            src={palantir}
+            alt="Palantir Foundry — reference for a governed, artifact-first workspace"
+            caption="Palantir Foundry as the reference for a governed, artifact-first workspace. Confirmed the direction: the artifact is the design; the UI is a lens."
+          />
         </section>
 
         {/* My role */}
@@ -246,6 +305,22 @@ const CaseStudyDaiticsCdp = () => (
             can already answer. Class, latency, coverage, lineage, similarity — all live in the
             sidebar, not one page away.
           </Callout>
+
+          <Body className="mt-4">
+            The <strong>Pipeline</strong> section is where authoring turns into a data flow.
+            Every step — ingest, schema, quality, tokenisation, modelling, sink — is a node the
+            author can drop, configure, and connect. Same governance model, same audit trail.
+          </Body>
+          <Figure
+            src={pipeline}
+            alt="Pipeline canvas — end-to-end data flow"
+            caption="A typical pipeline reads left-to-right: source → schema → quality → tokenisation → modelling → sink. Nodes surface their tool of origin (Kafka, AWS, and so on); the platform handles the plumbing."
+          />
+          <Figure
+            src={pipelineNodes}
+            alt="Pipeline node vocabulary"
+            caption="The node vocabulary — the set of building blocks a pipeline author picks from. Each node is small on purpose; complexity lives in composition, not in any single step."
+          />
         </section>
 
         {/* Agent vs Co-Pilot */}
