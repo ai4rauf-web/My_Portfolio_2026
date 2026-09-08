@@ -296,86 +296,144 @@ export const MvivaInsightsCanvas = () => {
   )
 }
 
-export const BeforeAfterFlow = () => (
-  <svg viewBox="0 0 900 420" role="img" aria-label="Before: multi-team procedural process. After: business team self-serve." className="w-full">
-    <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
-      {/* Before row */}
-      <text x="30" y="30" fontSize="12" fill="#686868" letterSpacing="1.2">BEFORE — MULTI-TEAM PROCEDURAL PROCESS</text>
-      <g transform="translate(30, 50)">
-        {[
-          { label: 'Business\nasks', tone: '#fdefc0', bd: '#e1c465' },
-          { label: 'Data team', tone: '#f6f6f6', bd: '#e0e0e0' },
-          { label: 'Audience\nsized', tone: '#f6f6f6', bd: '#e0e0e0' },
-          { label: 'Business\nconfirms', tone: '#fdefc0', bd: '#e1c465' },
-          { label: 'Security\nreview', tone: '#fbe9e9', bd: '#d99a9a' },
-          { label: 'Ops\nsets up', tone: '#f6f6f6', bd: '#e0e0e0' },
-          { label: 'Campaign\nlive', tone: '#eaf6ea', bd: '#c8e6c8' },
-        ].map((n, i) => (
-          <g key={i} transform={`translate(${i * 120}, 0)`}>
-            <rect width="100" height="90" rx="10" fill={n.tone} stroke={n.bd} />
-            {n.label.split('\n').map((line, li) => (
-              <text
-                key={li}
-                x="50"
-                y={40 + li * 18}
-                textAnchor="middle"
-                fontSize="13"
-                fill="#242424"
-              >
-                {line}
-              </text>
-            ))}
-            {i < 6 && (
-              <line x1="100" y1="45" x2="120" y2="45" stroke="#686868" strokeWidth="1.5" markerEnd="url(#ba-arr)" />
-            )}
-          </g>
-        ))}
-      </g>
-      <text x="30" y="170" fontSize="12" fill="#8a1f1f" fontStyle="italic">
-        Multiple teams · multiple tools · long calendar time from ask to live
-      </text>
+export const BeforeAfterFlow = () => {
+  // Layered approach: draw all rects first, then arrows on top so the next box
+  // never occludes the previous arrow. Dark self-contained canvas gives the
+  // pastel tokens enough contrast to read as an actual state comparison.
+  const beforeSteps = [
+    { label: 'Business\nasks', bg: '#3a2e1c', bd: '#d4a03c', txt: '#f5d597' },
+    { label: 'Data team', bg: '#2d3541', bd: '#4a5568', txt: '#e2e8f0' },
+    { label: 'Audience\nsized', bg: '#2d3541', bd: '#4a5568', txt: '#e2e8f0' },
+    { label: 'Business\nconfirms', bg: '#3a2e1c', bd: '#d4a03c', txt: '#f5d597' },
+    { label: 'Security\nreview', bg: '#3a2020', bd: '#d97070', txt: '#f5b7b7' },
+    { label: 'Ops\nsets up', bg: '#2d3541', bd: '#4a5568', txt: '#e2e8f0' },
+    { label: 'Campaign\nlive', bg: '#1c3325', bd: '#4ade80', txt: '#a7f3d0' },
+  ]
+  const afterSteps = [
+    { label: 'Business\nteam', bg: '#1f2b3a', bd: '#60a5fa', txt: '#bfdbfe' },
+    { label: 'mViva\n(builder)', bg: '#1f2b3a', bd: '#60a5fa', txt: '#bfdbfe' },
+    { label: 'CVMaaS\n(governance)', bg: '#1c3325', bd: '#4ade80', txt: '#a7f3d0' },
+    { label: 'Campaign\nlive', bg: '#1c3325', bd: '#4ade80', txt: '#a7f3d0' },
+  ]
+  const beforeStep = 130
+  const beforeW = 110
+  const afterStep = 220
+  const afterW = 200
 
-      {/* After row */}
-      <text x="30" y="230" fontSize="12" fill="#686868" letterSpacing="1.2">AFTER — SELF-SERVE, ONE PRODUCT PAIR</text>
-      <g transform="translate(30, 250)">
-        {[
-          { label: 'Business\nteam', tone: '#eef6fb', bd: '#bcdbec' },
-          { label: 'mViva\n(builder)', tone: '#eef6fb', bd: '#bcdbec' },
-          { label: 'CVMaaS\n(governance)', tone: '#eaf6ea', bd: '#c8e6c8' },
-          { label: 'Campaign\nlive', tone: '#eaf6ea', bd: '#c8e6c8' },
-        ].map((n, i) => (
-          <g key={i} transform={`translate(${i * 190}, 0)`}>
-            <rect width="170" height="90" rx="10" fill={n.tone} stroke={n.bd} />
-            {n.label.split('\n').map((line, li) => (
-              <text
-                key={li}
-                x="85"
-                y={40 + li * 18}
-                textAnchor="middle"
-                fontSize="13"
-                fill="#242424"
-              >
-                {line}
-              </text>
-            ))}
-            {i < 3 && (
-              <line x1="170" y1="45" x2="190" y2="45" stroke="#686868" strokeWidth="1.5" markerEnd="url(#ba-arr)" />
-            )}
-          </g>
-        ))}
-      </g>
-      <text x="30" y="370" fontSize="12" fill="#197417" fontStyle="italic">
-        Business runs it themselves. My team dropped into support-only.
-      </text>
-
+  return (
+    <svg
+      viewBox="0 0 960 470"
+      role="img"
+      aria-label="Before: multi-team procedural process. After: business team self-serve."
+      className="w-full"
+    >
       <defs>
-        <marker id="ba-arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#686868" />
+        <marker id="ba-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1" />
         </marker>
       </defs>
-    </g>
-  </svg>
-)
+
+      {/* Dark canvas */}
+      <rect width="960" height="470" rx="20" fill="#1e242e" />
+
+      <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
+        {/* BEFORE — label */}
+        <text x="30" y="38" fontSize="12" fill="#9ca3af" letterSpacing="1.4">
+          BEFORE — MULTI-TEAM PROCEDURAL PROCESS
+        </text>
+
+        {/* BEFORE — boxes layer */}
+        <g transform="translate(30, 60)">
+          {beforeSteps.map((n, i) => (
+            <g key={i} transform={`translate(${i * beforeStep}, 0)`}>
+              <rect width={beforeW} height="90" rx="10" fill={n.bg} stroke={n.bd} strokeWidth="1.2" />
+              {n.label.split('\n').map((line, li) => (
+                <text
+                  key={li}
+                  x={beforeW / 2}
+                  y={40 + li * 18}
+                  textAnchor="middle"
+                  fontSize="13"
+                  fontWeight="500"
+                  fill={n.txt}
+                >
+                  {line}
+                </text>
+              ))}
+            </g>
+          ))}
+        </g>
+
+        {/* BEFORE — arrows layer (drawn on top; sit in the 20px gutter, no overlap) */}
+        <g transform="translate(30, 60)">
+          {beforeSteps.slice(0, -1).map((_, i) => (
+            <line
+              key={i}
+              x1={beforeW + i * beforeStep}
+              y1="45"
+              x2={beforeStep - 4 + i * beforeStep}
+              y2="45"
+              stroke="#cbd5e1"
+              strokeWidth="1.8"
+              markerEnd="url(#ba-arr)"
+            />
+          ))}
+        </g>
+
+        <text x="30" y="192" fontSize="12" fill="#f87171" fontStyle="italic">
+          Multiple teams · multiple tools · long calendar time from ask to live
+        </text>
+
+        {/* AFTER — label */}
+        <text x="30" y="250" fontSize="12" fill="#9ca3af" letterSpacing="1.4">
+          AFTER — SELF-SERVE, ONE PRODUCT PAIR
+        </text>
+
+        {/* AFTER — boxes layer */}
+        <g transform="translate(30, 272)">
+          {afterSteps.map((n, i) => (
+            <g key={i} transform={`translate(${i * afterStep}, 0)`}>
+              <rect width={afterW} height="90" rx="10" fill={n.bg} stroke={n.bd} strokeWidth="1.2" />
+              {n.label.split('\n').map((line, li) => (
+                <text
+                  key={li}
+                  x={afterW / 2}
+                  y={40 + li * 18}
+                  textAnchor="middle"
+                  fontSize="14"
+                  fontWeight="500"
+                  fill={n.txt}
+                >
+                  {line}
+                </text>
+              ))}
+            </g>
+          ))}
+        </g>
+
+        {/* AFTER — arrows layer */}
+        <g transform="translate(30, 272)">
+          {afterSteps.slice(0, -1).map((_, i) => (
+            <line
+              key={i}
+              x1={afterW + i * afterStep}
+              y1="45"
+              x2={afterStep - 4 + i * afterStep}
+              y2="45"
+              stroke="#cbd5e1"
+              strokeWidth="1.8"
+              markerEnd="url(#ba-arr)"
+            />
+          ))}
+        </g>
+
+        <text x="30" y="404" fontSize="12" fill="#4ade80" fontStyle="italic">
+          Business runs it themselves. My team dropped into support-only.
+        </text>
+      </g>
+    </svg>
+  )
+}
 
 export const ProductModel = () => (
   <svg viewBox="0 0 900 360" role="img" aria-label="Two products, one experience: CVMaaS provisions, mViva runs" className="w-full">

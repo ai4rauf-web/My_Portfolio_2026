@@ -95,9 +95,6 @@ const CaseStudyMvivaCvmaas = () => (
         <CvmaasHeroMockup
           src={partyDashboard}
           alt="CVMaaS party dashboard — the surface where the campaign-manager notification will appear"
-          blur={[
-            { x: 87, y: 1, w: 8, h: 5 }, // user name (top-right)
-          ]}
         />
       }
     />
@@ -202,9 +199,7 @@ const CaseStudyMvivaCvmaas = () => (
             Before we get to any screens, here’s the shift in one picture — the manual pipeline
             on top, the CVMaaS + mViva pair below:
           </Body>
-          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
-            <BeforeAfterFlow />
-          </div>
+          <BeforeAfterFlow />
         </section>
 
         {/* Onboarding deep dive */}
@@ -243,7 +238,6 @@ const CaseStudyMvivaCvmaas = () => (
                     tickets. It’s the surface the notification will appear on.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name
               },
               {
                 src: partyDashboardWithNotification,
@@ -257,7 +251,6 @@ const CaseStudyMvivaCvmaas = () => (
                     the package it belongs to.
                   </>
                 ),
-                blur: [],
               },
               {
                 src: accountInquiryDefault,
@@ -270,7 +263,6 @@ const CaseStudyMvivaCvmaas = () => (
                     un-block for the admin — the setup doesn’t stall on a people-decision.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name
               },
               {
                 src: addManagerUserDetails,
@@ -284,7 +276,6 @@ const CaseStudyMvivaCvmaas = () => (
                     imply.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name
               },
               {
                 src: adminSuccess,
@@ -297,7 +288,6 @@ const CaseStudyMvivaCvmaas = () => (
                     invite email and complete their side of onboarding.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name
               },
             ]}
           />
@@ -319,7 +309,6 @@ const CaseStudyMvivaCvmaas = () => (
                     outside.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }],
               },
               {
                 src: uaePassLoginRequest,
@@ -332,7 +321,6 @@ const CaseStudyMvivaCvmaas = () => (
                     UAE PASS mobile app — nothing typed here, nothing to leak.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name only
               },
               {
                 src: uaePassVerifyFace,
@@ -345,7 +333,6 @@ const CaseStudyMvivaCvmaas = () => (
                     identity requirements before they can act on any live campaign.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }],
               },
               {
                 src: uaePassTC,
@@ -358,7 +345,6 @@ const CaseStudyMvivaCvmaas = () => (
                     “are you sure?” dead-end — accept and go.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }],
               },
             ]}
           />
@@ -380,7 +366,6 @@ const CaseStudyMvivaCvmaas = () => (
                     choice honest.
                   </>
                 ),
-                blur: [{ x: 32, y: 34, w: 36, h: 5 }], // inviter's name line
               },
               {
                 src: endUserOtp,
@@ -393,7 +378,6 @@ const CaseStudyMvivaCvmaas = () => (
                     accepting person are provably the same. Minimum ceremony.
                   </>
                 ),
-                blur: [{ x: 32, y: 38, w: 36, h: 8 }], // email / phone target lines
               },
               {
                 src: endUserTC,
@@ -406,11 +390,6 @@ const CaseStudyMvivaCvmaas = () => (
                     but never loses the accept CTA.
                   </>
                 ),
-                blur: [
-                  { x: 25, y: 43, w: 15, h: 4 }, // Authorised Employee Name value
-                  { x: 46, y: 43, w: 20, h: 4 }, // Email Address value
-                  { x: 68, y: 43, w: 14, h: 4 }, // Mobile No value
-                ],
               },
               {
                 src: endUserVerified,
@@ -423,7 +402,6 @@ const CaseStudyMvivaCvmaas = () => (
                     them into mViva to build their first campaign.
                   </>
                 ),
-                blur: [{ x: 32, y: 40, w: 36, h: 5 }], // user's name line
               },
             ]}
           />
@@ -445,7 +423,6 @@ const CaseStudyMvivaCvmaas = () => (
                     trial the channel.
                   </>
                 ),
-                blur: [{ x: 87, y: 1, w: 8, h: 5 }], // user name
               },
               {
                 src: testNumbersGenerateOtp,
@@ -458,10 +435,6 @@ const CaseStudyMvivaCvmaas = () => (
                     number itself, so an admin can’t just add a phone they don’t control.
                   </>
                 ),
-                blur: [
-                  { x: 87, y: 1, w: 8, h: 5 }, // user name
-                  { x: 30, y: 38, w: 40, h: 5 }, // phone number entry
-                ],
               },
               {
                 src: testNumbersGenerateOtpAlt,
@@ -474,10 +447,6 @@ const CaseStudyMvivaCvmaas = () => (
                     with the admin identity behind it.
                   </>
                 ),
-                blur: [
-                  { x: 87, y: 1, w: 8, h: 5 }, // user name
-                  { x: 30, y: 38, w: 40, h: 5 }, // phone number entry
-                ],
               },
               {
                 src: testNumbersOtpEntry,
@@ -490,10 +459,6 @@ const CaseStudyMvivaCvmaas = () => (
                     which OTP goes where.
                   </>
                 ),
-                blur: [
-                  { x: 87, y: 1, w: 8, h: 5 }, // user name
-                  { x: 30, y: 38, w: 40, h: 5 }, // phone number reference
-                ],
               },
               {
                 src: testNumbersAccountAfter,
@@ -506,10 +471,6 @@ const CaseStudyMvivaCvmaas = () => (
                     bought without loosening the rules.
                   </>
                 ),
-                blur: [
-                  { x: 87, y: 1, w: 8, h: 5 }, // user name
-                  { x: 20, y: 58, w: 40, h: 24 }, // phone-number cells in list
-                ],
               },
               {
                 src: testNumbersSuccess,
@@ -523,10 +484,6 @@ const CaseStudyMvivaCvmaas = () => (
                     signs in.
                   </>
                 ),
-                blur: [
-                  { x: 87, y: 1, w: 8, h: 5 }, // user name
-                  { x: 30, y: 45, w: 40, h: 5 }, // phone number in confirmation
-                ],
               },
             ]}
           />
