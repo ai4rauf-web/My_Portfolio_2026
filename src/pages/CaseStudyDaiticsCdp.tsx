@@ -14,8 +14,9 @@ import {
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
-import mlNotebookBuild from '../assets/AICDP/ml-notebook-build.jpg'
+import mlWorkbenchNotebook from '../assets/AICDP/ml-workbench-notebook.png'
 import mlJupyterhub from '../assets/AICDP/ml-jupyterhub.png'
+import v53Iteration from '../assets/AICDP/v53-iteration.jpg'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
 import palantir from '../assets/AICDP/palantir.jpg'
 import pipeline from '../assets/AICDP/pipeline.png'
@@ -199,6 +200,11 @@ const CaseStudyDaiticsCdp = () => (
             src={userResearchCamunda}
             alt="User research — Camunda-style workflow analysis"
             caption="Reference workflows from Camunda BPMN — a study of how existing tools decompose an authoring flow into states, gates, and hand-offs. Informed the trust-model split between draft, review, and promotion."
+          />
+          <Figure
+            src={v53Iteration}
+            alt="V53 — the final iteration of the master research document"
+            caption="V53 — the master research document at its final iteration. A combined team effort: everyone (product, engineering, DPO advisor, me) fed research, requirements, and open questions into a single living spec. Fifty-three iterations before the team was aligned enough to build."
           />
         </section>
 
@@ -449,9 +455,9 @@ const CaseStudyDaiticsCdp = () => (
             caption="ML Workbench catalog. One table view over models, experiments, and their governance metadata — owned by the platform, not by JupyterHub."
           />
           <Figure
-            src={mlNotebookBuild}
-            alt="ML Workbench — notebook build spec"
-            caption="A notebook build spec — the artifact the platform uses to reproduce and audit a training run. Author it here, promote it, keep the receipts."
+            src={mlWorkbenchNotebook}
+            alt="ML Workbench — notebook authoring surface"
+            caption="The notebook itself — where a data scientist writes, runs, and iterates. Same governance, same audit trail as anywhere else in the CDP."
           />
           <Figure
             src={mlJupyterhub}
