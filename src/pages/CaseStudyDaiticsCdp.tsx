@@ -13,6 +13,9 @@ import {
 } from '../components/caseStudy'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
+import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
+import mlNotebookBuild from '../assets/AICDP/ml-notebook-build.jpg'
+import mlJupyterhub from '../assets/AICDP/ml-jupyterhub.png'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
 import palantir from '../assets/AICDP/palantir.jpg'
 import pipeline from '../assets/AICDP/pipeline.png'
@@ -431,6 +434,31 @@ const CaseStudyDaiticsCdp = () => (
           <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
             <WorkbenchAnatomy />
           </div>
+
+          <Body>
+            Under the hood, the Workbench is a <strong>headless JupyterHub</strong> embedded
+            inside the platform. Open-source infrastructure does the heavy lifting — kernel
+            management, notebook execution, per-user environments — but the JupyterHub UI is
+            never exposed. Every surface a data scientist touches is a Portal-rendered React
+            page reading the same governance model as the rest of the CDP: the Workbench
+            catalog, the notebook builder, the training runs table.
+          </Body>
+          <Figure
+            src={mlWorkbenchTable}
+            alt="ML Workbench — table view of models and experiments"
+            caption="ML Workbench catalog. One table view over models, experiments, and their governance metadata — owned by the platform, not by JupyterHub."
+          />
+          <Figure
+            src={mlNotebookBuild}
+            alt="ML Workbench — notebook build spec"
+            caption="A notebook build spec — the artifact the platform uses to reproduce and audit a training run. Author it here, promote it, keep the receipts."
+          />
+          <Figure
+            src={mlJupyterhub}
+            alt="Headless JupyterHub embedded in the Workbench"
+            caption="Where the notebook actually runs. JupyterHub sits behind the Portal's own UI — same auth, same audit, no separate URL to leak."
+          />
+
           <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
             <li>
               <strong>SQL through the platform</strong>. <code>%dtx_sql</code> routes queries through
