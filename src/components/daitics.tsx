@@ -1,87 +1,143 @@
 /* Abstracted diagrams for the Daitics case study.
    Everything is illustrative — no real product screens. */
 
-export const PersonaMap = () => (
-  <svg viewBox="0 0 900 460" role="img" aria-label="One Portal serving 12+ personas across 9 surface groups" className="w-full">
-    <defs>
-      <linearGradient id="portalGrad" x1="0" x2="1">
-        <stop offset="0" stopColor="#1377b0" stopOpacity="0.9" />
-        <stop offset="1" stopColor="#071012" />
-      </linearGradient>
-    </defs>
+export const PersonaMap = () => {
+  const personas = [
+    'Marketing Operations',
+    'CDP Developer',
+    'Data Scientist',
+    'ML Engineer',
+    'Model Owner',
+    'Data Steward',
+    'DPO',
+    'Auditor',
+    'Ops Admin',
+    'Tenant Admin',
+    'Super Admin',
+    'Platform Admin',
+  ]
+  const groups: { title: string; items: string }[] = [
+    { title: 'Foundation', items: 'Launchpad · Sources · Schema · Catalog' },
+    { title: 'Identity', items: 'Identity · Profiles · Identifier Search' },
+    { title: 'Data Quality', items: 'DQ Console' },
+    { title: 'AI Authoring', items: 'Ask Daitics · Agent Studio' },
+    { title: 'ML', items: 'Workbench · Model Catalog · Feature Registry · Training Runs' },
+    { title: 'Data Products', items: 'Traits · Signals' },
+    { title: 'Distribution', items: 'Destinations' },
+    { title: 'Governance', items: 'Lineage · Privacy · Approvals' },
+    { title: 'Ops & Admin', items: 'Operations · Security · Settings · Admin · Academy' },
+  ]
 
-    {/* Personas on the left */}
-    <g fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="13" fill="#242424">
-      <text x="20" y="24" fontSize="11" fill="#686868" letterSpacing="1.2">12+ PERSONAS</text>
-      {[
-        'Marketing Operations',
-        'CDP Developer',
-        'Data Scientist',
-        'ML Engineer',
-        'Model Owner',
-        'Data Steward',
-        'DPO',
-        'Auditor',
-        'Ops Admin',
-        'Tenant Admin',
-        'Super Admin',
-        'Platform Admin',
-      ].map((p, i) => (
-        <g key={p} transform={`translate(20, ${50 + i * 30})`}>
-          <rect width="220" height="24" rx="12" fill="#f6f6f6" stroke="#e0e0e0" />
-          <text x="14" y="16">{p}</text>
-        </g>
-      ))}
-    </g>
+  const personaColH = 30
+  const groupRowH = 52
+  const rows = Math.max(personas.length, groups.length)
+  const height = 60 + rows * Math.max(personaColH, groupRowH)
 
-    {/* Portal in the middle */}
-    <g transform="translate(280, 130)">
-      <rect width="240" height="200" rx="20" fill="url(#portalGrad)" />
-      <text x="120" y="90" textAnchor="middle" fill="#ffffff" fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="16" fontWeight="500">
-        Daitics Portal
-      </text>
-      <text x="120" y="112" textAnchor="middle" fill="#d0eeff" fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="12">
-        One React app
-      </text>
-      <text x="120" y="128" textAnchor="middle" fill="#d0eeff" fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="12">
-        One canonical IR per artifact
-      </text>
-    </g>
+  return (
+    <svg
+      viewBox={`0 0 1120 ${height}`}
+      role="img"
+      aria-label="One Portal serving 12+ personas across 9 surface groups"
+      className="w-full"
+    >
+      <defs>
+        <linearGradient id="portalGrad" x1="0" x2="1">
+          <stop offset="0" stopColor="#1377b0" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#071012" />
+        </linearGradient>
+      </defs>
 
-    {/* Connecting lines */}
-    <g stroke="#c8c8c8" strokeWidth="1">
-      {Array.from({ length: 12 }).map((_, i) => (
-        <line key={i} x1="240" y1={62 + i * 30} x2="280" y2={230} strokeOpacity={0.6} />
-      ))}
-    </g>
-    <g stroke="#c8c8c8" strokeWidth="1">
-      {Array.from({ length: 9 }).map((_, i) => (
-        <line key={i} x1="520" y1={230} x2="600" y2={62 + i * 42} strokeOpacity={0.6} />
-      ))}
-    </g>
+      {/* Personas on the left */}
+      <g fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="13" fill="#1a1a1a">
+        <text x="20" y="24" fontSize="11" fill="#5a5a5a" letterSpacing="1.2">
+          12+ PERSONAS
+        </text>
+        {personas.map((p, i) => (
+          <g key={p} transform={`translate(20, ${50 + i * personaColH})`}>
+            <rect width="240" height="24" rx="12" fill="#ffffff" stroke="#c8c8c8" />
+            <text x="14" y="16">{p}</text>
+          </g>
+        ))}
+      </g>
 
-    {/* Group tiles on the right */}
-    <g fontFamily="IBM Plex Sans, system-ui, sans-serif" fontSize="12" fill="#242424">
-      <text x="600" y="24" fontSize="11" fill="#686868" letterSpacing="1.2">9 SURFACE GROUPS · 24 SURFACES</text>
-      {[
-        'Foundation — Launchpad · Sources · Schema · Catalog',
-        'Identity — Identity · Profiles · Identifier Search',
-        'Data Quality — DQ Console',
-        'AI Authoring — Ask Daitics · Agent Studio',
-        'ML — Workbench · Model Catalog · Feature Registry · Training Runs',
-        'Data products — Traits · Signals',
-        'Distribution — Destinations',
-        'Governance — Lineage · Privacy · Approvals',
-        'Ops & Admin — Operations · Security · Settings · Admin · Academy',
-      ].map((g, i) => (
-        <g key={g} transform={`translate(600, ${50 + i * 42})`}>
-          <rect width="280" height="32" rx="8" fill="#ffffff" stroke="#e0e0e0" />
-          <text x="14" y="20">{g}</text>
-        </g>
-      ))}
-    </g>
-  </svg>
-)
+      {/* Portal in the middle */}
+      <g transform={`translate(300, ${height / 2 - 110})`}>
+        <rect width="240" height="220" rx="20" fill="url(#portalGrad)" />
+        <text
+          x="120"
+          y="98"
+          textAnchor="middle"
+          fill="#ffffff"
+          fontFamily="IBM Plex Sans, system-ui, sans-serif"
+          fontSize="18"
+          fontWeight="600"
+        >
+          Daitics Portal
+        </text>
+        <text
+          x="120"
+          y="126"
+          textAnchor="middle"
+          fill="#d0eeff"
+          fontFamily="IBM Plex Sans, system-ui, sans-serif"
+          fontSize="12"
+        >
+          One React app
+        </text>
+        <text
+          x="120"
+          y="144"
+          textAnchor="middle"
+          fill="#d0eeff"
+          fontFamily="IBM Plex Sans, system-ui, sans-serif"
+          fontSize="12"
+        >
+          One canonical IR per artifact
+        </text>
+      </g>
+
+      {/* Connecting lines (both sides converge on the middle of the Portal) */}
+      <g stroke="#b8b8b8" strokeWidth="1" strokeOpacity="0.55">
+        {personas.map((_, i) => (
+          <line
+            key={`l${i}`}
+            x1="260"
+            y1={62 + i * personaColH}
+            x2="300"
+            y2={height / 2}
+          />
+        ))}
+        {groups.map((_, i) => (
+          <line
+            key={`r${i}`}
+            x1="540"
+            y1={height / 2}
+            x2="600"
+            y2={78 + i * groupRowH}
+          />
+        ))}
+      </g>
+
+      {/* Group tiles on the right — two-line, no truncation */}
+      <g fontFamily="IBM Plex Sans, system-ui, sans-serif" fill="#1a1a1a">
+        <text x="600" y="24" fontSize="11" fill="#5a5a5a" letterSpacing="1.2">
+          9 SURFACE GROUPS · 24 SURFACES
+        </text>
+        {groups.map((g, i) => (
+          <g key={g.title} transform={`translate(600, ${58 + i * groupRowH})`}>
+            <rect width="500" height="42" rx="8" fill="#ffffff" stroke="#c8c8c8" />
+            <text x="16" y="18" fontSize="13" fontWeight="600" fill="#071012">
+              {g.title}
+            </text>
+            <text x="16" y="34" fontSize="11" fill="#5a5a5a">
+              {g.items}
+            </text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  )
+}
 
 export const ThreeModeDiagram = () => (
   <svg viewBox="0 0 900 380" role="img" aria-label="Three peer authoring modes projecting onto one canonical IR" className="w-full">
@@ -231,45 +287,42 @@ export const BuilderAnatomy = () => (
 )
 
 export const AgentVsCoPilot = () => (
-  <svg viewBox="0 0 900 320" role="img" aria-label="Authoring Agent tab and ambient Co-Pilot — two different tools" className="w-full">
+  <svg viewBox="0 0 900 300" role="img" aria-label="Authoring Agent tab and ambient Co-Pilot — two different tools" className="w-full">
     <g fontFamily="IBM Plex Sans, system-ui, sans-serif">
       {/* Agent card */}
       <g transform="translate(30, 30)">
-        <rect width="400" height="260" rx="16" fill="#eaf6ea" stroke="#c8e6c8" />
-        <text x="24" y="34" fontSize="12" fill="#197417" letterSpacing="1.2">HEAVYWEIGHT · AUTHORING AGENT TAB</text>
-        <text x="24" y="62" fontSize="20" fontWeight="600" fill="#071012">Trait Agent · Signal Agent · Feature Agent · Source Agent</text>
-        <text x="24" y="90" fontSize="13" fill="#242424">A peer tab, not a wizard.</text>
-        <g transform="translate(24, 108)" fontSize="13" fill="#242424">
+        <rect width="400" height="240" rx="16" fill="#eaf6ea" stroke="#c8e6c8" />
+        <text x="24" y="34" fontSize="12" fill="#197417" letterSpacing="1.2">HEAVYWEIGHT</text>
+        <text x="24" y="66" fontSize="22" fontWeight="600" fill="#071012">Authoring Agent</text>
+        <text x="24" y="94" fontSize="13" fill="#242424">A peer tab. You go here when you want the agent to do the work.</text>
+        <g transform="translate(24, 118)" fontSize="13" fill="#242424">
           {[
-            'Draft new — NL → candidate IR, populates Form + Rules + Pipeline',
-            'Modify existing — updates the same IR, Builder reflects the diff',
-            'Explain — purpose, computation, governance, downstream use',
-            'Suggest — alternative compositions with rationale',
+            'Draft a new artifact from a plain-language brief',
+            'Modify an existing artifact and explain the change',
+            'Suggest alternatives with reasons',
           ].map((l, i) => (
-            <text key={i} y={i * 26 + 12}>• {l}</text>
+            <text key={i} y={i * 24 + 12}>• {l}</text>
           ))}
         </g>
-        <text x="24" y="246" fontSize="12" fill="#5b7c5b" fontStyle="italic">Always produces a candidate — never bypasses the Canonicalizer.</text>
+        <text x="24" y="216" fontSize="12" fill="#5b7c5b" fontStyle="italic">Its output always flows through the same governance gates.</text>
       </g>
 
       {/* Co-Pilot card */}
       <g transform="translate(470, 30)">
-        <rect width="400" height="260" rx="16" fill="#eef6fb" stroke="#bcdbec" />
-        <text x="24" y="34" fontSize="12" fill="#1377b0" letterSpacing="1.2">LIGHTWEIGHT · AMBIENT CO-PILOT SIDEBAR</text>
-        <text x="24" y="62" fontSize="20" fontWeight="600" fill="#071012">Right-here-right-now sidekick</text>
-        <text x="24" y="90" fontSize="13" fill="#242424">Scoped to the artifact in front of you.</text>
-        <g transform="translate(24, 108)" fontSize="13" fill="#242424">
+        <rect width="400" height="240" rx="16" fill="#eef6fb" stroke="#bcdbec" />
+        <text x="24" y="34" fontSize="12" fill="#1377b0" letterSpacing="1.2">LIGHTWEIGHT</text>
+        <text x="24" y="66" fontSize="22" fontWeight="600" fill="#071012">Ambient Co-Pilot</text>
+        <text x="24" y="94" fontSize="13" fill="#242424">A sidebar on every screen. Scoped to whatever you’re looking at.</text>
+        <g transform="translate(24, 118)" fontSize="13" fill="#242424">
           {[
-            'Explain what this artifact does, in plain language',
-            'Suggest a refactor (e.g. simplify Type B → Tier 1)',
-            'Validate against governance before you save',
-            'Find similar artifacts — surface duplicates',
-            'Propose a derived signal / feature from this trait',
+            'Explains what’s in front of you, in plain language',
+            'Checks against policy before you save',
+            'Points out duplicates and simpler paths',
           ].map((l, i) => (
-            <text key={i} y={i * 22 + 12}>• {l}</text>
+            <text key={i} y={i * 24 + 12}>• {l}</text>
           ))}
         </g>
-        <text x="24" y="246" fontSize="12" fill="#3a6b8a" fontStyle="italic">Does not initiate drafts. Nudges, never drives.</text>
+        <text x="24" y="216" fontSize="12" fill="#3a6b8a" fontStyle="italic">Nudges — never drives. Never starts a draft on its own.</text>
       </g>
     </g>
   </svg>

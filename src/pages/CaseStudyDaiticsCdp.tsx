@@ -25,16 +25,12 @@ import userResearchCamunda from '../assets/AICDP/user-research-camunda.png'
 import userResearchPersonaTasks from '../assets/AICDP/user-research-persona-tasks.png'
 import {
   AgentVsCoPilot,
-  BuilderAnatomy,
   PersonaMap,
   RejectedAlternatives,
-  RolePermissions,
   TelcoInsightsCanvas,
-  ThreeModeDiagram,
   TrustFlow,
-  WorkbenchAnatomy,
 } from '../components/daitics'
-import { IconReport, IconShield, IconSpark, IconStack } from '../components/rmn'
+import { IconReport, IconShield, IconSpark, IconStack, RealisticMockup } from '../components/rmn'
 
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — shaped the authoring paradigm' },
@@ -52,10 +48,9 @@ const navItems = [
   { id: 'role', label: 'My role' },
   { id: 'research', label: 'Research → decisions' },
   { id: 'three-modes', label: 'The three-mode decision' },
-  { id: 'builder', label: 'The Builder' },
+  { id: 'builder', label: 'The Pipeline' },
   { id: 'agent-copilot', label: 'Agent vs Co-Pilot' },
   { id: 'trust', label: 'Trust & governance' },
-  { id: 'roles', label: 'Bounded by role' },
   { id: 'workbench', label: 'ML Workbench' },
   { id: 'outcome', label: 'Outcome' },
   { id: 'change', label: 'What I’d change' },
@@ -79,9 +74,10 @@ const CaseStudyDaiticsCdp = () => (
       }
       snapshot={snapshot}
       heroSlot={
-        <div className="p-6 lg:p-10">
-          <ThreeModeDiagram />
-        </div>
+        <RealisticMockup
+          src={mlWorkbenchNotebook}
+          alt="Telco AI CDP — ML Workbench notebook running inside the Portal"
+        />
       }
     />
 
@@ -291,48 +287,14 @@ const CaseStudyDaiticsCdp = () => (
           </div>
         </section>
 
-        {/* Builder */}
+        {/* Pipeline */}
         <section className="flex flex-col gap-4">
-          <SectionLabel>The Builder</SectionLabel>
-          <SectionTitle id="builder">Form → Rules → Pipeline, with a live sidebar</SectionTitle>
+          <SectionLabel>The Pipeline</SectionLabel>
+          <SectionTitle id="builder">A drag-and-drop data flow, one node at a time</SectionTitle>
           <Body>
-            The Builder is one screen with three progressively-disclosed sections. Not a wizard — a
-            single canvas where sections appear as the artifact needs them.
-          </Body>
-          <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
-            <li>
-              <strong>Form</strong> — always visible. Identity, source, aggregation window, filter,
-              output, governance. For the Tier-1 majority this is the whole authoring surface.
-            </li>
-            <li>
-              <strong>Rules</strong> — a visual predicate tree. AND / OR / NOT, nested conditions,
-              case-based post-aggregation buckets. Nobody types SQL.
-            </li>
-            <li>
-              <strong>Pipeline</strong> — for Type-B features only: a drag-and-drop transformation
-              canvas (scale, encode, PCA, assemble). Type-checked and cycle-checked before save.
-            </li>
-          </ul>
-          <Body>
-            The right-hand sidebar is where the platform earns its keep. Detected class and estimated
-            p99 latency show <em>while the user is still editing</em>. A synthetic preview evaluates
-            the artifact against sample profiles. Lineage and impact make it clear what depends on
-            what. Duplicate detection surfaces an audited “continue anyway” — the platform will not
-            silently allow near-duplicates.
-          </Body>
-          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
-            <BuilderAnatomy />
-          </div>
-          <Callout title="Design principle" tone="info">
-            The Builder must not require the user to leave it to answer any question the platform
-            can already answer. Class, latency, coverage, lineage, similarity — all live in the
-            sidebar, not one page away.
-          </Callout>
-
-          <Body className="mt-4">
-            The <strong>Pipeline</strong> section is where authoring turns into a data flow.
-            Every step — ingest, schema, quality, tokenisation, modelling, sink — is a node the
-            author can drop, configure, and connect. Same governance model, same audit trail.
+            The Pipeline is where authoring turns into a data flow. Every step — ingest, schema,
+            quality, tokenisation, modelling, sink — is a node the author can drop, configure,
+            and connect. Same governance model, same audit trail as the rest of the platform.
           </Body>
           <Figure
             src={pipeline}
@@ -394,29 +356,22 @@ const CaseStudyDaiticsCdp = () => (
             <TrustFlow />
           </div>
           <Callout title="Continue anyway — audited" tone="warn">
-            When the Builder or Workbench flags a near-duplicate, the user can override — but the
+            When the platform flags a near-duplicate, the user can override — but the
             override is captured with a rationale field and stamped into the audit log. Governance
             reviewers see who overrode what, with what reason, at promotion time.
           </Callout>
-        </section>
 
-        {/* Roles */}
-        <section className="flex flex-col gap-4">
-          <SectionLabel>Bounded by role</SectionLabel>
-          <SectionTitle id="roles">The agent respects permissions, or it isn’t safe</SectionTitle>
-          <Body>
-            An AI co-author that lets an unauthorized user “draft” something they couldn’t author by
-            hand is a governance hole with a chat interface. So the Authoring Agent inherits the
-            same permission model as the artifact itself. What you can see, what you can change,
-            what the agent will do for you — all three are constrained by role.
-          </Body>
-          <RolePermissions />
-          <Body>
-            Marketing Operations never sees the Code tab. Model Owners, DPO, and Auditor never see
-            an edit affordance — they get <em>Explain</em>, not <em>Draft</em>. Data Stewards can
-            submit changes to a Suggestion Queue for a permitted role to accept. The agent
-            surface is the same everywhere; the doors open only where the role opens them.
-          </Body>
+          <Callout title="Compliance built in" tone="info">
+            <p>
+              Every artifact carries the regulatory frames it lives under — <strong>GDPR</strong>
+              (right to access, rectify, erase), <strong>UAE PDPL</strong> (Federal Decree-Law No.
+              45 of 2021), <strong>TDRA</strong> telecom data rules, and the operator’s own DULE
+              and consent policies. Consent status, purpose limitation, retention window, and
+              subject-rights hooks travel with the profile from ingestion to activation. Nothing
+              is retro-fitted at the last mile — the compliance model is upstream of the artifact
+              model, not downstream of it.
+            </p>
+          </Callout>
         </section>
 
         {/* ML Workbench */}
@@ -424,76 +379,36 @@ const CaseStudyDaiticsCdp = () => (
           <SectionLabel>ML Workbench</SectionLabel>
           <SectionTitle id="workbench">A CDP-native notebook — governed, not general-purpose</SectionTitle>
           <Body>
-            The Workbench is the data-scientist and ML-engineer’s surface. Underneath it’s a
-            managed JupyterHub, but the raw JupyterHub is never exposed. What the user sees is a
-            Portal-rendered notebook with a pre-installed Daitics SDK and a set of governance-aware
-            magics: <code>%dtx_sql</code>, <code>%dtx_feature</code>, <code>%dtx_model</code>,{' '}
-            <code>%dtx_register_model</code>, <code>%dtx_submit_training</code>,{' '}
-            <code>%dtx_lineage</code>, <code>%dtx_audit</code>.
+            The Workbench is the data-scientist and ML-engineer’s surface for building models on
+            top of the CDP. The design goal was to give them a familiar notebook, without giving
+            up governance: everything a data scientist does here has to leave the same audit
+            footprint as everything anyone else does anywhere else in the platform.
           </Body>
-          <Body>
-            The design goal was simple: <strong>everything a Data Scientist does here has to leave
-            the same governance footprint as everything anyone else does anywhere else in the
-            platform.</strong> No shadow features, no models that ship without a Card, no data
-            access that skips consent.
-          </Body>
-          <div className="rounded-2xl border border-[#e8e8e8] bg-surface p-6 lg:p-8">
-            <WorkbenchAnatomy />
-          </div>
-
           <Body>
             Under the hood, the Workbench is a <strong>headless JupyterHub</strong> embedded
             inside the platform. Open-source infrastructure does the heavy lifting — kernel
             management, notebook execution, per-user environments — but the JupyterHub UI is
-            never exposed. Every surface a data scientist touches is a Portal-rendered React
-            page reading the same governance model as the rest of the CDP: the Workbench
-            catalog, the notebook builder, the training runs table.
+            never exposed to the user. Every surface a data scientist touches is a Portal-
+            rendered React page.
           </Body>
+          <Figure
+            src={mlJupyterhub}
+            alt="Headless JupyterHub inside the Portal"
+            caption="Where the notebook actually runs — JupyterHub sits behind the Portal's own UI. Same auth, same audit, no separate URL to leak."
+          />
           <Figure
             src={mlWorkbenchTable}
             alt="ML Workbench — table view of models and experiments"
-            caption="ML Workbench catalog. One table view over models, experiments, and their governance metadata — owned by the platform, not by JupyterHub."
+            caption="ML Workbench catalog — one table view over models, experiments, and governance metadata, owned by the platform."
           />
           <Figure
             src={mlWorkbenchNotebook}
             alt="ML Workbench — notebook authoring surface"
-            caption="The notebook itself — where a data scientist writes, runs, and iterates. Same governance, same audit trail as anywhere else in the CDP."
+            caption="The notebook itself, where a data scientist writes, runs, and iterates."
           />
-          <Figure
-            src={mlJupyterhub}
-            alt="Headless JupyterHub embedded in the Workbench"
-            caption="Where the notebook actually runs. JupyterHub sits behind the Portal's own UI — same auth, same audit, no separate URL to leak."
-          />
-
-          <ul className="flex list-disc flex-col gap-3 pl-6 text-base leading-7 text-black lg:text-lg">
-            <li>
-              <strong>SQL through the platform</strong>. <code>%dtx_sql</code> routes queries through
-              the Portal query API against the governed data lake — same auth, same consent filter,
-              same audit trail as anywhere else.
-            </li>
-            <li>
-              <strong>Features registered, not printed</strong>. <code>%dtx_feature</code> resolves
-              against the Feature Registry, and registration flows through the same Canonicalizer as
-              the Builder.
-            </li>
-            <li>
-              <strong>Model similarity on promotion</strong>. When a model is registered, an
-              embedding compares it against the Catalog. Similarity ≥ 0.75 elevates to a warning
-              and requires a rationale before promotion.
-            </li>
-            <li>
-              <strong>Cell-level audit</strong>. Every cell run emits an audit event; sensitive
-              access is captured at 100%. The auditor can reconstruct exactly which cell touched
-              which sensitive column and when.
-            </li>
-            <li>
-              <strong>Sidebar tools</strong>. MLflow tracking, Argo job monitor, Tool Registry,
-              Feature Registry and per-user resource quota — none of it in a separate console.
-            </li>
-          </ul>
           <Callout title="Design principle" tone="info">
             A data scientist should not have to switch tools to comply. If compliance is a
-            separate app, it will lose to speed. If it’s an SDK call, it wins by default.
+            separate app, it will lose to speed. If it lives inside the notebook, it wins by default.
           </Callout>
         </section>
 
@@ -589,26 +504,20 @@ const CaseStudyDaiticsCdp = () => (
         {/* Takeaway */}
         <section className="flex flex-col gap-4">
           <SectionLabel>My takeaway</SectionLabel>
-          <SectionTitle id="takeaway">In an AI-native product, the artifact is the design, not the chat</SectionTitle>
+          <SectionTitle id="takeaway">Complex, agentic, and compliance-friendly by design</SectionTitle>
           <Body>
-            The interesting design work in an AI-native product isn’t the chat surface. It’s the
-            artifact underneath. Once every AI action produces the same kind of thing a human
-            would produce, and enters the same lifecycle, the design problem stops being
-            “how do we make the AI look natural” and becomes{' '}
-            <strong>how do we make the artifact legible to every role that touches it</strong>.
+            This was the most complex design surface I’ve worked on — twelve personas, twenty-four
+            surfaces, and a genuinely agentic system where an LLM can draft, modify, and explain
+            work that a human then reviews and ships. The trick was to make that complexity
+            invisible to any one role: the artifact carries the complexity, the UI carries only
+            the lens.
           </Body>
           <Body>
-            Builder, Code, Co-Pilot, Authoring Agent — they’re all lenses on the same IR. The
-            chat is a way in. The IR is the product. That single reframing is what let a marketing
-            ops lead, a CDP developer, a data scientist, and a DPO all work against one system
-            without collapsing into three.
-          </Body>
-          <Body>
-            The second lesson is upstream of all of that:{' '}
-            <strong>the trust model is upstream of every other decision</strong>. Deciding early
-            that LLM correctness must not gate platform correctness turned AI from a scary edge
-            into a productive drafting layer. Governance became an invariant, not a feature — and
-            once that invariant existed, the rest of the design fell into place around it.
+            The other half of the work was making compliance a native property, not a bolt-on.
+            GDPR, UAE PDPL, TDRA, DULE, consent — they’re part of the artifact from the moment
+            it’s authored, not a checklist run at promotion. Once governance is upstream of every
+            AI action, an agentic product stops feeling risky and starts feeling like the fastest
+            way to ship the right thing.
           </Body>
         </section>
 
