@@ -12,6 +12,7 @@ import {
   StickySectionNav,
 } from '../components/caseStudy'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
+import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
 import palantir from '../assets/AICDP/palantir.jpg'
 import pipeline from '../assets/AICDP/pipeline.png'
@@ -122,6 +123,19 @@ const CaseStudyDaiticsCdp = () => (
             src={aicdpVsAicep}
             alt="AI CDP vs AI CEP — how the platform works together"
             caption="The system splits cleanly into two halves: the AI CDP as the data & intelligence foundation, and the AI CEP as journey orchestration & activation. C360 is assembled only in the CDP; the CEP consumes the unified profile. Engagement events flow back for closed-loop learning."
+          />
+
+          <Body>
+            Zoom in on the CDP half, and here is what the end-to-end workflow inside the platform
+            actually looks like — from raw source ingestion on the left, through identity
+            resolution, trait and signal authoring, feature engineering and ML, all the way to
+            the operators and destinations that carry a governed profile into activation on the
+            right.
+          </Body>
+          <Figure
+            src={aicdpEndToEndFlow}
+            alt="AI CDP end-to-end workflow"
+            caption="AI CDP end-to-end workflow. Each stage is a first-class authoring surface with the same governance model behind it — one artifact per node, one audit trail across the flow."
           />
         </section>
 

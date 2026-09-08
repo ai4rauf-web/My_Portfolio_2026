@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" width="1400" height="1000" font-family="Inter, Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxMmFhOWQ5NC1lMWVjLTQ2MTUtOGMyZS00OGU0YTIxODFmZDYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaLZkqOuc3FE2V8gcR/3o6mMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo5NTQ0ZmUwZS03NmUzLTQwZDItODA0OS00NmQyMWU5NzViZGRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoCk0yH+gVA2Ydr9t0z5wC0AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggwbeXTV+SRe0NqQw/M2+J18JxaTvYgHcXyXyGoHVdk8OkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaM146HrVxEauosS14wdesl0AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCC8Be6PpKMBdFZQhyj5oh5emYIOAgJQWK/q63Y7NB4X5mRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjMZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjEyYWE5ZDk0LWUxZWMtNDYxNS04YzJlLTQ4ZTRhMjE4MWZkNi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjU3MWZiNDI5LTkxMjctNDk0ZS1iMGMwLWEyMDRkMDRlZDU5YXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDBt5dNX5JF7Q2pDD8zb4nXwnFpO9iAdxfJfIagdV2Tw6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggkroux+Omhfd6/yb9lVY8cpIaNZl8AdyrbKe//yc9wCOiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggtSnZp3mvyrpPYjldjoIw6NvKabaKC7EN+Ct1HsEqyHl0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGYweBFQwKAq5st1KuVJLTZsuDa33uXEmr4DQno1bnBCRRfrT4nw/AHXNiOZttepf9N63wWZ+HjA2cFO6AVuxI8=</c2pa:manifest></metadata>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-size:15px;font-weight:700;fill:#0f172a}
+    .d{font-size:11.5px;fill:#334155}
+    .p{font-size:10.5px;fill:#1e40af;font-weight:600}
+    .band{font-size:12px;font-weight:700;fill:#64748b;letter-spacing:1.5px}
+    .n{font-size:12px;font-weight:700;fill:#fff}
+    .rail{font-size:12px;fill:#78350f}
+    .railt{font-size:14px;font-weight:700;fill:#78350f}
+    .out{font-size:11px;fill:#475569;font-style:italic}
+  </style>
+
+  <rect width="1400" height="1000" fill="#ffffff"/>
+  <text x="40" y="42" font-size="22" font-weight="700" fill="#0f172a">Daitics Telecom CDP — end-to-end flow</text>
+  <text x="40" y="64" class="d">From raw telecom data to activated audiences, with the workflow module governing every step</text>
+
+  <!-- ===== BAND 1: DATA IN ===== -->
+  <text x="40" y="100" class="band">1 · DATA IN</text>
+  <line x1="130" y1="96" x2="1360" y2="96" stroke="#e2e8f0"/>
+
+  <!-- Box 1 -->
+  <g transform="translate(40,115)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">1</text>
+    <text x="44" y="29" class="t">Telecom data sources</text>
+    <text x="16" y="56" class="d">CRM &amp; subscriber · Billing &amp; plans</text>
+    <text x="16" y="74" class="d">Voice / data CDRs &amp; xDRs · DPI</text>
+    <text x="16" y="92" class="d">Location (cell / LAC) · Device · Network</text>
+    <text x="16" y="110" class="d">Transactional streams + Reference tables</text>
+    <rect x="16" y="122" width="120" height="18" rx="9" fill="#dbeafe"/><text x="76" y="135" class="p" text-anchor="middle">Source Owner</text>
+  </g>
+
+  <!-- Box 2 -->
+  <g transform="translate(390,115)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">2</text>
+    <text x="44" y="29" class="t">Source onboarding</text>
+    <text x="16" y="56" class="d">Connect: Kafka, DB, file, REST, SDK</text>
+    <text x="16" y="74" class="d">Discover wire schema: registry lookup,</text>
+    <text x="16" y="92" class="d">sample payload inference, or manual</text>
+    <text x="16" y="110" class="d">→ versioned Source Schema Contract</text>
+    <rect x="16" y="122" width="160" height="18" rx="9" fill="#dbeafe"/><text x="96" y="135" class="p" text-anchor="middle">Onboarding Engineer</text>
+  </g>
+
+  <!-- Box 3 -->
+  <g transform="translate(740,115)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">3</text>
+    <text x="44" y="29" class="t">Schema mapping → TMF SID</text>
+    <text x="16" y="56" class="d">Source field → dtx.* SID path</text>
+    <text x="16" y="74" class="d">(TM Forum SID-aligned semantic catalog)</text>
+    <text x="16" y="92" class="d">Pick normalisation rule · identifier role</text>
+    <text x="16" y="110" class="d">Classify unmapped fields · projections</text>
+    <rect x="16" y="122" width="200" height="18" rx="9" fill="#dbeafe"/><text x="116" y="135" class="p" text-anchor="middle">Source Owner → Data Steward</text>
+  </g>
+
+  <!-- Box 4 -->
+  <g transform="translate(1090,115)">
+    <rect width="270" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">4</text>
+    <text x="44" y="29" class="t">Ingestion &amp; normalisation</text>
+    <text x="16" y="56" class="d">14-stage streaming chain (Flink)</text>
+    <text x="16" y="74" class="d">Parse → identifier normalise → consent</text>
+    <text x="16" y="92" class="d">pre-gate → full normalise → data quality</text>
+    <text x="16" y="110" class="d">→ tokenise → enrich → de-dup → canonical events</text>
+    <rect x="16" y="122" width="90" height="18" rx="9" fill="#dbeafe"/><text x="61" y="135" class="p" text-anchor="middle">Ops Admin</text>
+  </g>
+
+  <!-- arrows band 1 -->
+  <line x1="300" y1="190" x2="388" y2="190" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="650" y1="190" x2="738" y2="190" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="1000" y1="190" x2="1088" y2="190" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- elbow to band 2 -->
+  <path d="M1225,265 L1225,300 L170,300 L170,353" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="700" y="294" class="out" text-anchor="middle">canonical events on Kafka · lakehouse landing</text>
+
+  <!-- ===== BAND 2: UNDERSTAND ===== -->
+  <text x="40" y="340" class="band">2 · UNDERSTAND THE CUSTOMER</text>
+  <line x1="270" y1="336" x2="1360" y2="336" stroke="#e2e8f0"/>
+
+  <!-- Box 5 -->
+  <g transform="translate(40,355)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">5</text>
+    <text x="44" y="29" class="t">Identity resolution</text>
+    <text x="16" y="56" class="d">MSISDN primary · IMSI / IMEI strengthen</text>
+    <text x="16" y="74" class="d">Cookies / SDK / advertising IDs linked</text>
+    <text x="16" y="92" class="d">Merge &amp; split under approval</text>
+    <text x="16" y="110" class="d">Consent &amp; suppression posture per subject</text>
+    <rect x="16" y="122" width="140" height="18" rx="9" fill="#dbeafe"/><text x="86" y="135" class="p" text-anchor="middle">Data Steward · DPO</text>
+  </g>
+
+  <!-- Box 6 -->
+  <g transform="translate(390,355)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">6</text>
+    <text x="44" y="29" class="t">Customer 360 profile</text>
+    <text x="16" y="56" class="d">One profile per resolved subject</text>
+    <text x="16" y="74" class="d">Attributes, current trait values, history</text>
+    <text x="16" y="92" class="d">Lineage back to source fields</text>
+    <text x="16" y="110" class="d">Privacy labels (DULE) carried with data</text>
+    <rect x="16" y="122" width="150" height="18" rx="9" fill="#dbeafe"/><text x="91" y="135" class="p" text-anchor="middle">Marketing Ops · Steward</text>
+  </g>
+
+  <!-- Box 7 -->
+  <g transform="translate(740,355)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">7</text>
+    <text x="44" y="29" class="t">Traits</text>
+    <text x="16" y="56" class="d">Computed in-stream: usage_30d, home</text>
+    <text x="16" y="74" class="d">region, current_cell, churn risk…</text>
+    <text x="16" y="92" class="d">Authored in Builder / Code / Agent tabs</text>
+    <text x="16" y="110" class="d">Co-Pilot explains, validates, de-dupes</text>
+    <rect x="16" y="122" width="170" height="18" rx="9" fill="#dbeafe"/><text x="101" y="135" class="p" text-anchor="middle">Marketing Ops · Developer</text>
+  </g>
+
+  <!-- Box 8 -->
+  <g transform="translate(1090,355)">
+    <rect width="270" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">8</text>
+    <text x="44" y="29" class="t">AI platform</text>
+    <text x="16" y="56" class="d">Features &amp; ML models (churn, propensity)</text>
+    <text x="16" y="74" class="d">scored back into traits</text>
+    <text x="16" y="92" class="d">Ask Daitics (NL questions, grounded)</text>
+    <text x="16" y="110" class="d">Authoring agents draft — gates decide</text>
+    <rect x="16" y="122" width="160" height="18" rx="9" fill="#dbeafe"/><text x="96" y="135" class="p" text-anchor="middle">Data Scientist · ML Eng</text>
+  </g>
+
+  <!-- arrows band 2 -->
+  <line x1="300" y1="430" x2="388" y2="430" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="650" y1="430" x2="738" y2="430" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="1000" y1="430" x2="1088" y2="430" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- feedback AI -> traits -->
+  <path d="M1200,505 L1200,525 L880,525 L880,507" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr)"/>
+  <text x="1040" y="540" class="out" text-anchor="middle">model scores feed traits</text>
+  <!-- elbow to band 3 -->
+  <path d="M170,505 L170,593" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="185" y="560" class="out">trait changes · profile events</text>
+
+  <!-- ===== BAND 3: ACTIVATE ===== -->
+  <text x="40" y="580" class="band">3 · ACTIVATE &amp; MEASURE</text>
+  <line x1="240" y1="576" x2="1360" y2="576" stroke="#e2e8f0"/>
+
+  <!-- Box 9 -->
+  <g transform="translate(40,595)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">9</text>
+    <text x="44" y="29" class="t">Signals</text>
+    <text x="16" y="56" class="d">Rules on traits: on change / every event /</text>
+    <text x="16" y="74" class="d">scheduled · real-time or ad hoc</text>
+    <text x="16" y="92" class="d">Consent gate · DULE (data-use) gate</text>
+    <text x="16" y="110" class="d">Per-destination payload mapping</text>
+    <rect x="16" y="122" width="140" height="18" rx="9" fill="#dbeafe"/><text x="86" y="135" class="p" text-anchor="middle">Marketing Ops · DPO</text>
+  </g>
+
+  <!-- Box 10 -->
+  <g transform="translate(390,595)">
+    <rect width="260" height="150" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-dasharray="6,4"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">10</text>
+    <text x="44" y="29" class="t">Taxonomy crosswalk (IAB)</text>
+    <text x="16" y="56" class="d">Telco trait → IAB Audience Taxonomy ID</text>
+    <text x="16" y="74" class="d">(demographics, interests, intent, behaviour)</text>
+    <text x="16" y="92" class="d">Data-transparency label · segtax on bid</text>
+    <text x="16" y="110" class="d">request · vendor namespace for telco-only</text>
+    <rect x="16" y="122" width="150" height="18" rx="9" fill="#fef3c7"/><text x="91" y="135" font-size="10.5" font-weight="600" fill="#92400e" text-anchor="middle">Steward · Ad Ops (RMN)</text>
+  </g>
+
+  <!-- Box 11 -->
+  <g transform="translate(740,595)">
+    <rect width="260" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">11</text>
+    <text x="44" y="29" class="t">Destinations</text>
+    <text x="16" y="56" class="d">SMS gateway · ESP · marketing automation</text>
+    <text x="16" y="74" class="d">DSP / SSP / RMN (tokenised ad IDs)</text>
+    <text x="16" y="92" class="d">Internal Kafka · lakehouse exports</text>
+    <text x="16" y="110" class="d">Idempotent delivery · replay control</text>
+    <rect x="16" y="122" width="130" height="18" rx="9" fill="#dbeafe"/><text x="81" y="135" class="p" text-anchor="middle">Ops Admin · Ad Ops</text>
+  </g>
+
+  <!-- Box 12 -->
+  <g transform="translate(1090,595)">
+    <rect width="270" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="22" cy="24" r="13" fill="#0f172a"/><text x="22" y="28" class="n" text-anchor="middle">12</text>
+    <text x="44" y="29" class="t">Outcomes &amp; measurement</text>
+    <text x="16" y="56" class="d">Delivery acks · campaign response</text>
+    <text x="16" y="74" class="d">Reconciliation, backfill, replay</text>
+    <text x="16" y="92" class="d">Lineage &amp; audit end to end</text>
+    <text x="16" y="110" class="d">Results land as new source data</text>
+    <rect x="16" y="122" width="130" height="18" rx="9" fill="#dbeafe"/><text x="81" y="135" class="p" text-anchor="middle">Marketing Ops · Auditor</text>
+  </g>
+
+  <!-- arrows band 3 -->
+  <line x1="300" y1="670" x2="388" y2="670" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="650" y1="670" x2="738" y2="670" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="1000" y1="670" x2="1088" y2="670" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- loop back to sources -->
+  <path d="M1360,670 L1385,670 L1385,80 L20,80 L20,190 L38,190" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr)"/>
+  <text x="1378" y="400" class="out" transform="rotate(-90 1378,400)" text-anchor="middle">closed loop: outcomes become source data</text>
+
+  <!-- ===== WORKFLOW RAIL ===== -->
+  <rect x="40" y="800" width="1320" height="160" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="60" y="828" class="railt">Workflow &amp; governance module — runs underneath every step</text>
+  <text x="60" y="852" class="rail">Approvals (Flowable BPMN, configurable per tenant) · no self-approval · persona rules enforced first</text>
+  <text x="60" y="872" class="rail">SLA timers · escalation to next approver · reminders · parallel branches (e.g. DPO joins only when PII is involved)</text>
+  <text x="60" y="892" class="rail">Lifecycle: draft → validated → approved → sandbox → certified → live → deprecated · every change versioned and audited</text>
+  <text x="60" y="912" class="rail">Same engine for: source contracts · schema mappings · identity merges · traits · signals · destinations · taxonomy crosswalk</text>
+  <text x="60" y="940" class="rail" font-weight="600">Personas: Source Owner · Data Steward · DPO · Marketing Ops · Data Scientist · Ops Admin · Auditor · Tenant / Super Admin</text>
+
+  <!-- connectors from rail up to each band -->
+  <line x1="170" y1="800" x2="170" y2="748" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrg)"/>
+  <line x1="520" y1="800" x2="520" y2="748" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrg)"/>
+  <line x1="870" y1="800" x2="870" y2="748" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrg)"/>
+  <line x1="1225" y1="800" x2="1225" y2="748" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrg)"/>
+  <text x="700" y="785" class="out" text-anchor="middle">every approval, timer and escalation above is the same workflow service (bands 1 and 2 use it the same way)</text>
+
+  <!-- legend -->
+  <rect x="1040" y="20" width="320" height="52" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="1052" y="30" width="14" height="14" rx="3" fill="#f8fafc" stroke="#cbd5e1"/><text x="1072" y="41" class="d">Specified in the Daitics blueprint</text>
+  <rect x="1052" y="50" width="14" height="14" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-dasharray="3,2"/><text x="1072" y="61" class="d">Extension on the activation / RMN side (not in the CDP spec)</text>
+</svg>
