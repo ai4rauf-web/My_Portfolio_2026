@@ -2,9 +2,9 @@ import hubbit from '../assets/figma/hubbit.png'
 import lashic from '../assets/figma/lashic.png'
 import emersonPreview from '../assets/emerson/hero-mockup.jpg'
 import dtxAicdp from '../assets/figma/dtx-aicdp1.jpeg'
-import mvivaCvmaasCover from '../assets/figma/mviva-cvmaas-cover.jpg'
+import mvivaCvmaasCover from '../assets/cvmaas/banner.jpg'
 import rmnCover from '../assets/figma/rmn-cover.jpeg'
-import shopManageCover from '../assets/figma/shop-manage-cover.jpg'
+import shopManageCover from '../assets/shop-manage/banner.jpg'
 
 export type Project = {
   id: string
