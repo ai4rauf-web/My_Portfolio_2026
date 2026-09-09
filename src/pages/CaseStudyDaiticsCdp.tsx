@@ -57,6 +57,12 @@ const navItems = [
   { id: 'takeaway', label: 'My takeaway' },
 ]
 
+const researchSnaps = [
+  { src: userResearchPersonaTasks, alt: 'Task inventory per persona' },
+  { src: userResearchCamunda, alt: 'Workflow analysis — Camunda BPMN reference' },
+  { src: v53Iteration, alt: 'V53 — final iteration of the master research spec' },
+]
+
 const CaseStudyDaiticsCdp = () => (
   <main className="mx-auto w-full max-w-[1243px] px-5 sm:px-8 lg:px-10">
     <BackLink />
@@ -184,24 +190,31 @@ const CaseStudyDaiticsCdp = () => (
           <Body>
             Before I could argue for any authoring paradigm, I had to know what each persona
             actually did all day — what they authored, what they reviewed, what they handed off,
-            what tools they lived in. I mapped tasks per persona and then studied how existing
-            workflow tools structured those tasks (Camunda BPMN as one of the closer references).
+            what tools they lived in. I mapped tasks per persona (everything downstream — three
+            modes, agent scope, role permissions — derives from this), studied how existing
+            workflow tools decompose an authoring flow into states, gates, and hand-offs
+            (Camunda BPMN as one of the closer references, and where the draft / review /
+            promotion trust split came from), and fed it all into a single living spec that
+            went through 53 iterations before the team was aligned enough to build.
           </Body>
-          <Figure
-            src={userResearchPersonaTasks}
-            alt="User research — persona tasks board"
-            caption="Task inventory per persona — the raw list of what each role actually spends the day doing. Everything downstream (three modes, agent scope, role permissions) derives from this."
-          />
-          <Figure
-            src={userResearchCamunda}
-            alt="User research — Camunda-style workflow analysis"
-            caption="Reference workflows from Camunda BPMN — a study of how existing tools decompose an authoring flow into states, gates, and hand-offs. Informed the trust-model split between draft, review, and promotion."
-          />
-          <Figure
-            src={v53Iteration}
-            alt="V53 — the final iteration of the master research document"
-            caption="V53 — the master research document at its final iteration. A combined team effort: everyone (product, engineering, DPO advisor, me) fed research, requirements, and open questions into a single living spec. Fifty-three iterations before the team was aligned enough to build."
-          />
+          <div className="mt-2 flex flex-col gap-3">
+            <p className="text-sm leading-6 text-muted">
+              A glimpse of the research artifacts — persona-task inventory, workflow analysis,
+              and the master spec at its final iteration.
+            </p>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {researchSnaps.map((snap, i) => (
+                <div key={i} className="overflow-hidden rounded-xl border border-[#e8e8e8] bg-surface">
+                  <img
+                    src={snap.src}
+                    alt={snap.alt}
+                    loading="lazy"
+                    className="h-40 w-full object-cover object-top lg:h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Competitive analysis */}
