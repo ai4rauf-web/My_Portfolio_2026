@@ -11,6 +11,7 @@ import {
   Stat,
   StickySectionNav,
 } from '../components/caseStudy'
+import aicdpBanner from '../assets/AICDP/aicdp-banner.jpg'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
@@ -30,7 +31,7 @@ import {
   TelcoInsightsCanvas,
   TrustFlow,
 } from '../components/daitics'
-import { IconReport, IconShield, IconSpark, IconStack, RealisticMockup } from '../components/rmn'
+import { IconReport, IconShield, IconSpark, IconStack } from '../components/rmn'
 
 const snapshot = [
   { label: 'Role', value: 'Lead Product Designer — shaped the authoring paradigm' },
@@ -80,9 +81,10 @@ const CaseStudyDaiticsCdp = () => (
       }
       snapshot={snapshot}
       heroSlot={
-        <RealisticMockup
-          src={mlWorkbenchNotebook}
-          alt="Telco AI CDP — ML Workbench notebook running inside the Portal"
+        <img
+          src={aicdpBanner}
+          alt="Telco AI CDP — authoring surface where people and AI share the work"
+          className="h-full w-full object-cover"
         />
       }
     />
