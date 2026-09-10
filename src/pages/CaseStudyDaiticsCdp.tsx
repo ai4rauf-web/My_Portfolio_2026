@@ -11,7 +11,7 @@ import {
   Stat,
   StickySectionNav,
 } from '../components/caseStudy'
-import aicdpBanner from '../assets/AICDP/aicdp-banner.png'
+import aicdpBanner from '../assets/AICDP/aicdp-banner.jpg'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
