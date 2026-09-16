@@ -10,12 +10,13 @@ import {
   SectionTitle,
   Stat,
   StickySectionNav,
+  ThumbnailGrid,
 } from '../components/caseStudy'
 import aicdpBanner from '../assets/AICDP/aicdp-banner.jpg'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
-import mlWorkbenchNotebook from '../assets/AICDP/ml-workbench-notebook.png'
+import mlWorkbenchNotebook from '../assets/AICDP/ml-workbench-notebook.jpg'
 import mlJupyterhub from '../assets/AICDP/ml-jupyterhub.png'
 import v53Iteration from '../assets/AICDP/v53-iteration.jpg'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
@@ -62,6 +63,11 @@ const researchSnaps = [
   { src: userResearchPersonaTasks, alt: 'Task inventory per persona' },
   { src: userResearchCamunda, alt: 'Workflow analysis — Camunda BPMN reference' },
   { src: v53Iteration, alt: 'V53 — final iteration of the master research spec' },
+]
+
+const competitiveSnaps = [
+  { src: competitorScreenshots, alt: 'Authoring patterns across enterprise CDPs and data platforms' },
+  { src: palantir, alt: 'Palantir Foundry — governed, artifact-first workspace reference' },
 ]
 
 const CaseStudyDaiticsCdp = () => (
@@ -202,20 +208,9 @@ const CaseStudyDaiticsCdp = () => (
           <div className="mt-2 flex flex-col gap-3">
             <p className="text-sm leading-6 text-muted">
               A glimpse of the research artifacts — persona-task inventory, workflow analysis,
-              and the master spec at its final iteration.
+              and the master spec at its final iteration. Hover to zoom · click to view full size.
             </p>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {researchSnaps.map((snap, i) => (
-                <div key={i} className="overflow-hidden rounded-xl border border-[#e8e8e8] bg-surface">
-                  <img
-                    src={snap.src}
-                    alt={snap.alt}
-                    loading="lazy"
-                    className="h-40 w-full object-cover object-top lg:h-48"
-                  />
-                </div>
-              ))}
-            </div>
+            <ThumbnailGrid items={researchSnaps} cols={3} />
           </div>
         </section>
 
@@ -225,20 +220,18 @@ const CaseStudyDaiticsCdp = () => (
           <SectionTitle id="competitive">How the market builds this</SectionTitle>
           <Body>
             I looked at how the closest neighbours in the space — enterprise CDPs, data platforms,
-            and AI-operator products — shape their authoring surfaces. Two references did the
-            most work: a Figma-based sweep of visual patterns across the CDP market, and a deep
-            look at Palantir Foundry as the reference for a governed, artifact-first workspace.
+            and AI-operator products — shape their authoring surfaces. Two references did the most
+            work: a Figma-based sweep of visual patterns across the CDP market (what worked, what
+            didn’t, and what we could improve on), and a deep look at Palantir Foundry as the
+            reference for a governed, artifact-first workspace — which confirmed the direction:{' '}
+            <strong>the artifact is the design; the UI is a lens.</strong>
           </Body>
-          <Figure
-            src={competitorScreenshots}
-            alt="Competitor screenshots — CDP + data-platform authoring patterns"
-            caption="Sweep of authoring patterns across enterprise CDPs and data platforms. What worked, what didn’t, and what we could improve on."
-          />
-          <Figure
-            src={palantir}
-            alt="Palantir Foundry — reference for a governed, artifact-first workspace"
-            caption="Palantir Foundry as the reference for a governed, artifact-first workspace. Confirmed the direction: the artifact is the design; the UI is a lens."
-          />
+          <div className="mt-2 flex flex-col gap-3">
+            <p className="text-sm leading-6 text-muted">
+              The two reference sweeps. Hover to zoom · click to view full size.
+            </p>
+            <ThumbnailGrid items={competitiveSnaps} cols={2} />
+          </div>
         </section>
 
         {/* My role */}
@@ -413,13 +406,13 @@ const CaseStudyDaiticsCdp = () => (
           />
           <Figure
             src={mlWorkbenchTable}
-            alt="ML Workbench — table view of models and experiments"
-            caption="ML Workbench catalog — one table view over models, experiments, and governance metadata, owned by the platform."
+            alt="ML Workbench — dataset browser, usage_daily table"
+            caption="Governed dataset browser — open any trait as a table (usage_daily: 71M rows, seven columns, DQ 99.1%, ingested 11 min ago). Row count, schema and data-quality signal sit in the header so a scientist decides whether it's worth loading before they write a query."
           />
           <Figure
             src={mlWorkbenchNotebook}
-            alt="ML Workbench — notebook authoring surface"
-            caption="The notebook itself, where a data scientist writes, runs, and iterates."
+            alt="ML Workbench — Feature Engineering notebook with Python and SQL cells"
+            caption="The notebook itself — Python and SQL cells side by side, imports from dtx.workbench, and a one-click handle to query any governed table. Feature engineering happens where the data lives, not in a copy."
           />
           <Callout title="Design principle" tone="info">
             A data scientist should not have to switch tools to comply. If compliance is a

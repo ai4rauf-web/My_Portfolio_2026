@@ -238,3 +238,95 @@ export const CaseStudyHeader = ({
     </div>
   </>
 )
+
+/* Bundled thumbnail grid with hover-zoom overlay and click-to-fullsize
+   lightbox. Used to club several research/reference artifacts into a
+   compact row without losing the ability to inspect each at real size. */
+type ThumbnailItem = { src: string; alt: string }
+const THUMB_COLS = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3', 4: 'sm:grid-cols-4' }
+
+export const ThumbnailGrid = ({
+  items,
+  cols = 3,
+}: {
+  items: ThumbnailItem[]
+  cols?: 2 | 3 | 4
+}) => {
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (openIdx === null) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenIdx(null)
+    }
+    const prevOverflow = document.body.style.overflow
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [openIdx])
+
+  const open = openIdx !== null ? items[openIdx] : null
+
+  return (
+    <>
+      <div className={`grid grid-cols-1 gap-3 ${THUMB_COLS[cols]}`}>
+        {items.map((item, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setOpenIdx(i)}
+            aria-label={`View ${item.alt} at full size`}
+            className="group relative block overflow-hidden rounded-xl border border-[#e8e8e8] bg-surface text-left transition-shadow duration-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-tag-blue"
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              className="h-40 w-full object-cover object-top transition-transform duration-300 group-hover:scale-105 lg:h-48"
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-200 group-hover:bg-ink/25 group-hover:opacity-100 group-focus-visible:bg-ink/25 group-focus-visible:opacity-100"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-lg">
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" />
+                  <path d="M11 8v6M8 11h6" />
+                </svg>
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          onClick={() => setOpenIdx(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={open.alt}
+        >
+          <button
+            type="button"
+            onClick={() => setOpenIdx(null)}
+            aria-label="Close full-size view"
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-xl text-ink transition-colors hover:bg-white"
+          >
+            ✕
+          </button>
+          <img
+            src={open.src}
+            alt={open.alt}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+          />
+        </div>
+      )}
+    </>
+  )
+}
