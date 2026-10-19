@@ -18,7 +18,7 @@ const Hero = () => (
         Hi, I'm <span className="font-semibold">Rauf</span>{' '}
         <span className="inline-block origin-[70%_80%] motion-safe:animate-wave">👋</span>
         <br />
-        <em>Product designer</em> with 10+ years turning complex enterprise problems into products
+        <em>Product designer</em> with 11+ years turning complex enterprise problems into products
         people love — currently leading design at{' '}
         <a
           href="https://www.eand.com/en/index.html"
@@ -26,7 +26,7 @@ const Hero = () => (
           rel="noreferrer"
           className="underline decoration-ink/40 underline-offset-2 transition-colors hover:text-[#1377b0] hover:decoration-[#1377b0]"
         >
-          e&amp; UAE
+          Etisalat UAE
         </a>
         .
       </h1>
