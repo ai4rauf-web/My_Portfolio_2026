@@ -24,6 +24,11 @@ import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
 import mlWorkbenchNotebook from '../assets/AICDP/ml-workbench-notebook.jpg'
 import mlJupyterhub from '../assets/AICDP/ml-jupyterhub.png'
+import wfHero from '../assets/AICDP/workflows/workflows-hero.png'
+import wfCreateMenu from '../assets/AICDP/workflows/workflows-create-menu.png'
+import wfAgentBuilder from '../assets/AICDP/workflows/workflows-agent-builder.png'
+import wfManualBuilder from '../assets/AICDP/workflows/workflows-manual-builder.png'
+import wfImport from '../assets/AICDP/workflows/workflows-import.png'
 import v53Iteration from '../assets/AICDP/v53-iteration.jpg'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
 import palantir from '../assets/AICDP/palantir.jpg'
@@ -61,6 +66,7 @@ const navItems = [
   { id: 'trust', label: 'Trust & governance' },
   { id: 'hcai', label: 'Human-Centered AI' },
   { id: 'workbench', label: 'ML Workbench' },
+  { id: 'workflows', label: 'Workflow module' },
   { id: 'outcome', label: 'Outcome' },
   { id: 'change', label: 'What I’d change' },
   { id: 'takeaway', label: 'My takeaway' },
@@ -551,6 +557,136 @@ const CaseStudyDaiticsCdp = () => (
           <Callout title="Design principle" tone="info">
             A data scientist should not have to switch tools to comply. If compliance is a
             separate app, it will lose to speed. If it lives inside the notebook, it wins by default.
+          </Callout>
+        </section>
+
+        {/* Workflow module — DRAFT: review */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Workflow module</SectionLabel>
+          <SectionTitle id="workflows">Approval workflows governed by the platform, not the mailbox</SectionTitle>
+          <Body>
+            Every change in the platform — a new trait, a model promotion, a segment edit, a
+            tokenisation request — has to pass through an approval workflow. The module makes those
+            workflows a <strong>first-class product</strong>, not an email chain. It is Flowable BPMN
+            underneath, Portal-rendered on top, and every run leaves the same audit trail as any
+            other artifact change.
+          </Body>
+          <Figure
+            src={wfHero}
+            alt="Workflows list — Approval workflows, SLAs and escalations that govern every change in the platform"
+            caption="The Workflows home. KPIs on top (published, in-flight, average approval time, SLA breaches), tabs below for Workflows, Instances, Approval queue and Version history. Risk-tier filter top-right governs who can approve what."
+          />
+
+          <SectionTitle id="workflows-create">Three ways to create a workflow</SectionTitle>
+          <Body>
+            A reviewer never has to choose between \u201ceasy\u201d and \u201cpowerful.\u201d The
+            same canonical workflow spec sits behind all three creation paths, so a workflow started
+            by the agent and finished in Manual mode is still one workflow with one audit history.
+          </Body>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Agentic flow</p>
+              <p className="text-base font-semibold text-ink">Build with the Workflow Agent</p>
+              <p className="text-sm leading-6 text-charcoal">
+                Describe the approval in plain language — who reviews, what conditions apply, how
+                strict the SLAs are. The agent drafts a Flowable BPMN definition; the human refines
+                it. Same trust rules as the CDP\u2019s authoring agent: the LLM drafts, the
+                platform decides.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Manual flow</p>
+              <p className="text-base font-semibold text-ink">Start blank, drag BPMN elements</p>
+              <p className="text-sm leading-6 text-charcoal">
+                A canonical palette of human tasks (Approval, Multi-approval, Review, Manual data
+                entry), system &amp; agent tasks (Service, Notification, AI agent, Script), and
+                gateways (XOR, AND, OR). Governance primitives live inside the palette so nothing
+                non-compliant can be dragged in.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Upload</p>
+              <p className="text-base font-semibold text-ink">Upload a BPMN 2.0 definition</p>
+              <p className="text-sm leading-6 text-charcoal">
+                Drop a <code>.bpmn20.xml</code> file (or JSON export) to bring an existing process
+                in from another engine. Imports go through the <em>same</em> sandbox test and
+                publish gate as a newly-authored one — script tasks are stripped on import; service
+                tasks must exist in the approved catalog.
+              </p>
+            </div>
+          </div>
+          <Figure
+            src={wfCreateMenu}
+            alt="Create workflow menu — four entry paths"
+            caption="The split \u2018Create workflow\u2019 button opens the four entry paths. From template is the fourth path for teams starting from a reference library; the three above are the primary modes."
+          />
+
+          <SectionTitle id="workflows-builder">The builder — one canvas, two modes</SectionTitle>
+          <Body>
+            Agentic and Manual modes are tabs on the same builder. The canvas, the trigger node,
+            the risk-tier badge, the sandbox test button and the validation issue counter are
+            shared. The left panel is what changes — prompt box for the agent, BPMN element palette
+            for Manual.
+          </Body>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <Figure
+              src={wfAgentBuilder}
+              alt="Builder in Workflow Agent mode — plain-language brief with sample prompts"
+              caption="Agent mode. The suggested prompts aren\u2019t decoration — they match real CDP approval shapes (sandbox-to-live with parallel DPO on PII, trait promotion with Readiness Check Agent validation, detokenisation gated by DPO)."
+            />
+            <Figure
+              src={wfManualBuilder}
+              alt="Builder in Manual mode — BPMN element palette"
+              caption="Manual mode. Human tasks, system &amp; agent tasks, gateways. Script task is locked \u2014 platform-owned only, so a workflow author can\u2019t smuggle untyped code into a governed path."
+            />
+          </div>
+
+          <SectionTitle id="workflows-import">Imports go through the same gate</SectionTitle>
+          <Body>
+            Uploading a BPMN definition is not a shortcut to live. The import modal names the rule
+            plainly: imports pass through the <em>same</em> sandbox test and publish gate as new
+            workflows. There is no second route to production.
+          </Body>
+          <Figure
+            src={wfImport}
+            alt="Import BPMN 2.0 XML modal — drop zone and import rules"
+            caption="Import modal. Flowable-compatible BPMN 2.0. Script tasks are stripped; service tasks must resolve against the approved catalog."
+          />
+
+          <SectionTitle id="workflows-sandbox">Test drive before publish</SectionTitle>
+          <Body>
+            Every workflow can be \u201ctest-driven\u201d in a sandbox simulator before it leaves
+            draft. The simulator runs each human decision, each agent task, and each parallel branch
+            against synthetic requesters. If the rejection branch runs, parallel approvals are
+            cancelled and the requester is notified with the reason \u2014 nothing activates. The
+            output is a simulated elapsed time and a list of decisions made, not a toast.
+          </Body>
+
+          <SectionLabel>What this is projected to save</SectionLabel>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <Stat
+              value="9.4h"
+              label="projected avg. time to approve — target for governed changes"
+              caption="Sandbox target — from the design-prototype KPI tile; replaces mailbox approvals measured in days"
+            />
+            <Stat
+              value="−2.1h"
+              label="projected weekly reduction once workflows go self-serve"
+              caption="Projected weekly delta vs. the previous week — baseline from pre-module email approvals"
+            />
+            <Stat
+              value="4 tiers"
+              label="risk-tier policy that governs who can approve what"
+              caption="Structural — Critical / High / Medium / Low; policy, not a filter"
+            />
+          </div>
+
+          <Callout title="Audit trail is identical to every other artifact" tone="info">
+            A workflow run leaves the same audit footprint as a trait edit or a model promotion:
+            <code>authoring_origin</code> on who built the workflow (human / agent / imported),
+            spec version at execution time, which gate approved or rejected each step, and the
+            exact Canonicalizer check that let the resulting change promote. One audit trail across
+            authoring and execution — no second system to reconcile.
           </Callout>
         </section>
 
