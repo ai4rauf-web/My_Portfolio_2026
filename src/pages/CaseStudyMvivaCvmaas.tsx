@@ -10,6 +10,8 @@ import {
   Stat,
   StickySectionNav,
 } from '../components/caseStudy'
+import WorkshopBlock from '../components/casestudy/WorkshopBlock'
+import IdentityVerificationFlow from '../components/casestudy/IdentityVerificationFlow'
 import {
   BeforeAfterFlow,
   CvmaasHeroMockup,
@@ -64,9 +66,11 @@ const snapshot = [
 const navItems = [
   { id: 'context', label: 'Context' },
   { id: 'before', label: 'The before-state' },
+  { id: 'workshops', label: 'Where the fix came from' },
   { id: 'role', label: 'My role' },
   { id: 'model', label: 'Two products, one experience' },
   { id: 'onboarding', label: 'Onboarding the manager' },
+  { id: 'identity', label: 'Identity verification' },
   { id: 'decisions', label: 'Design decisions' },
   { id: 'roles', label: 'Role model' },
   { id: 'mviva', label: 'mViva collaboration' },
@@ -158,6 +162,40 @@ const CaseStudyMvivaCvmaas = () => (
             The precise cast of tools and durations in that pipeline lived in the ops team’s
             institutional memory; I’ll leave the specifics out here rather than invent them.
           </Body>
+        </section>
+
+        {/* Workshops — DRAFT: review */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Where the fix came from</SectionLabel>
+          <SectionTitle id="workshops">A workshop, a blueprint, one honest number</SectionTitle>
+          <Body>
+            Before anything got drawn, we walked the current flow end-to-end on a shared FigJam
+            board — not from memory, but from one real campaign a business owner was actually
+            trying to get out the door. The output isn't a Figma file; it's a decision.
+          </Body>
+          <WorkshopBlock
+            goal={<>Map the current campaign-execution flow end-to-end. Find where business teams were blocked, not where we assumed they were.</>}
+            who={<>[FILL: number of sessions] sessions with CVM product owners, campaign-ops leads, data engineering, security, and legal.</>}
+            format={<>Process-mapping on a shared FigJam board. One real campaign walked step-by-step, with wait points and failure points annotated as they came up.</>}
+            activities={
+              <>
+                Current-state service blueprint (business → segmentation → offer config → ops →
+                approvals), with hand-off wait times called out. Each wait point tagged as
+                <em> working</em> or <em>waiting</em>.
+              </>
+            }
+            decision={
+              <>
+                Roughly 70% of elapsed time was <em>waiting</em>, not <em>working</em>. The fix
+                wasn't UI polish — it was ownership. Move the build to the business team, with
+                governance guardrails from CVMaaS, not approval chains.
+              </>
+            }
+            artefact={{
+              placeholder: 'Representative current-state service blueprint — data anonymised. Image to be added.',
+              caption: 'Anonymised snapshot of the shared board that drove the two-products decision.',
+            }}
+          />
         </section>
 
         {/* My role */}
@@ -486,6 +524,57 @@ const CaseStudyMvivaCvmaas = () => (
                 ),
               },
             ]}
+          />
+        </section>
+
+        {/* Enterprise identity verification — DRAFT: review */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Identity verification</SectionLabel>
+          <SectionTitle id="identity">Happy path, and the failure paths that matter</SectionTitle>
+          <Body>
+            The campaign manager comes in through the invite flow above. Underneath it sits a
+            short identity-verification pattern — enterprise-grade, UAE PASS-backed — with four
+            happy steps and a small set of failure paths designed before any screen was drawn.
+            The pattern is deliberately simple so it transfers to anything that needs identity:
+            customer onboarding, dealer activation, agent handover.
+          </Body>
+          <IdentityVerificationFlow
+            title="Campaign manager onboarding — identity verification"
+            happyPath={[
+              { title: 'Invite', desc: 'Admin invites manager by work email, tied to the account.' },
+              { title: 'UAE PASS login', desc: 'Government identity, no password typed into our form.' },
+              { title: 'Face ID (first-time)', desc: 'TDRA-compliant biometric on UAE PASS, not on us.' },
+              { title: 'Account verified', desc: 'Manager lands in the correct account, with the correct role.' },
+            ]}
+            failures={[
+              {
+                case: 'UAE PASS unavailable',
+                what: <>Fallback to direct login appears with a clear notice that strong-identity features are limited.</>,
+                why: <>Honours the operator's business continuity rule — never a dead end, always a labelled downgrade.</>,
+              },
+              {
+                case: 'Face ID verification fails',
+                what: <>Up to three retries, then a fallback to manual admin review inside CVMaaS.</>,
+                why: <>Avoids silent lockout. The admin keeps control; the manager keeps the invite warm.</>,
+              },
+              {
+                case: 'Invitee not in the account\u2019s org',
+                what: <>Block with a specific message to the invitee + a notification to the inviting admin to re-check.</>,
+                why: <>A generic error here is a security problem. The specific wording also saves a support ticket.</>,
+              },
+              {
+                case: 'User drops partway (save &amp; resume)',
+                what: <>Returning user resumes at the last completed step, not the start.</>,
+                why: <>Interrupted flows are the common case in enterprise setup — assume them, don't punish them.</>,
+              },
+            ]}
+            footnote={
+              <>
+                The same failure-first thinking (invalid document, name mismatch, OCR error,
+                resubmit only the failed item) carries into customer-side KYC. The screens differ;
+                the pattern transfers.
+              </>
+            }
           />
         </section>
 
