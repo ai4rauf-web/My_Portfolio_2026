@@ -162,9 +162,9 @@ const About = () => {
           <div className="flex flex-col gap-7 text-base leading-7 text-muted lg:text-lg">
             <p>
               Product Designer based in UAE. I'm passionate about improving the way people interact
-              with the digital realm to make their daily tasks more meaningful. Currently, I'm at
-              e&amp;, leading the design team in shaping the next generation of digital products
-              experiences.
+              with the digital realm to make their daily tasks more meaningful. Most recently I led
+              design at Etisalat UAE (e&amp;) across four product areas, shaping the next generation
+              of digital products experiences.
             </p>
             <p>
               I embarked on my professional journey at Morgan McKinley as a Data Process Engineer.

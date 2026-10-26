@@ -49,10 +49,23 @@ const Figure = ({ src, alt, caption }: { src: string; alt: string; caption?: str
   </figure>
 )
 
-const Stat = ({ value, label }: { value: string; label: string }) => (
+const Stat = ({
+  value,
+  label,
+  caption,
+}: {
+  value: string
+  label: string
+  caption?: string
+}) => (
   <div className="flex flex-col gap-1 rounded-2xl bg-surface p-6">
     <span className="text-[36px] font-semibold leading-none text-ink lg:text-[44px]">{value}</span>
     <span className="text-sm leading-6 text-muted lg:text-base">{label}</span>
+    {caption && (
+      <span className="mt-2 text-xs leading-5 text-muted/80">
+        How measured: {caption}
+      </span>
+    )}
   </div>
 )
 
@@ -140,7 +153,11 @@ const CaseStudyEmerson = () => {
       {/* Stat tiles */}
       <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
         <Stat value="30+" label="site variants per recipe step, now comparable at a glance" />
-        <Stat value="~40%" label="faster variant reviews vs. manual cross-checking" />
+        <Stat
+          value="~40%"
+          label="faster variant reviews vs. manual cross-checking"
+          caption="Stakeholder estimate from pilot engineers, validated in a usability review session" /* DRAFT: review */ 
+        />
         <Stat value="1,700" label="story-point MVP delivered in the PKM v11 release" />
         <Stat value="2" label="global pharma partners in discovery (Pfizer, Roche)" />
       </div>
@@ -370,7 +387,11 @@ const CaseStudyEmerson = () => {
       <div className="mt-16 flex flex-col gap-6 lg:mt-24">
         <SectionTitle>Impact &amp; results</SectionTitle>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <Stat value="~40%" label="less time spent comparing and reviewing variants" />
+          <Stat
+            value="~40%"
+            label="less time spent comparing and reviewing variants"
+            caption="Stakeholder estimate from pilot engineers, validated in a usability review session" /* DRAFT: review */ 
+          />
           <Stat value="Shipped" label="as the flagship MVP of the PKM v11 release" />
           <Stat value="Fewer" label="out-of-sync recipe errors reaching production review" />
         </div>

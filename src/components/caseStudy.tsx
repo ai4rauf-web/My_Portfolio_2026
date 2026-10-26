@@ -93,10 +93,23 @@ export const BlurredFigure = ({
   </figure>
 )
 
-export const Stat = ({ value, label }: { value: string; label: string }) => (
+export const Stat = ({
+  value,
+  label,
+  caption,
+}: {
+  value: string
+  label: string
+  caption?: string
+}) => (
   <div className="flex flex-col gap-1 rounded-2xl bg-surface p-6">
     <span className="text-[36px] font-semibold leading-none text-ink lg:text-[44px]">{value}</span>
     <span className="text-sm leading-6 text-muted lg:text-base">{label}</span>
+    {caption && (
+      <span className="mt-2 text-xs leading-5 text-muted/80">
+        How measured: {caption}
+      </span>
+    )}
   </div>
 )
 
