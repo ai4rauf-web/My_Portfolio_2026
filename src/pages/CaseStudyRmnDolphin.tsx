@@ -91,9 +91,21 @@ const CaseStudyRmnDolphin = () => (
 
     <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
       <Stat value="+22%" label="projected media revenue uplift for the operator (Y1)" />
-      <Stat value="−68%" label="campaign setup time — from days to hours" />
-      <Stat value="3.8×" label="advertiser ROAS on first-party audience campaigns" />
-      <Stat value="5×" label="advertiser onboarding capacity via self-serve DSP" />
+      <Stat
+        value="−68%"
+        label="campaign setup time — from days to hours"
+        caption="Internal ad-ops estimate, validated in a workshop walkthrough" /* DRAFT: review */ 
+      />
+      <Stat
+        value="3.8×"
+        label="projected advertiser ROAS on first-party audience campaigns (Y1 business case)"
+        caption="Projected — operator Y1 business case, not shipped measurement" /* DRAFT: review */ 
+      />
+      <Stat
+        value="5×"
+        label="advertiser onboarding capacity via self-serve DSP"
+        caption="Capacity model — manual ad-ops throughput vs. self-serve steady state" /* DRAFT: review */ 
+      />
     </div>
 
     <div className="mt-16 flex gap-10 lg:mt-24">

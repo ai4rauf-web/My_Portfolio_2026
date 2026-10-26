@@ -104,9 +104,21 @@ const CaseStudyShopManage = () => (
 
     <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4">
       <Stat value="2 drops" label="v1 shipped, then refined against real usage" />
-      <Stat value="+34%" label="top plan-management task completion, Drop 2 vs pre-launch" />
-      <Stat value="−41%" label="time to complete a plan change on mobile" />
-      <Stat value="−28%" label="plan-related contacts into care after Drop 2" />
+      <Stat
+        value="+34%"
+        label="top plan-management task completion, Drop 2 vs pre-launch"
+        caption="Event funnel analytics, Drop 2 vs. pre-launch baseline" /* DRAFT: review */ 
+      />
+      <Stat
+        value="−41%"
+        label="time to complete a plan change on mobile"
+        caption="Time-on-task from the same event funnel" /* DRAFT: review */ 
+      />
+      <Stat
+        value="−28%"
+        label="plan-related contacts into care after Drop 2"
+        caption="Care-ticket volume delta, filtered to plan-management reasons" /* DRAFT: review */ 
+      />
     </div>
 
     <div className="mt-16 flex gap-10 lg:mt-24">

@@ -12,12 +12,23 @@ import {
   StickySectionNav,
   ThumbnailGrid,
 } from '../components/caseStudy'
+import AmbiguityCallout from '../components/casestudy/AmbiguityCallout'
+import ResearchDecisionTable from '../components/casestudy/ResearchDecisionTable'
+import ThreeModesDiagram from '../components/casestudy/ThreeModesDiagram'
+import AutomationControlMatrix from '../components/casestudy/AutomationControlMatrix'
+import AgentStatesGrid from '../components/casestudy/AgentStatesGrid'
+import TrustPatterns from '../components/casestudy/TrustPatterns'
 import aicdpBanner from '../assets/AICDP/aicdp-banner.jpg'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
 import mlWorkbenchTable from '../assets/AICDP/ml-workbench-table.jpg'
 import mlWorkbenchNotebook from '../assets/AICDP/ml-workbench-notebook.jpg'
 import mlJupyterhub from '../assets/AICDP/ml-jupyterhub.png'
+import wfHero from '../assets/AICDP/workflows/workflows-hero.png'
+import wfCreateMenu from '../assets/AICDP/workflows/workflows-create-menu.png'
+import wfAgentBuilder from '../assets/AICDP/workflows/workflows-agent-builder.png'
+import wfManualBuilder from '../assets/AICDP/workflows/workflows-manual-builder.png'
+import wfImport from '../assets/AICDP/workflows/workflows-import.png'
 import v53Iteration from '../assets/AICDP/v53-iteration.jpg'
 import competitorScreenshots from '../assets/AICDP/competitor-screenshots.png'
 import palantir from '../assets/AICDP/palantir.jpg'
@@ -53,7 +64,9 @@ const navItems = [
   { id: 'builder', label: 'The Pipeline' },
   { id: 'agent-copilot', label: 'Agent vs Co-Pilot' },
   { id: 'trust', label: 'Trust & governance' },
+  { id: 'hcai', label: 'Human-Centered AI' },
   { id: 'workbench', label: 'ML Workbench' },
+  { id: 'workflows', label: 'Workflow module' },
   { id: 'outcome', label: 'Outcome' },
   { id: 'change', label: 'What I’d change' },
   { id: 'takeaway', label: 'My takeaway' },
@@ -152,6 +165,16 @@ const CaseStudyDaiticsCdp = () => (
             caption="AI CDP end-to-end workflow. Each stage is a first-class authoring surface with the same governance model behind it — one artifact per node, one audit trail across the flow."
           />
         </section>
+
+        {/* Ambiguity callout — DRAFT: review */}
+        <AmbiguityCallout
+          items={[
+            <>No shared product definition — <em>sovereign on-prem CDP</em> meant something different to each team.</>,
+            <>12+ personas (MarkOps, CDP Developer, Data Scientist, DPO, Auditor...) each described the product differently.</>,
+            <>No precedent for AI-authoring inside a telco-grade CDP under PDPL and TDRA constraints.</>,
+            <>Sovereign and on-prem — no SaaS templates to copy, no third-party models allowed on data.</>,
+          ]}
+        />
 
         {/* Scale */}
         <section className="flex flex-col gap-4">
@@ -263,6 +286,33 @@ const CaseStudyDaiticsCdp = () => (
             snapshot:
           </Body>
           <TelcoInsightsCanvas />
+
+          {/* Research -> Decision table — DRAFT: review */}
+          <ResearchDecisionTable
+            caption="Four rows the three big calls came out of. The canvas above is the raw thinking; this is the summary a reviewer can read in 20 seconds."
+            rows={[
+              {
+                learned: <>Marketing, Dev and Data Science each re-expressed the same logic in their own tool.</>,
+                decided: <>One canonical IR (intermediate representation) per artifact.</>,
+                changed: <>Three peer modes — Builder, Code, Agent — write to the same spec. No hand-off rebuilds.</>,
+              },
+              {
+                learned: <>DPO needed audit on every action, not opt-in on request.</>,
+                decided: <>Auditable by default — logs are a platform invariant, not a feature.</>,
+                changed: <>Every action logs <code>authoring_origin</code> + spec version. AI actions are first-class in the same audit trail as human ones.</>,
+              },
+              {
+                learned: <>Marketers think visually; developers think in code. Neither accepts a “downgrade” toggle.</>,
+                decided: <>Peer modes, not simple/advanced.</>,
+                changed: <>The Form alone covers 80–90% of authoring. The Code tab is a peer, not an escape hatch.</>,
+              },
+              {
+                learned: <>An agent that <em>acts</em> can't be audited the same way as a user.</>,
+                decided: <>LLM drafts. The platform (Canonicalizer) decides.</>,
+                changed: <>The Agent produces a candidate IR; a deterministic step validates schema, DULE and consent before anything promotes.</>,
+              },
+            ]}
+          />
         </section>
 
         {/* Three-mode decision */}
@@ -275,6 +325,10 @@ const CaseStudyDaiticsCdp = () => (
             Intermediate Representation (IR) per artifact. The user picks the mode. Nothing forces a
             gateway. The IR is what actually gets promoted; the tabs are bi-directional projections.
           </Body>
+
+          {/* Three-modes diagram — DRAFT: review */}
+          <ThreeModesDiagram />
+
           <Body>
             Two things fall out of this that I didn’t appreciate at the start:
           </Body>
@@ -382,6 +436,92 @@ const CaseStudyDaiticsCdp = () => (
           </Callout>
         </section>
 
+        {/* Human-Centered AI — DRAFT: review */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Human-Centered AI</SectionLabel>
+          <SectionTitle id="hcai">How the agent earns the right to act</SectionTitle>
+          <Body>
+            Trust &amp; governance (above) covers the <em>mechanism</em> — LLM drafts, deterministic
+            gate, authoring_origin on every artifact. This section covers the <em>interaction</em>:
+            which behaviours we chose, which we deliberately excluded, and what the agent looks like
+            from the user's seat.
+          </Body>
+
+          {/* Automation vs. control */}
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-muted">
+              Automation × control — the design space
+            </p>
+            <AutomationControlMatrix
+              topLeft={{
+                title: 'Suggest',
+                body: (
+                  <>Inline hints and tooltips while the human builds in the Form or Code tab.
+                    The human writes; the AI nudges.</>
+                ),
+              }}
+              topRight={{
+                title: 'Draft',
+                body: (
+                  <>Agent writes a complete candidate IR. Human reviews it in Builder or Code,
+                    edits inline, approves. The AI writes; the human owns the merge.</>
+                ),
+              }}
+              bottomLeft={{
+                title: 'Auto-complete',
+                body: (
+                  <>Small deterministic completions — default profile fields, resolved refs,
+                    version bumps. No LLM; nothing to gate.</>
+                ),
+              }}
+              bottomRight={{
+                title: 'Act without approval',
+                tone: 'excluded',
+                body: (
+                  <>Deliberately empty. Every AI action goes through the Canonicalizer; the
+                    platform refuses to promote without a validated IR.</>
+                ),
+              }}
+            />
+          </div>
+
+          {/* Agent states */}
+          <div className="mt-6 flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-muted">
+              Agent lifecycle — nine states we designed for
+            </p>
+            <AgentStatesGrid
+              states={[
+                { name: 'Idle', desc: 'Agent available. No draft in flight. Prompt field is live, nothing else is.' },
+                { name: 'Understanding', desc: 'Reading the prompt and context. Resolving refs. Nothing committed yet.' },
+                { name: 'Working', desc: 'Drafting the candidate IR. Streaming updates where it helps; hidden where it would distract.' },
+                { name: 'Proposed', desc: 'Draft shown in Builder/Code as a diff. User can accept, edit, or discard.', tone: 'ok' },
+                { name: 'Approved', desc: 'User accepted. Candidate heads to the Canonicalizer for deterministic validation.', tone: 'ok' },
+                { name: 'Partial', desc: 'Agent produced some but not all required fields. Flagged for human completion.', tone: 'warn' },
+                { name: 'Failed', desc: 'Agent couldn\u2019t produce a candidate. Surface the reason, not the stack trace.', tone: 'warn' },
+                { name: 'Invalid', desc: 'Canonicalizer rejected the candidate (schema, consent, DULE). Shows which gate failed.', tone: 'error' },
+                { name: 'Rejected', desc: 'User discarded the draft. Captured for prompt-quality improvement.', tone: 'error' },
+              ]}
+            />
+          </div>
+
+          {/* Trust patterns */}
+          <div className="mt-6 flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-muted">
+              Trust patterns — the vocabulary we repeat
+            </p>
+            <TrustPatterns
+              patterns={[
+                { name: 'Confidence in plain language', desc: 'No percentages or probabilities in the UI. The agent says what it did and what it didn\u2019t do, in a sentence.' },
+                { name: 'Sources travel with the draft', desc: 'Every proposed IR carries the tables, policies and prior artifacts it reasoned over. Reviewers never have to ask \u201cwhere did this come from?\u201d.' },
+                { name: 'Approval gates with impact', desc: 'Before a promotion the user sees the downstream artifacts the change touches — not just a confirm dialog.' },
+                { name: 'Undo and versioning', desc: 'Nothing the agent proposes overwrites history. Every version is addressable; every rollback is one action.' },
+                { name: 'Fallback to Builder', desc: 'If the agent can\u2019t help, the Builder is right there — same tab, same artifact. No hand-off, no lost context.' },
+              ]}
+            />
+          </div>
+        </section>
+
         {/* ML Workbench */}
         <section className="flex flex-col gap-4">
           <SectionLabel>ML Workbench</SectionLabel>
@@ -417,6 +557,136 @@ const CaseStudyDaiticsCdp = () => (
           <Callout title="Design principle" tone="info">
             A data scientist should not have to switch tools to comply. If compliance is a
             separate app, it will lose to speed. If it lives inside the notebook, it wins by default.
+          </Callout>
+        </section>
+
+        {/* Workflow module — DRAFT: review */}
+        <section className="flex flex-col gap-4">
+          <SectionLabel>Workflow module</SectionLabel>
+          <SectionTitle id="workflows">Approval workflows governed by the platform, not the mailbox</SectionTitle>
+          <Body>
+            Every change in the platform — a new trait, a model promotion, a segment edit, a
+            tokenisation request — has to pass through an approval workflow. The module makes those
+            workflows a <strong>first-class product</strong>, not an email chain. It is Flowable BPMN
+            underneath, Portal-rendered on top, and every run leaves the same audit trail as any
+            other artifact change.
+          </Body>
+          <Figure
+            src={wfHero}
+            alt="Workflows list — Approval workflows, SLAs and escalations that govern every change in the platform"
+            caption="The Workflows home. KPIs on top (published, in-flight, average approval time, SLA breaches), tabs below for Workflows, Instances, Approval queue and Version history. Risk-tier filter top-right governs who can approve what."
+          />
+
+          <SectionTitle id="workflows-create">Three ways to create a workflow</SectionTitle>
+          <Body>
+            A reviewer never has to choose between \u201ceasy\u201d and \u201cpowerful.\u201d The
+            same canonical workflow spec sits behind all three creation paths, so a workflow started
+            by the agent and finished in Manual mode is still one workflow with one audit history.
+          </Body>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Agentic flow</p>
+              <p className="text-base font-semibold text-ink">Build with the Workflow Agent</p>
+              <p className="text-sm leading-6 text-charcoal">
+                Describe the approval in plain language — who reviews, what conditions apply, how
+                strict the SLAs are. The agent drafts a Flowable BPMN definition; the human refines
+                it. Same trust rules as the CDP\u2019s authoring agent: the LLM drafts, the
+                platform decides.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Manual flow</p>
+              <p className="text-base font-semibold text-ink">Start blank, drag BPMN elements</p>
+              <p className="text-sm leading-6 text-charcoal">
+                A canonical palette of human tasks (Approval, Multi-approval, Review, Manual data
+                entry), system &amp; agent tasks (Service, Notification, AI agent, Script), and
+                gateways (XOR, AND, OR). Governance primitives live inside the palette so nothing
+                non-compliant can be dragged in.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 rounded-2xl border border-[#e8e8e8] bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-tag-blue">Upload</p>
+              <p className="text-base font-semibold text-ink">Upload a BPMN 2.0 definition</p>
+              <p className="text-sm leading-6 text-charcoal">
+                Drop a <code>.bpmn20.xml</code> file (or JSON export) to bring an existing process
+                in from another engine. Imports go through the <em>same</em> sandbox test and
+                publish gate as a newly-authored one — script tasks are stripped on import; service
+                tasks must exist in the approved catalog.
+              </p>
+            </div>
+          </div>
+          <Figure
+            src={wfCreateMenu}
+            alt="Create workflow menu — four entry paths"
+            caption="The split \u2018Create workflow\u2019 button opens the four entry paths. From template is the fourth path for teams starting from a reference library; the three above are the primary modes."
+          />
+
+          <SectionTitle id="workflows-builder">The builder — one canvas, two modes</SectionTitle>
+          <Body>
+            Agentic and Manual modes are tabs on the same builder. The canvas, the trigger node,
+            the risk-tier badge, the sandbox test button and the validation issue counter are
+            shared. The left panel is what changes — prompt box for the agent, BPMN element palette
+            for Manual.
+          </Body>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <Figure
+              src={wfAgentBuilder}
+              alt="Builder in Workflow Agent mode — plain-language brief with sample prompts"
+              caption="Agent mode. The suggested prompts aren\u2019t decoration — they match real CDP approval shapes (sandbox-to-live with parallel DPO on PII, trait promotion with Readiness Check Agent validation, detokenisation gated by DPO)."
+            />
+            <Figure
+              src={wfManualBuilder}
+              alt="Builder in Manual mode — BPMN element palette"
+              caption="Manual mode. Human tasks, system &amp; agent tasks, gateways. Script task is locked \u2014 platform-owned only, so a workflow author can\u2019t smuggle untyped code into a governed path."
+            />
+          </div>
+
+          <SectionTitle id="workflows-import">Imports go through the same gate</SectionTitle>
+          <Body>
+            Uploading a BPMN definition is not a shortcut to live. The import modal names the rule
+            plainly: imports pass through the <em>same</em> sandbox test and publish gate as new
+            workflows. There is no second route to production.
+          </Body>
+          <Figure
+            src={wfImport}
+            alt="Import BPMN 2.0 XML modal — drop zone and import rules"
+            caption="Import modal. Flowable-compatible BPMN 2.0. Script tasks are stripped; service tasks must resolve against the approved catalog."
+          />
+
+          <SectionTitle id="workflows-sandbox">Test drive before publish</SectionTitle>
+          <Body>
+            Every workflow can be \u201ctest-driven\u201d in a sandbox simulator before it leaves
+            draft. The simulator runs each human decision, each agent task, and each parallel branch
+            against synthetic requesters. If the rejection branch runs, parallel approvals are
+            cancelled and the requester is notified with the reason \u2014 nothing activates. The
+            output is a simulated elapsed time and a list of decisions made, not a toast.
+          </Body>
+
+          <SectionLabel>What this is projected to save</SectionLabel>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <Stat
+              value="9.4h"
+              label="projected avg. time to approve — target for governed changes"
+              caption="Sandbox target — from the design-prototype KPI tile; replaces mailbox approvals measured in days"
+            />
+            <Stat
+              value="−2.1h"
+              label="projected weekly reduction once workflows go self-serve"
+              caption="Projected weekly delta vs. the previous week — baseline from pre-module email approvals"
+            />
+            <Stat
+              value="4 tiers"
+              label="risk-tier policy that governs who can approve what"
+              caption="Structural — Critical / High / Medium / Low; policy, not a filter"
+            />
+          </div>
+
+          <Callout title="Audit trail is identical to every other artifact" tone="info">
+            A workflow run leaves the same audit footprint as a trait edit or a model promotion:
+            <code>authoring_origin</code> on who built the workflow (human / agent / imported),
+            spec version at execution time, which gate approved or rejected each step, and the
+            exact Canonicalizer check that let the resulting change promote. One audit trail across
+            authoring and execution — no second system to reconcile.
           </Callout>
         </section>
 
