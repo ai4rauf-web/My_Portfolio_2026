@@ -18,6 +18,7 @@ import ThreeModesDiagram from '../components/casestudy/ThreeModesDiagram'
 import AutomationControlMatrix from '../components/casestudy/AutomationControlMatrix'
 import AgentStatesGrid from '../components/casestudy/AgentStatesGrid'
 import TrustPatterns from '../components/casestudy/TrustPatterns'
+import ZoomableFigure from '../components/casestudy/ZoomableFigure'
 import aicdpBanner from '../assets/AICDP/aicdp-banner.jpg'
 import aicdpVsAicep from '../assets/AICDP/aicdp-vs-aicep.jpg'
 import aicdpEndToEndFlow from '../assets/AICDP/aicdp-end-to-end-flow.svg'
@@ -629,12 +630,12 @@ const CaseStudyDaiticsCdp = () => (
             for Manual.
           </Body>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <Figure
+            <ZoomableFigure
               src={wfAgentBuilder}
               alt="Builder in Workflow Agent mode — plain-language brief with sample prompts"
               caption="Agent mode. The suggested prompts aren\u2019t decoration — they match real CDP approval shapes (sandbox-to-live with parallel DPO on PII, trait promotion with Readiness Check Agent validation, detokenisation gated by DPO)."
             />
-            <Figure
+            <ZoomableFigure
               src={wfManualBuilder}
               alt="Builder in Manual mode — BPMN element palette"
               caption="Manual mode. Human tasks, system &amp; agent tasks, gateways. Script task is locked \u2014 platform-owned only, so a workflow author can\u2019t smuggle untyped code into a governed path."
